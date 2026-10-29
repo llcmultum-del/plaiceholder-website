@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Agent Catalog — PlAIceholder</title>
+  <meta name="description" content="13 custom-built AI agents for sales, customer success, back office, and marketing. Three are ready now with live demos."/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%231a6ef5%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%233ec9c9%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2216%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2216%22%20y%3D%2221%22%20text-anchor%3D%22middle%22%20font-family%3D%22system-ui%2Csans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2216%22%20fill%3D%22white%22%3EA%3C/text%3E%3C/svg%3E"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">PlAIceholder</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="agents.html" class="active">Agents</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="case-study.html">Case Study</a></li>
+    <li><a href="contact.html" class="nav-cta">Book a Call</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<div class="page-banner">
+  <div class="page-banner-inner">
+    <h1>The Agent Catalog</h1>
+    <p>13 agents across sales, customer success, back office, and marketing. Three are ready now with live demos.</p>
+  </div>
+</div>
+<section class="section section-light">
+  <div class="inner">
+    <div class="filter-bar">
+      <input type="text" id="agent-search" placeholder="Search agents…" oninput="filterAgents()"/>
+      <button class="filter-btn active" data-area="all" onclick="setArea(this,'all')">All</button>
+      <button class="filter-btn" data-area="Sales" onclick="setArea(this,'Sales')">Sales</button>
+      <button class="filter-btn" data-area="Customer success" onclick="setArea(this,'Customer success')">Customer success</button>
+      <button class="filter-btn" data-area="Back office" onclick="setArea(this,'Back office')">Back office</button>
+      <button class="filter-btn" data-area="Marketing" onclick="setArea(this,'Marketing')">Marketing</button>
+    </div>
+    <div class="agent-grid" id="agent-grid">
+<div class="agent-card" data-area="Sales" data-status="ready">
+  <div class="agent-meta">
+    <span class="pill pill-area">Sales</span>
+    <span class="pill pill-tier">Advanced</span>
+    <span class="pill pill-ready">Ready now</span>
+  </div>
+  <h3>Signal Prospector</h3>
+  <p class="job">Finds companies showing buying signals in the news — funding, acquisitions, new leaders, expansion — explains why now, finds the right people to contact, and saves it all to your CRM.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> HubSpot, Salesforce, Apollo, AI web search</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A score, tier (Hot/Warm/Cold), reasons and source links on every company. Verified contacts. A rep dashboard with talk tracks.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Every signal links to an article the AI really found. Never touches accounts that already belong to a rep. Credit cap on email reveals.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $6,000 setup · $750/mo care</p>
+  <a href="demos/signal-prospector-dashboard.html" class="demo-link">View sample dashboard →</a>
+</div>
+<div class="agent-card" data-area="Sales" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Sales</span>
+    <span class="pill pill-tier">Standard</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>Inbound Lead Researcher</h3>
+  <p class="job">Researches every new form lead within minutes, scores fit against your ideal customer, suggests an owner, and drafts a first reply.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> HubSpot, Salesforce, AI web search</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A fit score, a research note, and a draft reply on each lead.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Drafts only. A person sends every email.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
+  
+</div>
+<div class="agent-card" data-area="Sales" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Sales</span>
+    <span class="pill pill-tier">Starter</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>CRM Hygiene</h3>
+  <p class="job">Finds duplicate companies and contacts, missing fields, stale deals and bad data, then proposes fixes for your team to approve.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> HubSpot, Salesforce</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A fix list to approve. Only approved fixes are applied.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Backup before every change. Nothing applied without approval.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
+  
+</div>
+<div class="agent-card" data-area="Sales" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Sales</span>
+    <span class="pill pill-tier">Standard</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>Deal Follow-up Drafter</h3>
+  <p class="job">Spots stalled deals and drafts a follow-up email from the last messages and CRM notes, so reps never lose track of a deal.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> HubSpot, Salesforce, Gmail, Outlook</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> Draft emails and tasks waiting for the rep.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Never sends automatically. A person sends every message.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
+  
+</div>
+<div class="agent-card" data-area="Sales" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Sales</span>
+    <span class="pill pill-tier">Starter</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>Meeting Prep Briefs</h3>
+  <p class="job">Writes a one-page brief before every prospect call: who they are, recent news, CRM history, and suggested questions.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> Google Calendar, Microsoft Calendar, CRM, AI web search</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A brief in Slack or email an hour before the meeting.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Every news item links to its source.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
+  
+</div>
+<div class="agent-card" data-area="Customer success" data-status="ready">
+  <div class="agent-meta">
+    <span class="pill pill-area">Customer success</span>
+    <span class="pill pill-tier">Standard</span>
+    <span class="pill pill-ready">Ready now</span>
+  </div>
+  <h3>Renewal Risk Radar</h3>
+  <p class="job">Reads support tickets, account notes, and product usage for every customer renewing soon. Flags risk with evidence and a suggested next step.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> HubSpot, Salesforce, Zendesk, Slack, Usage exports</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> Risk score, level, and reasons on each account. CS dashboard showing dollars at risk. Slack alerts for high-risk renewals.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Every reason cites a real ticket, note, or usage figure. Hard rules the AI can't override.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
+  <a href="demos/renewal-risk-dashboard.html" class="demo-link">View sample dashboard →</a>
+</div>
+<div class="agent-card" data-area="Customer success" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Customer success</span>
+    <span class="pill pill-tier">Starter</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>Support Ticket Triage</h3>
+  <p class="job">Tags topic and urgency on new tickets, routes them to the right team, and drafts a reply as an internal note.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> Zendesk, HubSpot</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> Tags, priority, and a draft reply on each ticket.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Agents review every reply before it's sent.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
+  
+</div>
+<div class="agent-card" data-area="Customer success" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Customer success</span>
+    <span class="pill pill-tier">Starter</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>Customer Onboarding Tracker</h3>
+  <p class="job">Checks new customers against your onboarding checklist and nudges the account owner when one stalls.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> CRM, Help desk, Slack</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A stalled-account list and weekly Slack nudges with the blocker.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Read-only on customer records.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
+  
+</div>
+<div class="agent-card" data-area="Back office" data-status="ready">
+  <div class="agent-meta">
+    <span class="pill pill-area">Back office</span>
+    <span class="pill pill-tier">Standard</span>
+    <span class="pill pill-ready">Ready now</span>
+  </div>
+  <h3>Invoice Checker</h3>
+  <p class="job">Matches every vendor invoice to its purchase order before it's paid. Flags duplicates, price overruns, missing POs, and unapproved vendors with dollars at risk.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> CSV exports, QuickBooks Online, Slack</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> An exceptions report and AP dashboard. Slack summary before the payment run.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Read-only. Rules find every exception. AI reviews only fuzzy cases and can't clear anything.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
+  <a href="demos/invoice-checker-dashboard.html" class="demo-link">View sample dashboard →</a>
+</div>
+<div class="agent-card" data-area="Back office" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Back office</span>
+    <span class="pill pill-tier">Standard</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>Resume Screener</h3>
+  <p class="job">Compares applicants to the job's must-haves and summarizes each one with quoted evidence from the resume.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> ATS export, Greenhouse</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A shortlist with reasons.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Never auto-rejects. A person makes every decision. Local hiring-AI rules checked first.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
+  
+</div>
+<div class="agent-card" data-area="Back office" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Back office</span>
+    <span class="pill pill-tier">Starter</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>Weekly KPI Writer</h3>
+  <p class="job">Pulls the week's numbers and writes the story behind them — what moved, why, and what to watch.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> CRM, Spreadsheets, Slack, Email</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A Monday summary in Slack or email.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Numbers are calculated in code. AI writes only the words around them.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
+  
+</div>
+<div class="agent-card" data-area="Marketing" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Marketing</span>
+    <span class="pill pill-tier">Starter</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>Competitor Watch</h3>
+  <p class="job">Tracks competitor websites, pricing pages, and news. Summarizes what changed and why it matters.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> AI web search, Competitor URLs, Slack, Email</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A weekly brief that reports only what's new.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> A link for every claim.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
+  
+</div>
+<div class="agent-card" data-area="Marketing" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Marketing</span>
+    <span class="pill pill-tier">Advanced</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>RFP and Questionnaire Drafter</h3>
+  <p class="job">Drafts answers to RFPs and security questionnaires from your library of past approved answers.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> Answer library (docs or spreadsheet)</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A draft document with the source of every answer, ready for review.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Every answer cites a library entry. A person reviews before sending.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $6,000 setup · $750/mo care</p>
+  
+</div>
+    </div>
+    <p id="no-results" style="display:none;color:var(--muted);margin-top:1.5rem;">No agents match your filter.</p>
+  </div>
+</section>
+
+<!-- Quiz -->
+<section class="section section-white">
+  <div class="inner" style="max-width:680px;">
+    <span class="tag">Not sure where to start?</span>
+    <h2>Which agent fits you?</h2>
+    <p class="sub">Three questions. One or two recommendations.</p>
+    <div class="quiz-wrap">
+      <div class="quiz-q">1. How big is your team?</div>
+      <div class="quiz-opts">
+        <label class="quiz-opt"><input type="radio" name="q1" value="small"/> 1 to 15 people</label>
+        <label class="quiz-opt"><input type="radio" name="q1" value="mid"/> 16 to 60 people</label>
+        <label class="quiz-opt"><input type="radio" name="q1" value="large"/> 61 to 200 people</label>
+      </div>
+      <div class="quiz-q">2. Which tools do you use?</div>
+      <div class="quiz-opts">
+        <label class="quiz-opt"><input type="radio" name="q2" value="crm"/> HubSpot or Salesforce</label>
+        <label class="quiz-opt"><input type="radio" name="q2" value="desk"/> Zendesk or a help desk</label>
+        <label class="quiz-opt"><input type="radio" name="q2" value="finance"/> QuickBooks or accounting CSV exports</label>
+        <label class="quiz-opt"><input type="radio" name="q2" value="other"/> Spreadsheets / other</label>
+      </div>
+      <div class="quiz-q">3. What's your biggest time sink?</div>
+      <div class="quiz-opts">
+        <label class="quiz-opt"><input type="radio" name="q3" value="prospect"/> Finding and researching prospects</label>
+        <label class="quiz-opt"><input type="radio" name="q3" value="churn"/> Spotting customers at risk</label>
+        <label class="quiz-opt"><input type="radio" name="q3" value="invoice"/> Checking invoices before payment</label>
+        <label class="quiz-opt"><input type="radio" name="q3" value="data"/> Keeping data clean or writing reports</label>
+      </div>
+      <button class="btn btn-grad" onclick="runQuiz()" style="margin-bottom:1rem;">Get a recommendation</button>
+      <div class="quiz-result" id="quiz-result"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+var activeArea='all';
+function setArea(btn,area){
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  activeArea=area;
+  filterAgents();
+}
+function filterAgents(){
+  var q=document.getElementById('agent-search').value.toLowerCase();
+  var cards=document.querySelectorAll('.agent-card');
+  var shown=0;
+  cards.forEach(function(c){
+    var areaMatch=activeArea==='all'||c.dataset.area===activeArea;
+    var textMatch=!q||c.textContent.toLowerCase().includes(q);
+    c.style.display=(areaMatch&&textMatch)?'':'none';
+    if(areaMatch&&textMatch)shown++;
+  });
+  document.getElementById('no-results').style.display=shown===0?'block':'none';
+}
+function runQuiz(){
+  var q3=document.querySelector('input[name="q3"]:checked');
+  if(!q3){alert('Please answer all three questions.');return;}
+  var recs={
+    'prospect':'<strong>Signal Prospector</strong> — finds companies showing buying signals and saves the right contacts to your CRM. Advanced tier, from $6,000.',
+    'churn':'<strong>Renewal Risk Radar</strong> — flags accounts at risk before renewal with evidence from tickets, notes, and usage. Standard tier, from $3,500.',
+    'invoice':'<strong>Invoice Checker</strong> — matches every invoice to its PO and flags problems with dollars at risk before you pay. Standard tier, from $3,500.',
+    'data':'<strong>CRM Hygiene</strong> or <strong>Weekly KPI Writer</strong> — clean your data or get a Monday summary of what moved and why. Starter tier, from $1,500.'
+  };
+  var el=document.getElementById('quiz-result');
+  el.innerHTML='We suggest: '+recs[q3.value]+'<br/><br/><a href="contact.html" style="color:var(--blue);font-weight:700;">Book a free call to confirm →</a>';
+  el.classList.add('show');
+}
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="logo footer-logo">PlAIceholder</a>
+      <p class="footer-tag">AI agents that do the busywork inside the tools you already use.</p>
+    </div>
+    <div class="footer-links">
+      <a href="agents.html">Agents</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="case-study.html">Case Study</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <p class="footer-copy">© 2026 PlAIceholder. All rights reserved.</p>
+</footer>
+</body>
+</html>
