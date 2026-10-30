@@ -11,6 +11,7 @@ def nav(active):
     links = [
         ("Home", "index.html", "home"),
         ("Agents", "agents.html", "agents"),
+        ("Services", "services.html", "services"),
         ("How It Works", "how-it-works.html", "how"),
         ("Pricing", "pricing.html", "pricing"),
         ("Case Study", "case-study.html", "case"),
@@ -36,6 +37,7 @@ FOOTER = """<footer>
     </div>
     <div class="footer-links">
       <a href="agents.html">Agents</a>
+      <a href="services.html">Services</a>
       <a href="how-it-works.html">How It Works</a>
       <a href="pricing.html">Pricing</a>
       <a href="case-study.html">Case Study</a>
@@ -556,6 +558,35 @@ HOME_BODY = """
   </div>
 </section>
 
+<!-- Services teaser -->
+<section class="section section-white">
+  <div class="inner">
+    <span class="tag">More ways we help</span>
+    <h2>Beyond agents: courses and consultation</h2>
+    <p class="sub">Not every team is ready to hand off a task to an agent. We also teach and advise.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🎓</div>
+        <h3>AI Courses</h3>
+        <p>Practical, hands-on courses that teach your team how to use AI tools effectively — from prompting basics to building lightweight automations without code.</p>
+        <a href="services.html" style="display:inline-block;margin-top:1rem;font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;">Learn more →</a>
+      </div>
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>AI Consultation</h3>
+        <p>Not sure where AI fits in your business? We map your workflows, identify the highest-value automation opportunities, and give you a clear, prioritized roadmap.</p>
+        <a href="services.html" style="display:inline-block;margin-top:1rem;font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;">Learn more →</a>
+      </div>
+      <div class="card">
+        <div class="icon">🤖</div>
+        <h3>Custom AI Agents</h3>
+        <p>Have a specific task in mind that isn't in the catalog? We scope, build, and install a custom agent tailored to exactly how your team works.</p>
+        <a href="agents.html" style="display:inline-block;margin-top:1rem;font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;">See the catalog →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Pricing teaser -->
 <section class="section section-light" style="text-align:center;">
   <div class="inner">
@@ -663,6 +694,11 @@ AGENTS = [
    "connects":["Answer library (docs or spreadsheet)"],
    "you_get":"A draft document with the source of every answer, ready for review.",
    "safety":"Every answer cites a library entry. A person reviews before sending."},
+  {"name":"Custom Agent","area":"Custom","tier":"Custom","status":"available","setup":"Contact us","care":"Contact us",
+   "job":"Don't see what you need? We design and build custom agents for any repeatable task your team does. If it involves pulling data, making a judgment, and writing something back, we can automate it.",
+   "connects":["Your tools"],
+   "you_get":"A scoped proposal, fixed price, and a working agent tailored exactly to how your team operates.",
+   "safety":"All custom agents ship with the same safety rules: dry run first, pilot on 20 records, source links on every AI finding, spending caps, full audit log, and human approval before any action."},
 ]
 
 def agent_card(a):
@@ -700,6 +736,7 @@ AGENTS_BODY = """
       <button class="filter-btn" data-area="Customer success" onclick="setArea(this,'Customer success')">Customer success</button>
       <button class="filter-btn" data-area="Back office" onclick="setArea(this,'Back office')">Back office</button>
       <button class="filter-btn" data-area="Marketing" onclick="setArea(this,'Marketing')">Marketing</button>
+      <button class="filter-btn" data-area="Custom" onclick="setArea(this,'Custom')">Custom</button>
     </div>
     <div class="agent-grid" id="agent-grid">
 """ + "\n".join(agent_card(a) for a in AGENTS) + """
@@ -1082,6 +1119,117 @@ PRICING_BODY = """
 """
 
 # ─────────────────────────────────────────────────────────────────────────────
+# SERVICES
+# ─────────────────────────────────────────────────────────────────────────────
+SERVICES_BODY = """
+<div class="page-banner">
+  <div class="page-banner-inner">
+    <h1>Services</h1>
+    <p>AI agents, courses, and consultation — whatever stage your team is at, we have a way to help.</p>
+  </div>
+</div>
+
+<section class="section section-white">
+  <div class="inner">
+    <span class="tag">What we offer</span>
+    <h2>Three ways to work with us</h2>
+    <p class="sub">Start with a consultation, upskill your team with a course, or go straight to a custom agent. Most clients do more than one.</p>
+    <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
+      <div class="card">
+        <div class="icon">🤖</div>
+        <h3>Custom AI Agents</h3>
+        <p>We design, build, and install a custom AI agent that automates a specific repeatable task inside the tools you already use. Fixed price, two-week delivery, pilot on 20 records before full deployment.</p>
+        <ul class="checklist" style="margin-top:.75rem;">
+          <li>From $1,500 setup</li>
+          <li>Care plans from $250/month</li>
+          <li>HubSpot, Salesforce, Zendesk, QuickBooks, and more</li>
+          <li>14 agents in the catalog, or fully custom</li>
+        </ul>
+        <a href="agents.html" class="btn btn-grad" style="display:inline-block;margin-top:1.25rem;">See the catalog →</a>
+      </div>
+      <div class="card">
+        <div class="icon">🎓</div>
+        <h3>AI Courses</h3>
+        <p>Practical, hands-on training that teaches your team how to use AI tools in their actual daily work — not theory, not hype. We focus on what saves real time.</p>
+        <ul class="checklist" style="margin-top:.75rem;">
+          <li>Prompting fundamentals for non-technical staff</li>
+          <li>Using AI inside your CRM, help desk, and spreadsheets</li>
+          <li>Building lightweight automations without code</li>
+          <li>Live workshops (remote or on-site) or self-paced modules</li>
+        </ul>
+        <a href="contact.html" class="btn btn-dark" style="display:inline-block;margin-top:1.25rem;">Book a call to learn more →</a>
+      </div>
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>AI Consultation</h3>
+        <p>Not sure where AI fits in your business? We spend time with your team, map your workflows, and deliver a clear, prioritized roadmap — with honest advice on what's worth automating and what isn't.</p>
+        <ul class="checklist" style="margin-top:.75rem;">
+          <li>Workflow mapping and opportunity audit</li>
+          <li>Prioritized automation roadmap</li>
+          <li>Tool and vendor recommendations</li>
+          <li>Ongoing advisory retainer available</li>
+        </ul>
+        <a href="contact.html" class="btn btn-dark" style="display:inline-block;margin-top:1.25rem;">Book a call to learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light">
+  <div class="inner">
+    <span class="tag">AI Courses</span>
+    <h2>What we teach</h2>
+    <p class="sub">Every course is built around real tasks — things your team actually does every week.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">✍️</div>
+        <h3>Prompting Fundamentals</h3>
+        <p>How to write instructions that get consistent, useful results from AI tools. Covers structure, tone, examples, and common mistakes. Half-day workshop.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📊</div>
+        <h3>AI for Sales Teams</h3>
+        <p>Using AI to research prospects, draft follow-ups, prep for meetings, and write CRM notes. Built around HubSpot and Salesforce workflows.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎧</div>
+        <h3>AI for Customer Success</h3>
+        <p>Triaging tickets, summarizing customer history, spotting risk signals, and drafting renewal conversations — all with AI assistance.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⚙️</div>
+        <h3>No-Code Automations</h3>
+        <p>Building simple automations with tools like Make, Zapier, and Claude — without writing code. For ops and admin staff who want to connect the tools they already use.</p>
+      </div>
+    </div>
+    <p style="margin-top:1.75rem;color:var(--muted);font-size:.9rem;">All courses available as remote workshops, on-site sessions, or self-paced recorded modules. <a href="contact.html" style="color:var(--blue);font-weight:600;">Contact us for scheduling and pricing →</a></p>
+  </div>
+</section>
+
+<section class="section section-white">
+  <div class="inner">
+    <span class="tag">AI Consultation</span>
+    <h2>What a consultation looks like</h2>
+    <p class="sub">We spend time understanding your business before we recommend anything.</p>
+    <div class="timeline" style="max-width:680px;">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Week 1</div><h3>Workflow interviews</h3><p>We interview the people doing the work — sales, ops, CS, finance. We learn what they actually do each week, where time goes, and what frustrates them most.</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Week 2</div><h3>Opportunity mapping</h3><p>We map every repeatable task against three criteria: time cost, AI suitability, and implementation risk. This becomes your automation opportunity map.</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Delivery</div><h3>Prioritized roadmap</h3><p>A written report with your top 3 to 5 automation opportunities ranked by expected ROI, an honest assessment of complexity, and a recommended starting point.</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Optional</div><h3>Ongoing advisory</h3><p>Monthly retainer for teams that want a dedicated AI advisor to evaluate new tools, review prompt quality, and help prioritize the roadmap as the business changes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" style="text-align:center;">
+  <div class="inner">
+    <h2>Not sure which service fits?</h2>
+    <p class="sub" style="margin:0 auto 2rem;">Book a free 30-minute call. We'll ask a few questions and give you a straight answer on what makes the most sense to start with.</p>
+    <a href="contact.html" class="btn btn-white">Book a free call →</a>
+  </div>
+</section>
+"""
+
+# ─────────────────────────────────────────────────────────────────────────────
 # CASE STUDY
 # ─────────────────────────────────────────────────────────────────────────────
 CASE_BODY = """
@@ -1281,6 +1429,10 @@ pages = {
         "Agent Catalog — PlAIceholder",
         "13 custom-built AI agents for sales, customer success, back office, and marketing. Three are ready now with live demos.",
         "agents", AGENTS_BODY),
+    "services.html": page(
+        "Services — PlAIceholder",
+        "AI courses, consultation, and custom agents. Three ways to help your team get more from AI.",
+        "services", SERVICES_BODY),
     "how-it-works.html": page(
         "How It Works — PlAIceholder",
         "The five-step process, the two-week timeline, and every safety rule — explained plainly.",

@@ -14,6 +14,7 @@
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="agents.html" class="active">Agents</a></li>
+    <li><a href="services.html">Services</a></li>
     <li><a href="how-it-works.html">How It Works</a></li>
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="case-study.html">Case Study</a></li>
@@ -37,6 +38,7 @@
       <button class="filter-btn" data-area="Customer success" onclick="setArea(this,'Customer success')">Customer success</button>
       <button class="filter-btn" data-area="Back office" onclick="setArea(this,'Back office')">Back office</button>
       <button class="filter-btn" data-area="Marketing" onclick="setArea(this,'Marketing')">Marketing</button>
+      <button class="filter-btn" data-area="Custom" onclick="setArea(this,'Custom')">Custom</button>
     </div>
     <div class="agent-grid" id="agent-grid">
 <div class="agent-card" data-area="Sales" data-status="ready">
@@ -221,6 +223,20 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $6,000 setup · $750/mo care</p>
   
 </div>
+<div class="agent-card" data-area="Custom" data-status="available">
+  <div class="agent-meta">
+    <span class="pill pill-area">Custom</span>
+    <span class="pill pill-tier">Custom</span>
+    <span class="pill pill-avail">Available</span>
+  </div>
+  <h3>Custom Agent</h3>
+  <p class="job">Don't see what you need? We design and build custom agents for any repeatable task your team does. If it involves pulling data, making a judgment, and writing something back, we can automate it.</p>
+  <p class="agent-connects"><strong>Connects to:</strong> Your tools</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A scoped proposal, fixed price, and a working agent tailored exactly to how your team operates.</p>
+  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> All custom agents ship with the same safety rules: dry run first, pilot on 20 records, source links on every AI finding, spending caps, full audit log, and human approval before any action.</p>
+  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">Contact us setup · Contact us care</p>
+  
+</div>
     </div>
     <p id="no-results" style="display:none;color:var(--muted);margin-top:1.5rem;">No agents match your filter.</p>
   </div>
@@ -302,6 +318,7 @@ function runQuiz(){
     </div>
     <div class="footer-links">
       <a href="agents.html">Agents</a>
+      <a href="services.html">Services</a>
       <a href="how-it-works.html">How It Works</a>
       <a href="pricing.html">Pricing</a>
       <a href="case-study.html">Case Study</a>
