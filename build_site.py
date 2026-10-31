@@ -926,7 +926,7 @@ PRICING_BODY = """
 <div class="page-banner">
   <div class="page-banner-inner">
     <h1>Simple, Transparent Pricing</h1>
-    <p>Fixed price, fixed scope. 50% at kickoff, 50% at handover. Care plans billed monthly and cancelable with 30 days' notice.</p>
+    <p>Setup from $1,500 — with your first 3 months of care included in the launch package. Fixed price, fixed scope.</p>
   </div>
 </div>
 
@@ -936,11 +936,12 @@ PRICING_BODY = """
       <div class="plan">
         <span class="founding-badge">Founding-client pricing available</span>
         <div class="pname">Starter</div>
-        <div class="price-range">$1,500 – $2,500</div>
-        <div class="per">one-time setup · founding price $1,500</div>
+        <div class="price-range">$2,250</div>
+        <div class="per">launch package — setup + first 3 months of care · then $250/mo</div>
+        <div class="per" style="margin-top:.25rem;font-size:.78rem;">Founding price: $1,750 (setup + 3 months, then $250/mo)</div>
         <ul class="feats">
           <li>One tool in, one tool out, no outside data</li>
-          <li>Care plan: $250/month</li>
+          <li>Care plan from month 4: $250/month</li>
           <li>1 tuning hour/month</li>
           <li>Monitoring + monthly results email</li>
           <li>Fixes when a connected tool changes</li>
@@ -952,11 +953,12 @@ PRICING_BODY = """
         <div class="pbadge">Most popular</div>
         <span class="founding-badge">Founding-client pricing available</span>
         <div class="pname">Standard</div>
-        <div class="price-range">$3,500 – $5,000</div>
-        <div class="per">one-time setup · founding price $2,500</div>
+        <div class="price-range">$4,850</div>
+        <div class="per">launch package — setup + first 3 months of care · then $450/mo</div>
+        <div class="per" style="margin-top:.25rem;font-size:.78rem;">Founding price: $3,500 (setup + 3 months, then $450/mo)</div>
         <ul class="feats">
           <li>2 to 3 tools, AI research or scoring, a dashboard</li>
-          <li>Care plan: $450/month</li>
+          <li>Care plan from month 4: $450/month</li>
           <li>2 tuning hours/month</li>
           <li>Monitoring + monthly results email</li>
           <li>Fixes when a connected tool changes</li>
@@ -968,12 +970,13 @@ PRICING_BODY = """
       <div class="plan">
         <span class="founding-badge">Founding-client pricing available</span>
         <div class="pname">Advanced</div>
-        <div class="price-range">$6,000 – $7,500</div>
-        <div class="per">one-time setup · founding price $4,500</div>
+        <div class="price-range">$8,250</div>
+        <div class="per">launch package — setup + first 3 months of care · then $750/mo</div>
+        <div class="per" style="margin-top:.25rem;font-size:.78rem;">Founding price: $5,500 (setup + 3 months, then $750/mo)</div>
         <ul class="feats">
           <li>Several tools, outside data, batch research</li>
           <li>Spending caps and rep training included</li>
-          <li>Care plan: $750 – $900/month</li>
+          <li>Care plan from month 4: $750/month</li>
           <li>3 tuning hours/month</li>
           <li>Monitoring + monthly results email</li>
           <li>Fixes when a connected tool changes</li>
@@ -983,6 +986,9 @@ PRICING_BODY = """
         <a href="contact.html" class="pbtn pbtn-out">Get started</a>
       </div>
     </div>
+    <p style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--muted);">
+      <strong>Our guarantee:</strong> If a tool change breaks your agent, we fix it within 5 business days — or that month is free.
+    </p>
   </div>
 </section>
 
@@ -992,10 +998,11 @@ PRICING_BODY = """
     <span class="tag">What every care plan includes</span>
     <h2>Care plan details</h2>
     <table class="care-table">
-      <thead><tr><th></th><th>Starter $250</th><th>Standard $450</th><th>Advanced $750+</th></tr></thead>
+      <thead><tr><th></th><th>Starter $250</th><th>Standard $450</th><th>Advanced $750</th></tr></thead>
       <tbody>
         <tr><td>Monitoring and monthly results email</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
         <tr><td>Fixes when a connected tool changes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><td>5-business-day fix guarantee</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
         <tr><td>Prompt and scoring tuning</td><td>1 hr/mo</td><td>2 hr/mo</td><td>3 hr/mo</td></tr>
         <tr><td>Response time</td><td>2 business days</td><td>2 business days</td><td>2 business days</td></tr>
         <tr><td>Quarterly tuning call</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
@@ -1010,12 +1017,14 @@ PRICING_BODY = """
     <span class="tag">Pricing rules</span>
     <h2>A few things worth knowing</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin-bottom:2.5rem;">
-      <div class="card"><h3>Founding-client pricing</h3><p>Available for the first 5 clients in exchange for a written testimonial, a published result, and a 6-month care plan.</p></div>
-      <div class="card"><h3>Second agent discount</h3><p>25% off setup for a second agent at the same company. The connections are already in place.</p></div>
+      <div class="card"><h3>Launch package</h3><p>Every engagement starts with the launch package: setup plus the first 3 months of care in one fixed price. After month 3 it rolls to a month-to-month plan, cancelable with 30 days' notice.</p></div>
+      <div class="card"><h3>Founding-client pricing</h3><p>Available for the first 5 clients in exchange for a written testimonial, a published result, and a 6-month care plan commitment.</p></div>
+      <div class="card"><h3>Second agent discount</h3><p>25% off setup and the first 3 months of care for a second agent at the same company. The connections are already in place.</p></div>
       <div class="card"><h3>Annual care plan</h3><p>Pay for 10 months and get 12. Equivalent to 2 months free.</p></div>
       <div class="card"><h3>Usage at cost</h3><p>You pay AI (Claude) usage and data credits (e.g. Apollo) directly to those providers. Typical AI usage is a few cents per record. We estimate them up front and measure the real number in the pilot.</p></div>
-      <div class="card"><h3>Extra work</h3><p>$125/hour for work outside the care plan, or a new build fee for a brand-new kind of agent.</p></div>
-      <div class="card"><h3>Payment</h3><p>50% at kickoff, 50% at handover. Care plans billed monthly and cancelable with 30 days' notice.</p></div>
+      <div class="card"><h3>Extra work</h3><p>$125/hour for work outside the care plan scope. If you cancel the care plan and later need the agent fixed or updated, a reactivation fee applies ($500 Starter · $750 Standard · $1,000 Advanced).</p></div>
+      <div class="card"><h3>Payment</h3><p>50% at kickoff, 50% at handover. Care plan billed monthly from month 4 onward.</p></div>
+      <div class="card"><h3>Access and privacy</h3><p>At handover we remove our setup access and delete any copies of your data. If you keep a care plan, you give us a separate, limited login you can switch off at any time. When the plan ends, we're out completely.</p></div>
     </div>
 
     <!-- Market comparison -->
@@ -1030,7 +1039,7 @@ PRICING_BODY = """
           <tr><td>AI automation agency, single workflow</td><td>$1,500 – $7,500 build + $500 – $1,500/mo</td><td><a href="https://taskip.net/ai-automation-agency-pricing/" target="_blank" rel="noopener">Taskip</a></td></tr>
           <tr><td>Boutique single-agent pilot</td><td>$2,500 – $10,000</td><td><a href="https://cloudmotiv.ai/blog/agentic-ai-consulting-packages-small-business" target="_blank" rel="noopener">Cloudmotiv</a></td></tr>
           <tr><td>GTM / Clay outbound agencies</td><td>$2,500 – $10,000+/mo</td><td><a href="https://www.salesforge.ai/blog/clay-agencies" target="_blank" rel="noopener">Salesforge</a></td></tr>
-          <tr><td class="highlight">PlAIceholder</td><td class="highlight">from $1,500 + $250/mo</td><td></td></tr>
+          <tr><td class="highlight">PlAIceholder</td><td class="highlight">from $2,250 launch package (setup + 3 mo care)</td><td></td></tr>
         </tbody>
       </table>
     </div>
@@ -1053,16 +1062,16 @@ PRICING_BODY = """
           <select id="p-save"><option value="0.3">30%</option><option value="0.4">40%</option><option value="0.5" selected>50%</option><option value="0.6">60%</option><option value="0.7">70%</option></select></div>
         <div class="calc-field"><label>Tier</label>
           <select id="p-tier">
-            <option value="1500,250">Starter ($1,500 / $250/mo)</option>
-            <option value="3500,450" selected>Standard ($3,500 / $450/mo)</option>
-            <option value="6000,750">Advanced ($6,000 / $750/mo)</option>
+            <option value="2250,250">Starter ($2,250 launch / $250/mo)</option>
+            <option value="4850,450" selected>Standard ($4,850 launch / $450/mo)</option>
+            <option value="8250,750">Advanced ($8,250 launch / $750/mo)</option>
           </select>
         </div>
       </div>
       <div class="calc-results">
         <div class="calc-result"><div class="rval" id="pr-hrs">—</div><div class="rlabel">Hours saved/month</div></div>
         <div class="calc-result"><div class="rval" id="pr-save">—</div><div class="rlabel">Dollars saved/month</div></div>
-        <div class="calc-result"><div class="rval" id="pr-pay">—</div><div class="rlabel">Payback (weeks)</div></div>
+        <div class="calc-result"><div class="rval" id="pr-pay">—</div><div class="rlabel">Payback (months)</div></div>
         <div class="calc-result"><div class="rval" id="pr-yr">—</div><div class="rlabel">Year-one return</div></div>
       </div>
       <p class="calc-note">Estimate only. Assumes your pilot confirms the percentage above.</p>
@@ -1081,12 +1090,13 @@ PRICING_BODY = """
       <details><summary>Do we need to be technical?</summary><p>No. You need an admin who can create access keys and one hour from the people who currently do the task.</p></details>
       <details><summary>Which AI do you use?</summary><p>Claude, by Anthropic, running through your own account. You see and control the usage bill directly.</p></details>
       <details><summary>What does it cost to run?</summary><p>You pay AI usage and data credits directly to those providers at cost — typically a few cents per record. We estimate the number up front and measure the real cost per record in your pilot.</p></details>
-      <details><summary>Who owns it?</summary><p>You do. The agent runs in your accounts with your keys. We keep the right to reuse our general templates for other clients, but never your data or settings.</p></details>
-      <details><summary>What happens to our data?</summary><p>It stays in your systems. We delete any copies and our access at handover.</p></details>
-      <details><summary>What if HubSpot or another tool changes?</summary><p>That's what the care plan covers. Without one, fixes are billed at $125/hour.</p></details>
+      <details><summary>Who owns it?</summary><p>You do. The agent runs in your accounts with your keys. It's licensed for your internal use — our templates can't be resold. We keep the right to reuse our general methodology for other clients, but never your data or settings.</p></details>
+      <details><summary>What happens to our data?</summary><p>It stays in your systems. At handover we remove our setup access and delete any copies of your data. If you keep a care plan, you give us a separate, limited login you can switch off at any time. When the plan ends, we're out completely.</p></details>
+      <details><summary>Why do I need a care plan?</summary><p>AI tools and the models behind them change constantly — often quietly. A prompt that worked in January may drift by April. The care plan catches this with monthly monitoring, keeps fixes within 5 business days, and gives you a monthly results email so you can see if output quality changes before it affects your team.</p></details>
+      <details><summary>What if HubSpot or another tool changes?</summary><p>That's what the care plan covers: fixes within 5 business days, guaranteed, or that month is free. Without a plan, fixes are billed at $125/hour.</p></details>
+      <details><summary>What if I cancel the care plan and later need the agent fixed?</summary><p>We can reactivate it. A reactivation fee applies ($500 for Starter, $750 for Standard, $1,000 for Advanced) to cover the time needed to bring it back up to date.</p></details>
       <details><summary>Can the AI send emails or pay invoices on its own?</summary><p>No. Agents draft, score, and flag. People approve.</p></details>
       <details><summary>What if the pilot doesn't work?</summary><p>You see the result after 20 records, before the full run. If the result isn't useful, we tune it or stop.</p></details>
-      <details><summary>Can we cancel the care plan?</summary><p>Yes, with 30 days' notice.</p></details>
       <details><summary>Our CRM is messy. Is that a problem?</summary><p>It can be. We quote cleanup separately, or you can start with the CRM Hygiene agent.</p></details>
     </div>
   </div>
@@ -1100,14 +1110,14 @@ PRICING_BODY = """
     var C=+document.getElementById('p-cost').value||45;
     var S=+document.getElementById('p-save').value||0.5;
     var tv=document.getElementById('p-tier').value.split(',');
-    var setup=+tv[0],care=+tv[1];
+    var launch=+tv[0],care=+tv[1];
     var hrs=P*H*S*4.33;
     var save=hrs*C;
-    var payback=setup/((save-care)/4.33);
-    var yr1=12*(save-care)-setup;
+    var payback=launch/(save-care);
+    var yr1=12*(save-care)-launch;
     document.getElementById('pr-hrs').textContent=hrs.toFixed(0);
     document.getElementById('pr-save').textContent='$'+save.toFixed(0);
-    document.getElementById('pr-pay').textContent=payback>0?payback.toFixed(1)+'wk':'—';
+    document.getElementById('pr-pay').textContent=payback>0?payback.toFixed(1)+'mo':'—';
     document.getElementById('pr-yr').textContent=yr1>0?'$'+Math.round(yr1).toLocaleString():'—';
   }
   ['p-people','p-hours','p-cost','p-save','p-tier'].forEach(function(id){
@@ -1117,7 +1127,6 @@ PRICING_BODY = """
 })();
 </script>
 """
-
 # ─────────────────────────────────────────────────────────────────────────────
 # SERVICES
 # ─────────────────────────────────────────────────────────────────────────────
