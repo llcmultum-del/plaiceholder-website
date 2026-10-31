@@ -14,7 +14,6 @@
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="agents.html" class="active">Agents</a></li>
-    <li><a href="services.html">Services</a></li>
     <li><a href="how-it-works.html">How It Works</a></li>
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="case-study.html">Case Study</a></li>
@@ -38,10 +37,14 @@
       <button class="filter-btn" data-area="Customer success" onclick="setArea(this,'Customer success')">Customer success</button>
       <button class="filter-btn" data-area="Back office" onclick="setArea(this,'Back office')">Back office</button>
       <button class="filter-btn" data-area="Marketing" onclick="setArea(this,'Marketing')">Marketing</button>
-      <button class="filter-btn" data-area="Custom" onclick="setArea(this,'Custom')">Custom</button>
+      <span style="width:1px;background:var(--border);align-self:stretch;margin:0 .2rem;"></span>
+      <button class="filter-btn active" data-tier="all" onclick="setTier(this,'all')">All tiers</button>
+      <button class="filter-btn" data-tier="Starter" onclick="setTier(this,'Starter')">Starter</button>
+      <button class="filter-btn" data-tier="Standard" onclick="setTier(this,'Standard')">Standard</button>
+      <button class="filter-btn" data-tier="Advanced" onclick="setTier(this,'Advanced')">Advanced</button>
     </div>
     <div class="agent-grid" id="agent-grid">
-<div class="agent-card" data-area="Sales" data-status="ready">
+<div class="agent-card" data-area="Sales" data-tier="Advanced" data-status="ready">
   <div class="agent-meta">
     <span class="pill pill-area">Sales</span>
     <span class="pill pill-tier">Advanced</span>
@@ -55,7 +58,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $6,000 setup · $750/mo care</p>
   <a href="demos/signal-prospector-dashboard.html" class="demo-link">View sample dashboard →</a>
 </div>
-<div class="agent-card" data-area="Sales" data-status="available">
+<div class="agent-card" data-area="Sales" data-tier="Standard" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Sales</span>
     <span class="pill pill-tier">Standard</span>
@@ -69,7 +72,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
   
 </div>
-<div class="agent-card" data-area="Sales" data-status="available">
+<div class="agent-card" data-area="Sales" data-tier="Starter" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Sales</span>
     <span class="pill pill-tier">Starter</span>
@@ -83,7 +86,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
   
 </div>
-<div class="agent-card" data-area="Sales" data-status="available">
+<div class="agent-card" data-area="Sales" data-tier="Standard" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Sales</span>
     <span class="pill pill-tier">Standard</span>
@@ -97,7 +100,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
   
 </div>
-<div class="agent-card" data-area="Sales" data-status="available">
+<div class="agent-card" data-area="Sales" data-tier="Starter" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Sales</span>
     <span class="pill pill-tier">Starter</span>
@@ -111,7 +114,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
   
 </div>
-<div class="agent-card" data-area="Customer success" data-status="ready">
+<div class="agent-card" data-area="Customer success" data-tier="Standard" data-status="ready">
   <div class="agent-meta">
     <span class="pill pill-area">Customer success</span>
     <span class="pill pill-tier">Standard</span>
@@ -125,7 +128,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
   <a href="demos/renewal-risk-dashboard.html" class="demo-link">View sample dashboard →</a>
 </div>
-<div class="agent-card" data-area="Customer success" data-status="available">
+<div class="agent-card" data-area="Customer success" data-tier="Starter" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Customer success</span>
     <span class="pill pill-tier">Starter</span>
@@ -139,7 +142,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
   
 </div>
-<div class="agent-card" data-area="Customer success" data-status="available">
+<div class="agent-card" data-area="Customer success" data-tier="Starter" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Customer success</span>
     <span class="pill pill-tier">Starter</span>
@@ -153,7 +156,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
   
 </div>
-<div class="agent-card" data-area="Back office" data-status="ready">
+<div class="agent-card" data-area="Back office" data-tier="Standard" data-status="ready">
   <div class="agent-meta">
     <span class="pill pill-area">Back office</span>
     <span class="pill pill-tier">Standard</span>
@@ -167,7 +170,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
   <a href="demos/invoice-checker-dashboard.html" class="demo-link">View sample dashboard →</a>
 </div>
-<div class="agent-card" data-area="Back office" data-status="available">
+<div class="agent-card" data-area="Back office" data-tier="Standard" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Back office</span>
     <span class="pill pill-tier">Standard</span>
@@ -181,7 +184,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $3,500 setup · $450/mo care</p>
   
 </div>
-<div class="agent-card" data-area="Back office" data-status="available">
+<div class="agent-card" data-area="Back office" data-tier="Starter" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Back office</span>
     <span class="pill pill-tier">Starter</span>
@@ -195,7 +198,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
   
 </div>
-<div class="agent-card" data-area="Marketing" data-status="available">
+<div class="agent-card" data-area="Marketing" data-tier="Starter" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Marketing</span>
     <span class="pill pill-tier">Starter</span>
@@ -209,7 +212,7 @@
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $1,500 setup · $250/mo care</p>
   
 </div>
-<div class="agent-card" data-area="Marketing" data-status="available">
+<div class="agent-card" data-area="Marketing" data-tier="Advanced" data-status="available">
   <div class="agent-meta">
     <span class="pill pill-area">Marketing</span>
     <span class="pill pill-tier">Advanced</span>
@@ -221,20 +224,6 @@
   <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A draft document with the source of every answer, ready for review.</p>
   <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> Every answer cites a library entry. A person reviews before sending.</p>
   <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">from $6,000 setup · $750/mo care</p>
-  
-</div>
-<div class="agent-card" data-area="Custom" data-status="available">
-  <div class="agent-meta">
-    <span class="pill pill-area">Custom</span>
-    <span class="pill pill-tier">Custom</span>
-    <span class="pill pill-avail">Available</span>
-  </div>
-  <h3>Custom Agent</h3>
-  <p class="job">Don't see what you need? We design and build custom agents for any repeatable task your team does. If it involves pulling data, making a judgment, and writing something back, we can automate it.</p>
-  <p class="agent-connects"><strong>Connects to:</strong> Your tools</p>
-  <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> A scoped proposal, fixed price, and a working agent tailored exactly to how your team operates.</p>
-  <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> All custom agents ship with the same safety rules: dry run first, pilot on 20 records, source links on every AI finding, spending caps, full audit log, and human approval before any action.</p>
-  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">Contact us setup · Contact us care</p>
   
 </div>
     </div>
@@ -277,10 +266,17 @@
 
 <script>
 var activeArea='all';
+var activeTier='all';
 function setArea(btn,area){
-  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.filter-btn[data-area]').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   activeArea=area;
+  filterAgents();
+}
+function setTier(btn,tier){
+  document.querySelectorAll('.filter-btn[data-tier]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  activeTier=tier;
   filterAgents();
 }
 function filterAgents(){
@@ -289,9 +285,10 @@ function filterAgents(){
   var shown=0;
   cards.forEach(function(c){
     var areaMatch=activeArea==='all'||c.dataset.area===activeArea;
+    var tierMatch=activeTier==='all'||c.dataset.tier===activeTier;
     var textMatch=!q||c.textContent.toLowerCase().includes(q);
-    c.style.display=(areaMatch&&textMatch)?'':'none';
-    if(areaMatch&&textMatch)shown++;
+    c.style.display=(areaMatch&&tierMatch&&textMatch)?'':'none';
+    if(areaMatch&&tierMatch&&textMatch)shown++;
   });
   document.getElementById('no-results').style.display=shown===0?'block':'none';
 }
@@ -318,7 +315,6 @@ function runQuiz(){
     </div>
     <div class="footer-links">
       <a href="agents.html">Agents</a>
-      <a href="services.html">Services</a>
       <a href="how-it-works.html">How It Works</a>
       <a href="pricing.html">Pricing</a>
       <a href="case-study.html">Case Study</a>

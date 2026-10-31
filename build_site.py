@@ -11,7 +11,6 @@ def nav(active):
     links = [
         ("Home", "index.html", "home"),
         ("Agents", "agents.html", "agents"),
-        ("Services", "services.html", "services"),
         ("How It Works", "how-it-works.html", "how"),
         ("Pricing", "pricing.html", "pricing"),
         ("Case Study", "case-study.html", "case"),
@@ -37,7 +36,6 @@ FOOTER = """<footer>
     </div>
     <div class="footer-links">
       <a href="agents.html">Agents</a>
-      <a href="services.html">Services</a>
       <a href="how-it-works.html">How It Works</a>
       <a href="pricing.html">Pricing</a>
       <a href="case-study.html">Case Study</a>
@@ -558,35 +556,6 @@ HOME_BODY = """
   </div>
 </section>
 
-<!-- Services teaser -->
-<section class="section section-white">
-  <div class="inner">
-    <span class="tag">More ways we help</span>
-    <h2>Beyond agents: courses and consultation</h2>
-    <p class="sub">Not every team is ready to hand off a task to an agent. We also teach and advise.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="icon">🎓</div>
-        <h3>AI Courses</h3>
-        <p>Practical, hands-on courses that teach your team how to use AI tools effectively — from prompting basics to building lightweight automations without code.</p>
-        <a href="services.html" style="display:inline-block;margin-top:1rem;font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;">Learn more →</a>
-      </div>
-      <div class="card">
-        <div class="icon">🧠</div>
-        <h3>AI Consultation</h3>
-        <p>Not sure where AI fits in your business? We map your workflows, identify the highest-value automation opportunities, and give you a clear, prioritized roadmap.</p>
-        <a href="services.html" style="display:inline-block;margin-top:1rem;font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;">Learn more →</a>
-      </div>
-      <div class="card">
-        <div class="icon">🤖</div>
-        <h3>Custom AI Agents</h3>
-        <p>Have a specific task in mind that isn't in the catalog? We scope, build, and install a custom agent tailored to exactly how your team works.</p>
-        <a href="agents.html" style="display:inline-block;margin-top:1rem;font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;">See the catalog →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Pricing teaser -->
 <section class="section section-light" style="text-align:center;">
   <div class="inner">
@@ -694,18 +663,13 @@ AGENTS = [
    "connects":["Answer library (docs or spreadsheet)"],
    "you_get":"A draft document with the source of every answer, ready for review.",
    "safety":"Every answer cites a library entry. A person reviews before sending."},
-  {"name":"Custom Agent","area":"Custom","tier":"Custom","status":"available","setup":"Contact us","care":"Contact us",
-   "job":"Don't see what you need? We design and build custom agents for any repeatable task your team does. If it involves pulling data, making a judgment, and writing something back, we can automate it.",
-   "connects":["Your tools"],
-   "you_get":"A scoped proposal, fixed price, and a working agent tailored exactly to how your team operates.",
-   "safety":"All custom agents ship with the same safety rules: dry run first, pilot on 20 records, source links on every AI finding, spending caps, full audit log, and human approval before any action."},
 ]
 
 def agent_card(a):
     status_pill = '<span class="pill pill-ready">Ready now</span>' if a["status"]=="ready" else '<span class="pill pill-avail">Available</span>'
     demo_link = f'<a href="demos/{a["demo"]}" class="demo-link">View sample dashboard →</a>' if a.get("demo") else ""
     connects = ", ".join(a["connects"])
-    return f"""<div class="agent-card" data-area="{a['area']}" data-status="{a['status']}">
+    return f"""<div class="agent-card" data-area="{a['area']}" data-tier="{a['tier']}" data-status="{a['status']}">
   <div class="agent-meta">
     <span class="pill pill-area">{a['area']}</span>
     <span class="pill pill-tier">{a['tier']}</span>
@@ -736,7 +700,11 @@ AGENTS_BODY = """
       <button class="filter-btn" data-area="Customer success" onclick="setArea(this,'Customer success')">Customer success</button>
       <button class="filter-btn" data-area="Back office" onclick="setArea(this,'Back office')">Back office</button>
       <button class="filter-btn" data-area="Marketing" onclick="setArea(this,'Marketing')">Marketing</button>
-      <button class="filter-btn" data-area="Custom" onclick="setArea(this,'Custom')">Custom</button>
+      <span style="width:1px;background:var(--border);align-self:stretch;margin:0 .2rem;"></span>
+      <button class="filter-btn active" data-tier="all" onclick="setTier(this,'all')">All tiers</button>
+      <button class="filter-btn" data-tier="Starter" onclick="setTier(this,'Starter')">Starter</button>
+      <button class="filter-btn" data-tier="Standard" onclick="setTier(this,'Standard')">Standard</button>
+      <button class="filter-btn" data-tier="Advanced" onclick="setTier(this,'Advanced')">Advanced</button>
     </div>
     <div class="agent-grid" id="agent-grid">
 """ + "\n".join(agent_card(a) for a in AGENTS) + """
@@ -780,10 +748,17 @@ AGENTS_BODY = """
 
 <script>
 var activeArea='all';
+var activeTier='all';
 function setArea(btn,area){
-  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.filter-btn[data-area]').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   activeArea=area;
+  filterAgents();
+}
+function setTier(btn,tier){
+  document.querySelectorAll('.filter-btn[data-tier]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  activeTier=tier;
   filterAgents();
 }
 function filterAgents(){
@@ -792,9 +767,10 @@ function filterAgents(){
   var shown=0;
   cards.forEach(function(c){
     var areaMatch=activeArea==='all'||c.dataset.area===activeArea;
+    var tierMatch=activeTier==='all'||c.dataset.tier===activeTier;
     var textMatch=!q||c.textContent.toLowerCase().includes(q);
-    c.style.display=(areaMatch&&textMatch)?'':'none';
-    if(areaMatch&&textMatch)shown++;
+    c.style.display=(areaMatch&&tierMatch&&textMatch)?'':'none';
+    if(areaMatch&&tierMatch&&textMatch)shown++;
   });
   document.getElementById('no-results').style.display=shown===0?'block':'none';
 }
@@ -926,7 +902,7 @@ PRICING_BODY = """
 <div class="page-banner">
   <div class="page-banner-inner">
     <h1>Simple, Transparent Pricing</h1>
-    <p>Setup from $1,500 — with your first 3 months of care included in the launch package. Fixed price, fixed scope.</p>
+    <p>Fixed price, fixed scope. 50% at kickoff, 50% at handover. Care plans billed monthly and cancelable with 30 days' notice.</p>
   </div>
 </div>
 
@@ -936,12 +912,11 @@ PRICING_BODY = """
       <div class="plan">
         <span class="founding-badge">Founding-client pricing available</span>
         <div class="pname">Starter</div>
-        <div class="price-range">$2,250</div>
-        <div class="per">launch package — setup + first 3 months of care · then $250/mo</div>
-        <div class="per" style="margin-top:.25rem;font-size:.78rem;">Founding price: $1,750 (setup + 3 months, then $250/mo)</div>
+        <div class="price-range">$1,500 – $2,500</div>
+        <div class="per">one-time setup · founding price $1,500</div>
         <ul class="feats">
           <li>One tool in, one tool out, no outside data</li>
-          <li>Care plan from month 4: $250/month</li>
+          <li>Care plan: $250/month</li>
           <li>1 tuning hour/month</li>
           <li>Monitoring + monthly results email</li>
           <li>Fixes when a connected tool changes</li>
@@ -953,12 +928,11 @@ PRICING_BODY = """
         <div class="pbadge">Most popular</div>
         <span class="founding-badge">Founding-client pricing available</span>
         <div class="pname">Standard</div>
-        <div class="price-range">$4,850</div>
-        <div class="per">launch package — setup + first 3 months of care · then $450/mo</div>
-        <div class="per" style="margin-top:.25rem;font-size:.78rem;">Founding price: $3,500 (setup + 3 months, then $450/mo)</div>
+        <div class="price-range">$3,500 – $5,000</div>
+        <div class="per">one-time setup · founding price $2,500</div>
         <ul class="feats">
           <li>2 to 3 tools, AI research or scoring, a dashboard</li>
-          <li>Care plan from month 4: $450/month</li>
+          <li>Care plan: $450/month</li>
           <li>2 tuning hours/month</li>
           <li>Monitoring + monthly results email</li>
           <li>Fixes when a connected tool changes</li>
@@ -970,13 +944,12 @@ PRICING_BODY = """
       <div class="plan">
         <span class="founding-badge">Founding-client pricing available</span>
         <div class="pname">Advanced</div>
-        <div class="price-range">$8,250</div>
-        <div class="per">launch package — setup + first 3 months of care · then $750/mo</div>
-        <div class="per" style="margin-top:.25rem;font-size:.78rem;">Founding price: $5,500 (setup + 3 months, then $750/mo)</div>
+        <div class="price-range">$6,000 – $7,500</div>
+        <div class="per">one-time setup · founding price $4,500</div>
         <ul class="feats">
           <li>Several tools, outside data, batch research</li>
           <li>Spending caps and rep training included</li>
-          <li>Care plan from month 4: $750/month</li>
+          <li>Care plan: $750 – $900/month</li>
           <li>3 tuning hours/month</li>
           <li>Monitoring + monthly results email</li>
           <li>Fixes when a connected tool changes</li>
@@ -986,9 +959,6 @@ PRICING_BODY = """
         <a href="contact.html" class="pbtn pbtn-out">Get started</a>
       </div>
     </div>
-    <p style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--muted);">
-      <strong>Our guarantee:</strong> If a tool change breaks your agent, we fix it within 5 business days — or that month is free.
-    </p>
   </div>
 </section>
 
@@ -998,11 +968,10 @@ PRICING_BODY = """
     <span class="tag">What every care plan includes</span>
     <h2>Care plan details</h2>
     <table class="care-table">
-      <thead><tr><th></th><th>Starter $250</th><th>Standard $450</th><th>Advanced $750</th></tr></thead>
+      <thead><tr><th></th><th>Starter $250</th><th>Standard $450</th><th>Advanced $750+</th></tr></thead>
       <tbody>
         <tr><td>Monitoring and monthly results email</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
         <tr><td>Fixes when a connected tool changes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-        <tr><td>5-business-day fix guarantee</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
         <tr><td>Prompt and scoring tuning</td><td>1 hr/mo</td><td>2 hr/mo</td><td>3 hr/mo</td></tr>
         <tr><td>Response time</td><td>2 business days</td><td>2 business days</td><td>2 business days</td></tr>
         <tr><td>Quarterly tuning call</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
@@ -1017,14 +986,12 @@ PRICING_BODY = """
     <span class="tag">Pricing rules</span>
     <h2>A few things worth knowing</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin-bottom:2.5rem;">
-      <div class="card"><h3>Launch package</h3><p>Every engagement starts with the launch package: setup plus the first 3 months of care in one fixed price. After month 3 it rolls to a month-to-month plan, cancelable with 30 days' notice.</p></div>
-      <div class="card"><h3>Founding-client pricing</h3><p>Available for the first 5 clients in exchange for a written testimonial, a published result, and a 6-month care plan commitment.</p></div>
-      <div class="card"><h3>Second agent discount</h3><p>25% off setup and the first 3 months of care for a second agent at the same company. The connections are already in place.</p></div>
+      <div class="card"><h3>Founding-client pricing</h3><p>Available for the first 5 clients in exchange for a written testimonial, a published result, and a 6-month care plan.</p></div>
+      <div class="card"><h3>Second agent discount</h3><p>25% off setup for a second agent at the same company. The connections are already in place.</p></div>
       <div class="card"><h3>Annual care plan</h3><p>Pay for 10 months and get 12. Equivalent to 2 months free.</p></div>
       <div class="card"><h3>Usage at cost</h3><p>You pay AI (Claude) usage and data credits (e.g. Apollo) directly to those providers. Typical AI usage is a few cents per record. We estimate them up front and measure the real number in the pilot.</p></div>
-      <div class="card"><h3>Extra work</h3><p>$125/hour for work outside the care plan scope. If you cancel the care plan and later need the agent fixed or updated, a reactivation fee applies ($500 Starter · $750 Standard · $1,000 Advanced).</p></div>
-      <div class="card"><h3>Payment</h3><p>50% at kickoff, 50% at handover. Care plan billed monthly from month 4 onward.</p></div>
-      <div class="card"><h3>Access and privacy</h3><p>At handover we remove our setup access and delete any copies of your data. If you keep a care plan, you give us a separate, limited login you can switch off at any time. When the plan ends, we're out completely.</p></div>
+      <div class="card"><h3>Extra work</h3><p>$125/hour for work outside the care plan, or a new build fee for a brand-new kind of agent.</p></div>
+      <div class="card"><h3>Payment</h3><p>50% at kickoff, 50% at handover. Care plans billed monthly and cancelable with 30 days' notice.</p></div>
     </div>
 
     <!-- Market comparison -->
@@ -1039,7 +1006,7 @@ PRICING_BODY = """
           <tr><td>AI automation agency, single workflow</td><td>$1,500 – $7,500 build + $500 – $1,500/mo</td><td><a href="https://taskip.net/ai-automation-agency-pricing/" target="_blank" rel="noopener">Taskip</a></td></tr>
           <tr><td>Boutique single-agent pilot</td><td>$2,500 – $10,000</td><td><a href="https://cloudmotiv.ai/blog/agentic-ai-consulting-packages-small-business" target="_blank" rel="noopener">Cloudmotiv</a></td></tr>
           <tr><td>GTM / Clay outbound agencies</td><td>$2,500 – $10,000+/mo</td><td><a href="https://www.salesforge.ai/blog/clay-agencies" target="_blank" rel="noopener">Salesforge</a></td></tr>
-          <tr><td class="highlight">PlAIceholder</td><td class="highlight">from $2,250 launch package (setup + 3 mo care)</td><td></td></tr>
+          <tr><td class="highlight">PlAIceholder</td><td class="highlight">from $1,500 + $250/mo</td><td></td></tr>
         </tbody>
       </table>
     </div>
@@ -1062,16 +1029,16 @@ PRICING_BODY = """
           <select id="p-save"><option value="0.3">30%</option><option value="0.4">40%</option><option value="0.5" selected>50%</option><option value="0.6">60%</option><option value="0.7">70%</option></select></div>
         <div class="calc-field"><label>Tier</label>
           <select id="p-tier">
-            <option value="2250,250">Starter ($2,250 launch / $250/mo)</option>
-            <option value="4850,450" selected>Standard ($4,850 launch / $450/mo)</option>
-            <option value="8250,750">Advanced ($8,250 launch / $750/mo)</option>
+            <option value="1500,250">Starter ($1,500 / $250/mo)</option>
+            <option value="3500,450" selected>Standard ($3,500 / $450/mo)</option>
+            <option value="6000,750">Advanced ($6,000 / $750/mo)</option>
           </select>
         </div>
       </div>
       <div class="calc-results">
         <div class="calc-result"><div class="rval" id="pr-hrs">—</div><div class="rlabel">Hours saved/month</div></div>
         <div class="calc-result"><div class="rval" id="pr-save">—</div><div class="rlabel">Dollars saved/month</div></div>
-        <div class="calc-result"><div class="rval" id="pr-pay">—</div><div class="rlabel">Payback (months)</div></div>
+        <div class="calc-result"><div class="rval" id="pr-pay">—</div><div class="rlabel">Payback (weeks)</div></div>
         <div class="calc-result"><div class="rval" id="pr-yr">—</div><div class="rlabel">Year-one return</div></div>
       </div>
       <p class="calc-note">Estimate only. Assumes your pilot confirms the percentage above.</p>
@@ -1090,13 +1057,12 @@ PRICING_BODY = """
       <details><summary>Do we need to be technical?</summary><p>No. You need an admin who can create access keys and one hour from the people who currently do the task.</p></details>
       <details><summary>Which AI do you use?</summary><p>Claude, by Anthropic, running through your own account. You see and control the usage bill directly.</p></details>
       <details><summary>What does it cost to run?</summary><p>You pay AI usage and data credits directly to those providers at cost — typically a few cents per record. We estimate the number up front and measure the real cost per record in your pilot.</p></details>
-      <details><summary>Who owns it?</summary><p>You do. The agent runs in your accounts with your keys. It's licensed for your internal use — our templates can't be resold. We keep the right to reuse our general methodology for other clients, but never your data or settings.</p></details>
-      <details><summary>What happens to our data?</summary><p>It stays in your systems. At handover we remove our setup access and delete any copies of your data. If you keep a care plan, you give us a separate, limited login you can switch off at any time. When the plan ends, we're out completely.</p></details>
-      <details><summary>Why do I need a care plan?</summary><p>AI tools and the models behind them change constantly — often quietly. A prompt that worked in January may drift by April. The care plan catches this with monthly monitoring, keeps fixes within 5 business days, and gives you a monthly results email so you can see if output quality changes before it affects your team.</p></details>
-      <details><summary>What if HubSpot or another tool changes?</summary><p>That's what the care plan covers: fixes within 5 business days, guaranteed, or that month is free. Without a plan, fixes are billed at $125/hour.</p></details>
-      <details><summary>What if I cancel the care plan and later need the agent fixed?</summary><p>We can reactivate it. A reactivation fee applies ($500 for Starter, $750 for Standard, $1,000 for Advanced) to cover the time needed to bring it back up to date.</p></details>
+      <details><summary>Who owns it?</summary><p>You do. The agent runs in your accounts with your keys. We keep the right to reuse our general templates for other clients, but never your data or settings.</p></details>
+      <details><summary>What happens to our data?</summary><p>It stays in your systems. We delete any copies and our access at handover.</p></details>
+      <details><summary>What if HubSpot or another tool changes?</summary><p>That's what the care plan covers. Without one, fixes are billed at $125/hour.</p></details>
       <details><summary>Can the AI send emails or pay invoices on its own?</summary><p>No. Agents draft, score, and flag. People approve.</p></details>
       <details><summary>What if the pilot doesn't work?</summary><p>You see the result after 20 records, before the full run. If the result isn't useful, we tune it or stop.</p></details>
+      <details><summary>Can we cancel the care plan?</summary><p>Yes, with 30 days' notice.</p></details>
       <details><summary>Our CRM is messy. Is that a problem?</summary><p>It can be. We quote cleanup separately, or you can start with the CRM Hygiene agent.</p></details>
     </div>
   </div>
@@ -1110,14 +1076,14 @@ PRICING_BODY = """
     var C=+document.getElementById('p-cost').value||45;
     var S=+document.getElementById('p-save').value||0.5;
     var tv=document.getElementById('p-tier').value.split(',');
-    var launch=+tv[0],care=+tv[1];
+    var setup=+tv[0],care=+tv[1];
     var hrs=P*H*S*4.33;
     var save=hrs*C;
-    var payback=launch/(save-care);
-    var yr1=12*(save-care)-launch;
+    var payback=setup/((save-care)/4.33);
+    var yr1=12*(save-care)-setup;
     document.getElementById('pr-hrs').textContent=hrs.toFixed(0);
     document.getElementById('pr-save').textContent='$'+save.toFixed(0);
-    document.getElementById('pr-pay').textContent=payback>0?payback.toFixed(1)+'mo':'—';
+    document.getElementById('pr-pay').textContent=payback>0?payback.toFixed(1)+'wk':'—';
     document.getElementById('pr-yr').textContent=yr1>0?'$'+Math.round(yr1).toLocaleString():'—';
   }
   ['p-people','p-hours','p-cost','p-save','p-tier'].forEach(function(id){
@@ -1126,116 +1092,6 @@ PRICING_BODY = """
   calc2();
 })();
 </script>
-"""
-# ─────────────────────────────────────────────────────────────────────────────
-# SERVICES
-# ─────────────────────────────────────────────────────────────────────────────
-SERVICES_BODY = """
-<div class="page-banner">
-  <div class="page-banner-inner">
-    <h1>Services</h1>
-    <p>AI agents, courses, and consultation — whatever stage your team is at, we have a way to help.</p>
-  </div>
-</div>
-
-<section class="section section-white">
-  <div class="inner">
-    <span class="tag">What we offer</span>
-    <h2>Three ways to work with us</h2>
-    <p class="sub">Start with a consultation, upskill your team with a course, or go straight to a custom agent. Most clients do more than one.</p>
-    <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
-      <div class="card">
-        <div class="icon">🤖</div>
-        <h3>Custom AI Agents</h3>
-        <p>We design, build, and install a custom AI agent that automates a specific repeatable task inside the tools you already use. Fixed price, two-week delivery, pilot on 20 records before full deployment.</p>
-        <ul class="checklist" style="margin-top:.75rem;">
-          <li>From $1,500 setup</li>
-          <li>Care plans from $250/month</li>
-          <li>HubSpot, Salesforce, Zendesk, QuickBooks, and more</li>
-          <li>14 agents in the catalog, or fully custom</li>
-        </ul>
-        <a href="agents.html" class="btn btn-grad" style="display:inline-block;margin-top:1.25rem;">See the catalog →</a>
-      </div>
-      <div class="card">
-        <div class="icon">🎓</div>
-        <h3>AI Courses</h3>
-        <p>Practical, hands-on training that teaches your team how to use AI tools in their actual daily work — not theory, not hype. We focus on what saves real time.</p>
-        <ul class="checklist" style="margin-top:.75rem;">
-          <li>Prompting fundamentals for non-technical staff</li>
-          <li>Using AI inside your CRM, help desk, and spreadsheets</li>
-          <li>Building lightweight automations without code</li>
-          <li>Live workshops (remote or on-site) or self-paced modules</li>
-        </ul>
-        <a href="contact.html" class="btn btn-dark" style="display:inline-block;margin-top:1.25rem;">Book a call to learn more →</a>
-      </div>
-      <div class="card">
-        <div class="icon">🧠</div>
-        <h3>AI Consultation</h3>
-        <p>Not sure where AI fits in your business? We spend time with your team, map your workflows, and deliver a clear, prioritized roadmap — with honest advice on what's worth automating and what isn't.</p>
-        <ul class="checklist" style="margin-top:.75rem;">
-          <li>Workflow mapping and opportunity audit</li>
-          <li>Prioritized automation roadmap</li>
-          <li>Tool and vendor recommendations</li>
-          <li>Ongoing advisory retainer available</li>
-        </ul>
-        <a href="contact.html" class="btn btn-dark" style="display:inline-block;margin-top:1.25rem;">Book a call to learn more →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-light">
-  <div class="inner">
-    <span class="tag">AI Courses</span>
-    <h2>What we teach</h2>
-    <p class="sub">Every course is built around real tasks — things your team actually does every week.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="icon">✍️</div>
-        <h3>Prompting Fundamentals</h3>
-        <p>How to write instructions that get consistent, useful results from AI tools. Covers structure, tone, examples, and common mistakes. Half-day workshop.</p>
-      </div>
-      <div class="card">
-        <div class="icon">📊</div>
-        <h3>AI for Sales Teams</h3>
-        <p>Using AI to research prospects, draft follow-ups, prep for meetings, and write CRM notes. Built around HubSpot and Salesforce workflows.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🎧</div>
-        <h3>AI for Customer Success</h3>
-        <p>Triaging tickets, summarizing customer history, spotting risk signals, and drafting renewal conversations — all with AI assistance.</p>
-      </div>
-      <div class="card">
-        <div class="icon">⚙️</div>
-        <h3>No-Code Automations</h3>
-        <p>Building simple automations with tools like Make, Zapier, and Claude — without writing code. For ops and admin staff who want to connect the tools they already use.</p>
-      </div>
-    </div>
-    <p style="margin-top:1.75rem;color:var(--muted);font-size:.9rem;">All courses available as remote workshops, on-site sessions, or self-paced recorded modules. <a href="contact.html" style="color:var(--blue);font-weight:600;">Contact us for scheduling and pricing →</a></p>
-  </div>
-</section>
-
-<section class="section section-white">
-  <div class="inner">
-    <span class="tag">AI Consultation</span>
-    <h2>What a consultation looks like</h2>
-    <p class="sub">We spend time understanding your business before we recommend anything.</p>
-    <div class="timeline" style="max-width:680px;">
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Week 1</div><h3>Workflow interviews</h3><p>We interview the people doing the work — sales, ops, CS, finance. We learn what they actually do each week, where time goes, and what frustrates them most.</p></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Week 2</div><h3>Opportunity mapping</h3><p>We map every repeatable task against three criteria: time cost, AI suitability, and implementation risk. This becomes your automation opportunity map.</p></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Delivery</div><h3>Prioritized roadmap</h3><p>A written report with your top 3 to 5 automation opportunities ranked by expected ROI, an honest assessment of complexity, and a recommended starting point.</p></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Optional</div><h3>Ongoing advisory</h3><p>Monthly retainer for teams that want a dedicated AI advisor to evaluate new tools, review prompt quality, and help prioritize the roadmap as the business changes.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-dark" style="text-align:center;">
-  <div class="inner">
-    <h2>Not sure which service fits?</h2>
-    <p class="sub" style="margin:0 auto 2rem;">Book a free 30-minute call. We'll ask a few questions and give you a straight answer on what makes the most sense to start with.</p>
-    <a href="contact.html" class="btn btn-white">Book a free call →</a>
-  </div>
-</section>
 """
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1438,10 +1294,6 @@ pages = {
         "Agent Catalog — PlAIceholder",
         "13 custom-built AI agents for sales, customer success, back office, and marketing. Three are ready now with live demos.",
         "agents", AGENTS_BODY),
-    "services.html": page(
-        "Services — PlAIceholder",
-        "AI courses, consultation, and custom agents. Three ways to help your team get more from AI.",
-        "services", SERVICES_BODY),
     "how-it-works.html": page(
         "How It Works — PlAIceholder",
         "The five-step process, the two-week timeline, and every safety rule — explained plainly.",
