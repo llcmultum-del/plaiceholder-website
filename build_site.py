@@ -594,9 +594,9 @@ HOME_BODY = """
 <section class="section section-light" style="text-align:center;">
   <div class="inner">
     <span class="tag">Pricing</span>
-    <h2>Setup from $1,500. Care plan from $250/mo.</h2>
-    <p class="sub" style="margin:0 auto 2rem;">A US automation engineer costs $90,000 to $140,000 a year. Agencies quoted one comparable custom agent at $9,500. Ours start at $1,500.</p>
-    <a href="pricing.html" class="btn btn-grad">See full pricing →</a>
+    <h2>Fixed price, fixed scope.</h2>
+    <p class="sub" style="margin:0 auto 2rem;">You see a measured result on 20 real records before you commit to the full run. Three tiers — Starter, Standard, and Advanced — based on how many tools the agent touches.</p>
+    <a href="pricing.html" class="btn btn-grad">See pricing →</a>
   </div>
 </section>
 
@@ -714,7 +714,6 @@ def agent_card(a):
   <p class="agent-connects"><strong>Connects to:</strong> {connects}</p>
   <p class="agent-connects" style="margin-top:.4rem;"><strong>You get:</strong> {a['you_get']}</p>
   <p class="agent-connects" style="margin-top:.4rem;"><strong>Safety:</strong> {a['safety']}</p>
-  <p style="margin-top:.9rem;font-size:.8rem;font-weight:700;color:var(--blue);">{a['setup']} setup · {a['care']} care</p>
   {demo_link}
 </div>"""
 
