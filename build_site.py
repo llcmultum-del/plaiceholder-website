@@ -88,6 +88,8 @@ nav a:hover,nav a.active{color:var(--blue);}
 .section-light{background:var(--light);}
 .section-dark{background:var(--dark);color:#fff;}
 .inner{max-width:1080px;margin:0 auto;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .tag{display:block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
   background-clip:text;margin-bottom:.35rem;}
@@ -180,7 +182,7 @@ h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2;margin-b
 #agent-search{padding:.4rem 1rem;border-radius:100px;border:1.5px solid var(--border);
   font-size:.85rem;outline:none;background:#fff;color:var(--ink);min-width:200px;}
 #agent-search:focus{border-color:var(--sea);}
-.agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.25rem;}
+.agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
 .agent-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:1.6rem;
   transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;}
 .agent-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,110,245,.1);}
@@ -258,7 +260,6 @@ h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2;margin-b
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .calc-result .rlabel{font-size:.75rem;color:rgba(255,255,255,.6);margin-top:.1rem;}
 .calc-note{font-size:.75rem;color:rgba(255,255,255,.45);margin-bottom:1rem;}
-@media(max-width:600px){.calc-grid{grid-template-columns:1fr;}}
 
 /* ── quiz ── */
 .quiz-wrap{background:#fff;border:1px solid var(--border);border-radius:22px;padding:2rem;}
@@ -350,8 +351,41 @@ footer{background:var(--dark);padding:2.5rem 2rem 1.5rem;}
 .footer-copy{text-align:center;font-size:.78rem;color:rgba(255,255,255,.3);max-width:1080px;margin:0 auto;}
 
 @media(max-width:700px){
-  .about-grid,.contact-wrap,.frow,.cs-grid{grid-template-columns:1fr;}
+  /* layout */
+  .section{padding:3rem 1rem;}
+  .two-col,.about-grid,.contact-wrap,.frow,.cs-grid,.cs-stats{grid-template-columns:1fr;}
+  .two-col{gap:2rem;}
   .footer-inner{flex-direction:column;}
+
+  /* nav */
+  nav{padding:.6rem 1rem;}
+
+  /* hero */
+  .hero-section{min-height:auto;padding:4rem 1rem 3rem;}
+  .hero-section h1{font-size:clamp(1.9rem,8vw,2.8rem);}
+  .hero-section .lead{font-size:1rem;margin-bottom:1.6rem;}
+  .page-banner{padding:3rem 1rem 2.5rem;}
+  .page-banner h1{font-size:clamp(1.7rem,7vw,2.4rem);}
+
+  /* agents */
+  .agent-grid{grid-template-columns:1fr;}
+  #agent-search{width:100%;min-width:0;box-sizing:border-box;}
+  .filter-bar{gap:.4rem;}
+  .filter-btn{font-size:.78rem;padding:.35rem .85rem;}
+
+  /* pricing */
+  .plans{grid-template-columns:1fr;}
+
+  /* ROI calc */
+  .calc-grid{grid-template-columns:1fr;}
+  .calc-wrap{padding:1.5rem 1rem;}
+
+  /* contact form */
+  .sbtn{width:100%;text-align:center;}
+
+  /* buttons */
+  .hero-btns{flex-direction:column;align-items:center;}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center;}
 }
 """
 
@@ -507,7 +541,7 @@ HOME_BODY = """
 <!-- Process timeline -->
 <section class="section section-white">
   <div class="inner">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
+    <div class="two-col">
       <div>
         <span class="tag">The process</span>
         <h2>Live in about two weeks</h2>
@@ -804,7 +838,7 @@ HOW_BODY = """
 <!-- Process -->
 <section class="section section-white">
   <div class="inner">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
+    <div class="two-col">
       <div>
         <span class="tag">The process</span>
         <h2>Live in about two weeks</h2>
@@ -967,6 +1001,7 @@ PRICING_BODY = """
   <div class="inner">
     <span class="tag">What every care plan includes</span>
     <h2>Care plan details</h2>
+    <div class="table-scroll">
     <table class="care-table">
       <thead><tr><th></th><th>Starter $250</th><th>Standard $450</th><th>Advanced $750+</th></tr></thead>
       <tbody>
@@ -977,6 +1012,7 @@ PRICING_BODY = """
         <tr><td>Quarterly tuning call</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 </section>
 
