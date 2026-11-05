@@ -6,6 +6,8 @@ base = os.path.dirname(os.path.abspath(__file__))
 _svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a6ef5"/><stop offset="100%" stop-color="#3ec9c9"/></linearGradient></defs><circle cx="16" cy="16" r="16" fill="url(#g)"/><text x="16" y="21" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="16" fill="white">A</text></svg>'
 FAVICON = f'  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,{urllib.parse.quote(_svg)}"/>'
 
+TRACKER = '<script src="https://multum-site-analytics.netlify.app/track.js" data-site="plaiceholder" defer></script>'
+
 # ── navigation ────────────────────────────────────────────────────────────────
 def nav(active):
     links = [
@@ -405,6 +407,7 @@ def page(title, desc, active, body):
 {nav(active)}
 {body}
 {FOOTER}
+{TRACKER}
 </body>
 </html>"""
 
@@ -1314,6 +1317,7 @@ def demo_placeholder(title, desc):
   </div>
 </section>
 {FOOTER}
+{TRACKER}
 </body>
 </html>"""
 
@@ -1363,6 +1367,7 @@ for fname, (title, desc) in demo_files.items():
         # Inject banner
         banner = f'<div style="background:#0d1b2a;color:rgba(255,255,255,.7);text-align:center;padding:.6rem;font-size:.82rem;">Sample data. These companies are fictional. <a href="../agents.html" style="color:#3ec9c9;">Back to agents →</a></div>'
         content = content.replace('<body>', '<body>' + banner, 1)
+        content = content.replace('</body>', TRACKER + '\n</body>', 1)
         with open(dst, "w") as f: f.write(content)
         print(f"  demos/{fname} (from agent-kit)")
     else:
