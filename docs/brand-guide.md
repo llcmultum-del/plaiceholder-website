@@ -1,10 +1,10 @@
-# PlAIceholder Brand Guide
+# {PlAIceholder} Brand Guide
 
 Version 1.0 · October 2026
 
 ## 1. Name
 
-**PlAIceholder**: a capital P, lowercase "l", capital **AI**, then lowercase "ceholder".
+**{PlAIceholder}**: a capital P, lowercase "l", capital **AI**, then lowercase "ceholder".
 
 - The "AI" is the point of the name: we fill the places in your week that are waiting for AI.
 - Always written as one word with the AI capitalized. Never "Plaiceholder", "PlaiceHolder", "PLAICEHOLDER" or "Placeholder AI".
@@ -84,14 +84,14 @@ Rules: one accent per screen. Status colors only carry status, never decoration.
 - In copy: "Signal Prospector finds companies showing buying signals…", always starting with the job.
 
 ## 9. Documents and deliverables
-- Every client deliverable starts with a README stating the client name, agent, version and "Licensed to [Client] for internal use only. Built by PlAIceholder."
+- Every client deliverable starts with a README stating the client name, agent, version and "Licensed to [Client] for internal use only. Built by {PlAIceholder}."
 - Proposals, SOWs and reports use the same colors and fonts. The title page has the wordmark, document title, client and date.
 - File names: `client-agent-vN` (for example `acme-signal-prospector-v2.zip`).
 
 ## 10. Email signature
 ```
 [Founder Name]
-Founder, PlAIceholder
+Founder, {PlAIceholder}
 AI agents that do the busywork inside the tools you already use.
 plaiceholder.io · [Booking Link]
 ```

@@ -1,26 +1,26 @@
-# PlAIceholder Brand Guide
+# {PlAIceholder} Brand Guide
 
-Version 1.1 · October 2026 · Taken from the live site, plaiceholder.io (style.css)
+Version 1.2 · November 2026 · Updated logo to {PlAIceholder}
 
 ## 1. Name
 
-**PlAIceholder**: capital P, lowercase "l", capital **AI**, then lowercase "ceholder".
+**{PlAIceholder}**: curly brace, capital P, lowercase "l", capital **AI**, lowercase "ceholder", curly brace.
 
 - The AI in the middle is the point of the name: we fill the places in your week that are waiting for AI.
-- Always one word with the AI capitalized. Never "Plaiceholder", "PlaiceHolder", "PLAICEHOLDER" or "Placeholder AI".
+- Always written with curly braces: `{PlAIceholder}`. Never without braces, never "Plaiceholder", "PlaiceHolder", "PLAICEHOLDER" or "Placeholder AI".
 - Domain: **plaiceholder.io**, lowercase in URLs and email addresses.
-- Legal entity: [Legal entity name, e.g. "Multum LLC d/b/a PlAIceholder"]. Use it in contracts and invoices only.
+- Legal entity: [Legal entity name, e.g. "Multum LLC d/b/a PlAIceholder"]. Use it in contracts and invoices only (braces optional in legal copy).
 
 ## 2. Logo
 
 | Version | How it's built | Where |
 |---|---|---|
-| **Gradient wordmark** (primary) | "PlAIceholder" in weight 800, filled with the brand gradient (blue → sea → green, 135°) | Navigation bar and any white or mint background |
+| **Gradient wordmark** (primary) | "{PlAIceholder}" in weight 800, filled with the brand gradient (blue → sea → green, 135°) | Navigation bar and any white or mint background |
 | **White wordmark** | The same, in solid white | Dark navy footer, gradient banners, photos |
 | **Icon / favicon** | A gradient circle with a white "A" in weight 800 | Favicon, app icon, social avatar |
 
 Rules:
-- The whole word takes the gradient. Don't color the "AI" separately.
+- The whole word including braces takes the gradient. Don't color the "AI" separately.
 - Clear space equals the height of the "A" on every side. Minimum width is 96 px.
 - Don't stretch it, add shadows, glows or outlines, use all caps, or put the gradient wordmark on the gradient, a photo or a busy background. Use the white version there.
 
@@ -141,13 +141,13 @@ Rules:
 ## 10. Documents and deliverables
 - Title pages: white wordmark on the brand gradient, title in navy or white, date.
 - Tables: navy header row with white text, alternating mint rows, a sea-tint grid.
-- Every client README ends with "Licensed to [Client] for internal use only. Built by PlAIceholder."
+- Every client README ends with "Licensed to [Client] for internal use only. Built by {PlAIceholder}."
 - File names: `client-agent-vN` (e.g. `acme-signal-prospector-v2.zip`).
 
 ## 11. Email signature
 ```
 [Founder Name]
-Founder, PlAIceholder
+Founder, {PlAIceholder}
 AI agents that do the busywork inside the tools you already use.
 plaiceholder.io · [Booking Link]
 ```
