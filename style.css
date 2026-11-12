@@ -27,12 +27,14 @@ nav a:hover,nav a.active{color:var(--blue);}
 /* dropdowns */
 .has-drop{position:relative;}
 .has-drop>a{display:flex;align-items:center;gap:.1rem;}
-.dropdown{display:none;position:absolute;top:calc(100% + .6rem);left:0;min-width:160px;
+.has-drop{padding-bottom:.6rem;margin-bottom:-.6rem;}
+.dropdown{display:none;position:absolute;top:100%;left:0;min-width:170px;
   background:#fff;border:1px solid var(--border);border-radius:12px;
   box-shadow:0 8px 28px rgba(0,0,0,.1);padding:.5rem 0;list-style:none;z-index:300;}
 .dropdown li a{display:block;padding:.55rem 1.1rem;font-size:.85rem;color:var(--ink);white-space:nowrap;}
 .dropdown li a:hover{color:var(--blue);background:var(--light);}
 .has-drop:hover .dropdown,.has-drop:focus-within .dropdown{display:block;}
+.has-drop>a{cursor:default;}
 /* cta */
 nav>.nav-cta{background:var(--grad);color:#fff !important;padding:.38rem 1.1rem;
   border-radius:100px;-webkit-text-fill-color:#fff !important;font-size:.85rem !important;

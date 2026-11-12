@@ -37,10 +37,9 @@
 </nav><script>
 document.querySelectorAll('.has-drop>a').forEach(function(a){
   a.addEventListener('click',function(e){
+    e.preventDefault();
     if(window.innerWidth<=900){
-      e.preventDefault();
-      var li=this.closest('.has-drop');
-      li.classList.toggle('open');
+      this.closest('.has-drop').classList.toggle('open');
     }
   });
 });
