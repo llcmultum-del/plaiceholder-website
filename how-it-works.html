@@ -158,19 +158,18 @@
 <script>
 (function(){
   function killBadge(){
-    document.querySelectorAll('body > *').forEach(function(el){
-      if(el.classList&&el.classList.contains('plai-badge'))return;
-      var href=(el.getAttribute&&el.getAttribute('href'))||'';
-      var src=(el.getAttribute&&el.getAttribute('src'))||'';
-      if(href.indexOf('netlify.com')>-1){el.style.display='none';return;}
-      if((el.tagName||'').toUpperCase()==='IFRAME'&&src.indexOf('netlify')>-1){el.style.display='none';return;}
-      var txt=el.innerText||'';
-      if(txt.indexOf('Powered by Netlify')>-1)el.style.display='none';
-    });
+    var f=document.getElementById('nl-badge-frame');
+    if(f)f.style.cssText='display:none!important';
+    document.querySelectorAll('script[src*="netlify/scripts"]').forEach(function(s){s.remove();});
   }
-  var obs=new MutationObserver(killBadge);
+  var obs=new MutationObserver(function(ml){
+    ml.forEach(function(m){m.addedNodes.forEach(function(n){
+      if(n.id==='nl-badge-frame')n.style.cssText='display:none!important';
+    });});
+  });
   obs.observe(document.body,{childList:true});
-  window.addEventListener('load',function(){killBadge();setTimeout(killBadge,800);});
+  document.addEventListener('DOMContentLoaded',killBadge);
+  window.addEventListener('load',killBadge);
 })();
 </script>
 </body>
