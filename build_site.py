@@ -51,7 +51,7 @@ def nav(active):
         return f'<a href="{href}"{cls}>{label}</a>'
 
     agents_cls  = ' class="active"' if active in ("agents","how") else ""
-    res_cls     = ' class="active"' if active in ("case","blog","roi","faq") else ""
+    res_cls     = ' class="active"' if active in ("case","blog","roi") else ""
     cta_cls     = " nav-cta-active" if active == "contact" else ""
 
     return f"""<nav>
@@ -72,11 +72,9 @@ def nav(active):
         <li>{a("Case Studies","case-study.html","case")}</li>
         <li>{a("Blog","blog.html","blog")}</li>
         <li>{a("ROI Calculator","roi.html","roi")}</li>
-        <li>{a("FAQ","faq.html","faq")}</li>
       </ul>
     </li>
     <li>{a("About","about.html","about")}</li>
-    <li>{a("Contact Us","contact.html","contact")}</li>
   </ul>
   <a href="contact.html" class="nav-cta{cta_cls}">Book a Call</a>
   <button class="hamburger" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">&#9776;</button>
@@ -93,9 +91,19 @@ document.querySelectorAll('.has-drop>a').forEach(function(a){
 
 FOOTER = """<footer>
   <div class="footer-inner">
-    <div class="footer-brand">
+    <div>
       <a href="index.html" class="logo footer-logo">{PlAIceholder}</a>
       <p class="footer-tag">AI agents that do the busywork inside the tools you already use.</p>
+    </div>
+    <div class="footer-links">
+      <a href="agents.html">Catalog</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="case-study.html">Case Studies</a>
+      <a href="roi.html">ROI Calculator</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Book a Call</a>
       <a href="https://www.linkedin.com/company/plaiceholder-io" target="_blank" rel="noopener" class="footer-linkedin" aria-label="LinkedIn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -109,24 +117,6 @@ FOOTER = """<footer>
           <path d="M7 10h2v7H7v-7zm1-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 3h1.9v1h.1c.3-.5 1-1.1 2-1.1 2.1 0 2.5 1.4 2.5 3.2V17h-2v-3.5c0-.8 0-1.9-1.2-1.9s-1.3.9-1.3 1.8V17H12v-7z" fill="#fff"/>
         </svg>
       </a>
-    </div>
-    <div class="footer-col">
-      <p class="footer-col-label">Agents</p>
-      <a href="how-it-works.html">How It Works</a>
-      <a href="agents.html">Catalog</a>
-      <a href="pricing.html">Pricing</a>
-    </div>
-    <div class="footer-col">
-      <p class="footer-col-label">Resources</p>
-      <a href="case-study.html">Case Studies</a>
-      <a href="blog.html">Blog</a>
-      <a href="roi.html">ROI Calculator</a>
-      <a href="faq.html">FAQ</a>
-    </div>
-    <div class="footer-col">
-      <p class="footer-col-label">Company</p>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact Us</a>
     </div>
   </div>
   <p class="footer-copy">© 2026 {PlAIceholder}. All rights reserved.</p>
@@ -509,17 +499,16 @@ legend{font-size:.75rem;font-weight:700;color:var(--muted);padding:0 .4rem;lette
   -webkit-text-fill-color:transparent;background-clip:text;font-weight:900;flex-shrink:0;}
 
 /* ── footer ── */
-footer{background:var(--dark);padding:3rem 2rem 1.5rem;}
-.footer-inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:3rem;margin-bottom:2.5rem;}
-.footer-brand{flex:1 1 200px;min-width:180px;}
+footer{background:var(--dark);padding:2.5rem 2rem 1.5rem;}
+.footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;
+  align-items:flex-start;flex-wrap:wrap;gap:2rem;margin-bottom:2rem;}
 .footer-logo{font-size:1.2rem !important;-webkit-text-fill-color:#fff !important;display:inline-block;margin-bottom:.4rem;}
-.footer-tag{font-size:.82rem;color:rgba(255,255,255,.45);max-width:220px;margin-top:.3rem;line-height:1.5;}
-.footer-linkedin{display:inline-flex;align-items:center;line-height:1;margin-top:1.1rem;}
+.footer-tag{font-size:.82rem;color:rgba(255,255,255,.45);max-width:260px;margin-top:.3rem;}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.footer-links a{text-decoration:none;color:rgba(255,255,255,.5);font-size:.85rem;transition:color .2s;}
+.footer-links a:hover{color:var(--sea);}
+.footer-linkedin{display:flex;align-items:center;line-height:1;}
 .footer-linkedin:hover{opacity:.8;}
-.footer-col{display:flex;flex-direction:column;gap:.6rem;min-width:120px;}
-.footer-col-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:.2rem;}
-.footer-col a{text-decoration:none;color:rgba(255,255,255,.6);font-size:.88rem;transition:color .2s;}
-.footer-col a:hover{color:var(--sea);}
 .contact-linkedin{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.25rem;font-size:.88rem;font-weight:600;color:var(--blue);text-decoration:none;}
 .contact-linkedin:hover{opacity:.8;}
 .footer-copy{text-align:center;font-size:.78rem;color:rgba(255,255,255,.3);max-width:1080px;margin:0 auto;}
@@ -797,13 +786,12 @@ HOME_BODY = """
 
 <!-- CTA bar -->
 <section class="section section-light" style="text-align:center;">
-  <div class="inner" style="max-width:580px;">
-    <h2>Start with a free call. No commitment.</h2>
-    <p style="color:var(--muted);margin-top:1rem;">We'll walk you through a live demo, talk through your biggest time sink, and tell you straight whether an agent is the right fit.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;">
-      <a href="contact.html" class="btn btn-grad">Book a free call</a>
-      <a href="how-it-works.html" class="btn btn-dark">See how it works</a>
-    </div>
+  <div class="inner">
+    <span class="tag">Pricing</span>
+    <h2>Setup from $1,500. You don't pay the second half until the pilot works.</h2>
+    <p class="sub" style="margin:0 auto 2rem;">Three tiers based on how many tools the agent connects to. See the full breakdown, or book a call and we will scope it for you.</p>
+    <a href="pricing.html" class="btn btn-grad" style="margin-right:1rem;">See pricing</a>
+    <a href="contact.html" class="btn btn-dark">Book a free call</a>
   </div>
 </section>
 
@@ -1380,8 +1368,8 @@ agent_opts  = "\n".join(f'<option>{a}</option>' for a in AGENT_LIST)
 CONTACT_BODY = f"""
 <div class="page-banner">
   <div class="page-banner-inner">
-    <h1>Book a Call</h1>
-    <p>Free 30-minute call. Live demo, straight answers, no commitment.</p>
+    <h1>Let's Talk</h1>
+    <p>Book a free 30-minute call. We'll show you a live demo and pick the task that makes the most sense to start with.</p>
   </div>
 </div>
 <section class="section section-light">
@@ -1391,7 +1379,8 @@ CONTACT_BODY = f"""
         <span class="tag">Get in touch</span>
         <h2>Free call,<br>no commitment</h2>
         <p>In 30 minutes we'll walk you through a live demo on sample data, talk through your biggest time sink, and give you a straight answer on whether an agent can help.</p>
-        <div class="ci-chip"><span class="ic">{ICON["filetext"]}</span><span><a href="mailto:ben@plaiceholder.io" style="color:var(--blue);font-weight:600;">ben@plaiceholder.io</a></span></div>
+        <div class="ci-chip"><span class="ic">{ICON["clock"]}</span><span><a href="[Booking Link]" style="color:var(--blue);font-weight:600;">Schedule a 30-min call</a></span></div>
+        <div class="ci-chip"><span class="ic">{ICON["filetext"]}</span><span>[Contact Email]</span></div>
         <a href="https://www.linkedin.com/company/plaiceholder-io" target="_blank" rel="noopener" class="contact-linkedin">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -1407,8 +1396,7 @@ CONTACT_BODY = f"""
           Follow on LinkedIn
         </a>
       </div>
-      <form class="contact-form" name="contact" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
-        <input type="hidden" name="form-name" value="contact"/>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
         <div class="frow">
           <input type="text" name="name" placeholder="Your name" required/>
           <input type="email" name="email" placeholder="Work email" required/>
@@ -1443,16 +1431,6 @@ CONTACT_BODY = f"""
           <option value="" disabled selected>Which agent caught your eye?</option>
           {agent_opts}
         </select>
-        <select name="source" required>
-          <option value="" disabled selected>Where did you find us?</option>
-          <option>Google search</option>
-          <option>LinkedIn</option>
-          <option>Word of mouth / referral</option>
-          <option>AI search (ChatGPT, Perplexity, etc.)</option>
-          <option>Social media</option>
-          <option>Blog or article</option>
-          <option>Other</option>
-        </select>
         <textarea name="message" placeholder="Anything else we should know? (optional)"></textarea>
         <!-- honeypot -->
         <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off"/>
@@ -1468,19 +1446,8 @@ function handleSubmit(e){{
   var hp=e.target.querySelector('input[name="_gotcha"]');
   if(hp&&hp.value)return;
   var btn=e.target.querySelector('.sbtn');
-  btn.textContent='Sending…';btn.disabled=true;
-  var data=new FormData(e.target);
-  fetch('/',{{method:'POST',headers:{{'Content-Type':'application/x-www-form-urlencoded'}},
-    body:new URLSearchParams(data).toString()}})
-    .then(function(){{
-      btn.textContent='Sent ✓';btn.style.opacity='.6';
-      document.getElementById('form-success').style.display='block';
-      e.target.reset();
-    }})
-    .catch(function(){{
-      btn.textContent='Send →';btn.disabled=false;
-      alert('Something went wrong. Email us directly at ben@plaiceholder.io');
-    }});
+  btn.textContent='Sent ✓';btn.style.opacity='.6';btn.disabled=true;
+  document.getElementById('form-success').style.display='block';
 }}
 </script>
 """
@@ -1548,26 +1515,7 @@ ABOUT_BODY = """
 # ── To add a new post, append one dict to POSTS and run python3 build_site.py ──
 # ── To add a post: append a dict with slug/title/date/tag/preview/body, then run python3 build_site.py ──
 POSTS = [
-  {
-    "slug": "how-to-tell-if-an-ai-agent-is-working",
-    "title": "How to Tell If an AI Agent Is Actually Working",
-    "date": "2026-11-12",
-    "tag": "ROI",
-    "preview": "Most companies running AI can't say whether it paid off, usually because nobody wrote down what \"before\" looked like.",
-    "body": """
-<p>Ask a company whether its AI tools are working and you will usually get a feeling, not a number. People say it seems faster, or that the team likes it. That is not nothing, but it is not an answer either. MIT's NANDA initiative reported in 2025 that only about 5% of the generative AI pilots it studied produced rapid revenue gains, with the rest showing little or no measurable effect on profit and loss. Futurum Group's 2026 survey of 830 IT decision-makers found 43% still unsure how to measure the business value of their AI. Some of those tools may well be helping. The trouble is that nobody can show it.</p>
-<h2>Write down "before" first</h2>
-<p>Most measurement problems start before the tool is switched on. If nobody records how long the task takes today, how often it goes wrong, and how much of it sits in a queue, there is nothing to compare against later. A month in, "it feels quicker" is the only evidence left.</p>
-<p>The baseline does not need to be elaborate. For a single repeatable task, three numbers usually cover it: how many items go through in a week, how long each one takes a person, and how many get sent back or corrected. Count them for two or three weeks before anything changes. A spreadsheet is fine.</p>
-<h2>Measure the task, not the tool</h2>
-<p>A common mistake is tracking what the software does instead of what the business gets. Number of prompts run, number of messages drafted, number of logins: these show activity, and activity is easy to produce. What matters is whether the task itself got cheaper, faster, or more accurate.</p>
-<p>This is one reason narrow agents are easier to judge than broad assistants. An agent that checks supplier invoices against purchase orders has an obvious scoreboard: invoices checked, mismatches caught, mismatches missed, hours a person no longer spends on it. A general chat tool spread across a whole department has no single scoreboard, so its value turns into an argument. The MIT report made a related point: back-office work like this showed some of the clearest measured returns, even though most AI budgets went to sales and marketing.</p>
-<h2>Check accuracy, not only speed</h2>
-<p>Speed is the number everyone reaches for, because it improves straight away. But an agent that finishes in seconds and is wrong one time in ten can cost more than the manual process it replaced, since someone now has to find and fix the errors downstream.</p>
-<p>So keep a sample under review. For the first few weeks, have a person check a fixed share of the agent's output, record what it got wrong, and sort the errors into types. After that the sample can shrink, but it should not disappear. Inputs change: suppliers redesign their invoices, a CRM field gets renamed, a new product line appears. An agent that was accurate at launch can drift without anyone noticing unless someone keeps looking.</p>
-<p>None of this is complicated, and most of it is done before or after the build rather than during it. That is why we set it up this way. Each PlAIceholder agent handles one defined task, so there is one set of numbers to watch. The pilot runs on a small batch of real records, so accuracy is checked against actual work before anything scales up. And the care plan exists partly to keep watching those numbers after launch, when drift tends to show up. If an agent is working, the figures will show it. If it is not, it is better to find that out in week three than in month nine.</p>
-"""
-  },
+  # posts go here
 ]
 
 def post_card(p):
@@ -1798,340 +1746,6 @@ ROI_BODY = """
 </script>
 """
 
-FAQ_BODY = """
-<section class="section" style="padding-top:3.5rem;">
-  <div class="inner" style="max-width:860px;">
-    <h1 style="font-size:2.2rem;margin-bottom:.6rem;">Frequently Asked Questions</h1>
-    <p style="color:var(--muted);font-size:1.05rem;margin-bottom:3rem;">Straight answers about what AI agents are, how they work, and whether one is right for you.</p>
-
-    <div class="faq-toc">
-      <a href="#what-it-is">What it is &amp; who it's for</a>
-      <a href="#sales">Sales</a>
-      <a href="#customer-success">Customer Success</a>
-      <a href="#back-office">Back Office</a>
-      <a href="#integrations">Integrations &amp; Tech</a>
-      <a href="#safety">Safety &amp; Trust</a>
-      <a href="#pricing">Pricing &amp; ROI</a>
-      <a href="#process">Process &amp; Timeline</a>
-    </div>
-
-    <div class="faq-group" id="what-it-is">
-      <h2 class="faq-group-title">What it is &amp; who it's for</h2>
-
-      <details class="faq-item" open>
-        <summary>What is a custom AI agent for business?</summary>
-        <div class="faq-answer">
-          <p>A custom AI agent is software that handles one specific, repeatable task your team does regularly, without a human doing it manually. It reads from your systems, makes decisions based on rules you approve, writes or flags the output, and hands the result back to your team. It's not a general assistant and it's not a chatbot. It does one job, inside the tools you already use, on a schedule you control.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>How is an AI agent different from a chatbot or Zapier automation?</summary>
-        <div class="faq-answer">
-          <p>A chatbot responds to questions in a conversation window. A Zapier automation moves data from point A to point B when a trigger fires. An AI agent reasons. It reads unstructured text, weighs multiple signals, makes a judgment, and produces a structured output. For example: a Zap can copy a lead into your CRM when a form is submitted. An AI agent can read that lead's LinkedIn profile, their company's recent news, and their job title, then score the opportunity and write a personalized outreach draft. The judgment is what makes it an agent.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Is PlAIceholder a good fit for a small or mid-sized business?</summary>
-        <div class="faq-answer">
-          <p>Yes. We work best with companies that have a clear repeatable task taking meaningful staff hours every week, a team willing to review outputs in the first few weeks, and an appetite to actually use the results. If you can describe the task in a paragraph and name the person who currently does it, we can probably automate a large part of it. We don't require a large IT team or existing AI infrastructure.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Do I need an in-house AI engineer to use an AI agent?</summary>
-        <div class="faq-answer">
-          <p>No. We handle the build, the integration, and the initial tuning. Once deployed, the agent runs automatically and your team just reviews the outputs in the same tools they already use. If something needs adjustment, you contact us and we handle it. The care plan exists specifically so you don't need to maintain it yourself.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What's the difference between hiring an AI agency and building in-house?</summary>
-        <div class="faq-answer">
-          <p>Building in-house means hiring an ML engineer or AI developer, spending months on trials, and owning all the maintenance. It makes sense if AI is core to your product. For a business task like lead scoring or invoice review, you're paying for a capability, not building a platform. We deliver a working agent in roughly two weeks at a fixed price, with a care plan that keeps it working. No recruiting, no six-month build cycle, no internal expertise required.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="faq-group" id="sales">
-      <h2 class="faq-group-title">Sales</h2>
-
-      <details class="faq-item">
-        <summary>Can AI find companies that are ready to buy?</summary>
-        <div class="faq-answer">
-          <p>It can surface companies showing signals that often precede a buying decision: job postings that suggest a problem you solve, news mentions of relevant events, funding announcements, leadership changes, or other observable indicators. It won't predict the future, but it narrows a large list to the accounts most worth calling this week. That's what our Signal Prospector does.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>How does AI lead research work?</summary>
-        <div class="faq-answer">
-          <p>The agent takes a list of companies or contacts, pulls publicly available information from web sources, company sites, LinkedIn, and news feeds, then synthesizes a brief on each one: who they are, why they might be a fit, what to reference in an outreach. The output lands in your CRM or a spreadsheet, structured and ready to use. Research that takes a rep 30 minutes per account can be done in under a minute per account at scale.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Can an AI agent follow up on stalled deals in HubSpot or Salesforce?</summary>
-        <div class="faq-answer">
-          <p>Yes. The agent scans deals that have gone quiet based on the last activity date, drafts a personalized follow-up for each one based on the deal context and contact history, and queues the drafts for your rep to review and send. It doesn't send automatically unless you specifically want that. The rep stays in the loop; they just stop starting from a blank page.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What is a buying signal, and how does the Signal Prospector find them?</summary>
-        <div class="faq-answer">
-          <p>A buying signal is any observable event that suggests a company may be in a position to buy. Common examples: a job posting for a role that implies they need what you sell, a press release about a problem you solve, a funding round that gives them budget, or a leadership hire who has bought similar solutions before. The Signal Prospector monitors sources you define, extracts these events, scores them against your ideal customer profile, and delivers a ranked list each week.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="faq-group" id="customer-success">
-      <h2 class="faq-group-title">Customer Success</h2>
-
-      <details class="faq-item">
-        <summary>Can AI predict which customers won't renew?</summary>
-        <div class="faq-answer">
-          <p>It can flag accounts showing risk indicators before the renewal conversation. These signals include declining usage, unresolved support tickets, reduced stakeholder engagement, or CRM notes that mention competitor evaluation. It won't be right every time, but it surfaces the accounts most worth a proactive conversation while there's still time to act. That's what the Renewal Risk Radar does.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>How does AI triage support tickets in Zendesk?</summary>
-        <div class="faq-answer">
-          <p>The agent reads incoming tickets, classifies them by issue type and urgency, routes them to the right queue or team, and drafts an initial response for the agent to review. It can also link tickets to known issues or documentation. The goal is to cut first-response time and reduce the number of tickets your team has to read in full before knowing what to do with them.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What does the Renewal Risk Radar actually flag?</summary>
-        <div class="faq-answer">
-          <p>Accounts where one or more risk signals are present: low product usage relative to their contract, open support issues past a certain age, no recorded activity with the account team in the last 60 days, NPS below a threshold, or notes mentioning dissatisfaction or competitor evaluation. Each flag includes the evidence so your CSM can make a judgment call, not just a warning light with no context.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="faq-group" id="back-office">
-      <h2 class="faq-group-title">Back Office</h2>
-
-      <details class="faq-item">
-        <summary>Can AI check invoices against purchase orders automatically?</summary>
-        <div class="faq-answer">
-          <p>Yes. The Invoice Checker reads incoming invoices, matches them against the corresponding purchase orders, and flags discrepancies: amounts that don't match, vendors not on your approved list, line items that don't appear on the PO, or invoices submitted more than once. Each flagged invoice includes the specific mismatch so your AP team can resolve it rather than hunt for it. Clean invoices pass through without manual review.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Does the Invoice Checker work with QuickBooks?</summary>
-        <div class="faq-answer">
-          <p>We've built integrations with QuickBooks, as well as email-based invoice workflows where PDFs or attachments arrive in a shared inbox. The specific integration depends on how you currently receive and process invoices. We cover this on the discovery call and confirm the integration before we build anything.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Can AI screen job applicants fairly?</summary>
-        <div class="faq-answer">
-          <p>The Resume Screener scores applicants against criteria you define: required skills, experience level, specific qualifications. It doesn't make hiring decisions and it doesn't have opinions about names, photos, or background. Every score includes the reasoning so a human reviewer can agree or disagree. We recommend treating it as a first-pass tool that reduces the volume your team reads in full, not as a replacement for human judgment in hiring.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Can an AI agent write weekly KPI reports?</summary>
-        <div class="faq-answer">
-          <p>Yes. The Weekly KPI Writer pulls your numbers from connected sources, compares them to the prior period and targets, writes the narrative summary, and delivers a formatted report to your inbox or Slack on a schedule. The report is ready to send or present with minimal editing. It's one of our most popular agents because it saves 1 to 3 hours every single week without any change to how you collect your data.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="faq-group" id="integrations">
-      <h2 class="faq-group-title">Integrations &amp; Tech</h2>
-
-      <details class="faq-item">
-        <summary>What software do your AI agents integrate with?</summary>
-        <div class="faq-answer">
-          <p>We've built integrations with HubSpot, Salesforce, Zendesk, QuickBooks, Google Sheets, Slack, Gmail, Outlook, Notion, Airtable, and most tools with an API or a shared inbox. If your tool isn't on this list, tell us what it is on the discovery call. If it has an API or sends email, we can almost certainly connect to it.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Which AI model do your agents use?</summary>
-        <div class="faq-answer">
-          <p>We build on Claude, made by Anthropic. We chose Claude for its strong reasoning on business tasks, its low rate of confident wrong answers, and Anthropic's serious approach to safe deployment. We use the model that best fits each task's needs. You don't need an Anthropic account; API access is included in your care plan.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Will an AI agent work with my existing CRM?</summary>
-        <div class="faq-answer">
-          <p>Almost certainly. If your CRM has an API, a Zapier integration, or a CSV export, we can read from it and write back to it. HubSpot and Salesforce are the most common and are fully supported. For less common CRMs, we'll confirm feasibility on the discovery call. We've never had to turn a project away because of the CRM.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="faq-group" id="safety">
-      <h2 class="faq-group-title">Safety &amp; Trust</h2>
-
-      <details class="faq-item">
-        <summary>Is it safe to let AI touch my company's data?</summary>
-        <div class="faq-answer">
-          <p>We take this seriously. The agent only accesses the specific data needed for the task. We use encrypted connections, don't store your data beyond what's needed to run the agent, and don't use your data to train any AI model. Every integration is scoped to the minimum permissions required. We'll walk you through exactly what the agent reads and writes before anything goes live.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Can the AI agent delete or overwrite my records?</summary>
-        <div class="faq-answer">
-          <p>By default, no. Every agent we build is configured to write new records or add fields, not to delete or overwrite existing data. If your use case genuinely requires overwriting a field, we discuss it explicitly and document it in the proposal. Auto-delete is never on by default and requires a deliberate decision on your part.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>How do you stop AI from hallucinating or making things up?</summary>
-        <div class="faq-answer">
-          <p>We design agents to work from sources, not from memory. Every output cites the specific text or record it was based on. The agent is not asked to generate facts; it's asked to extract, classify, or summarize from real inputs. For tasks where accuracy is critical, we also include a confidence score so reviewers know when to double-check. No agent we build makes an unsourced claim as if it were fact.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What is dry-run mode?</summary>
-        <div class="faq-answer">
-          <p>Dry-run mode lets the agent process real data and produce its full output without writing anything back to your systems. You see exactly what it would have done without any of it actually happening. We use dry-run on the pilot: the agent runs on 20 real records, you review the results, and you decide whether the quality meets your bar before we flip it to live. It's how we prove the agent works before you rely on it.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Who owns the AI agent after it's built?</summary>
-        <div class="faq-answer">
-          <p>You do. We hand over the agent, the configuration, and documentation of how it works. If you cancel the care plan and want to run it independently, you can. We don't lock you into our infrastructure. The care plan is a service, not a lease.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Do you keep a copy of my company's data?</summary>
-        <div class="faq-answer">
-          <p>No. We don't retain your records after the agent has processed them. Logs used for debugging are kept for a limited period and then deleted. We don't use your data to train models, build datasets, or improve our general product. What you share with us stays in the agent and your systems.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>How do I control how much the AI spends?</summary>
-        <div class="faq-answer">
-          <p>Every agent runs with a spending cap. You set a maximum number of records per run, a maximum number of API calls, or both. The agent stops and alerts you if it's about to exceed the limit. The API cost for a typical agent run is small and predictable. We'll give you an estimate of monthly API cost as part of the proposal, and the care plan includes monitoring to catch any unexpected spikes.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="faq-group" id="pricing">
-      <h2 class="faq-group-title">Pricing &amp; ROI</h2>
-
-      <details class="faq-item">
-        <summary>How much does a custom AI agent cost?</summary>
-        <div class="faq-answer">
-          <p>Setup is a one-time fixed price. Care (hosting, maintenance, updates) is a monthly flat fee. Prices range depending on the complexity of the agent and the integrations required. We publish three tiers on our <a href="pricing.html">pricing page</a> and every proposal is fixed-price with no hidden fees. You'll know the full cost before you commit to anything.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What's included in the monthly care plan?</summary>
-        <div class="faq-answer">
-          <p>Hosting, monitoring, and keeping the agent running as the tools it connects to change. When a CRM updates its API or Anthropic releases a better model, we update the agent. If the agent starts producing lower quality outputs, we diagnose and fix it. You get a working agent, not just the code for one. The care plan is what keeps it working six months after launch, not just on day one.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What's the ROI of an AI agent for a small business?</summary>
-        <div class="faq-answer">
-          <p>It depends on the task and how often your team does it. A realistic starting point: if the agent saves five hours per week at a fully loaded cost of $50 per hour, that's $1,000 per week in recovered capacity. Most agents deliver much more than that once fully adopted. Use our <a href="roi.html">ROI calculator</a> to put in your own numbers. We also don't take on projects where we can't make a reasonable case for positive ROI within the first year.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>How long until an AI agent pays for itself?</summary>
-        <div class="faq-answer">
-          <p>For most projects, between one and four months. The payback period depends on how many hours the agent saves per week and what those hours cost. The ROI calculator on our pricing page will give you a specific estimate for your situation. We're straightforward about cases where the numbers don't work: if the task is too infrequent or the volume too low, we'll say so on the first call.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Why do you charge a fixed price instead of hourly?</summary>
-        <div class="faq-answer">
-          <p>Because hourly billing puts the risk on you. If the build takes longer than expected, you pay more. Fixed-price means we bear the risk of scope changes and estimation errors. You know what you're paying before we start. It also forces us to scope clearly upfront, which produces better agents than open-ended development does.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="faq-group" id="process">
-      <h2 class="faq-group-title">Process &amp; Timeline</h2>
-
-      <details class="faq-item">
-        <summary>How long does it take to build an AI agent?</summary>
-        <div class="faq-answer">
-          <p>About two weeks from signed proposal to pilot results. Week one is the discovery interview, integration setup, and build. Week two is the pilot run on 20 real records, your review, and any tuning needed before full deployment. The two-week timeline assumes reasonable access to your systems and one point of contact on your side. Unusually complex integrations can extend this to three to four weeks.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What happens on the free 30-minute call?</summary>
-        <div class="faq-answer">
-          <p>We'll ask you to describe the task you want to automate: what currently happens, who does it, what systems are involved, and what a good output looks like. We'll show you a live demo of the most relevant agent in our catalog. Then we'll tell you honestly whether we think an agent is a good fit, what it would cost, and what the timeline would look like. No prepared pitch. No pressure. If it's not the right fit, we'll tell you that too.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What is a pilot run, and why 20 records?</summary>
-        <div class="faq-answer">
-          <p>The pilot is the agent running on 20 real records from your data, in dry-run mode so nothing is written back yet. You review the outputs alongside the actual records and tell us whether the quality is acceptable. Twenty is enough to catch edge cases and calibration issues without requiring a large sample. If the pilot meets your bar, we flip to live. If it doesn't, we adjust and run again. You don't pay the second half of the setup until the pilot passes.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What happens if the agent stops working or needs changes?</summary>
-        <div class="faq-answer">
-          <p>Contact us. That's what the care plan covers. Tool APIs change, models improve, and your business needs evolve. We monitor for failures and usually catch problems before you notice them. For changes to scope or new functionality, we quote those separately. Bug fixes, maintenance, and keeping the existing agent running are covered in the monthly fee.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Can I start with one agent and add more later?</summary>
-        <div class="faq-answer">
-          <p>Yes, and that's how most clients start. Pick the task that takes the most time or creates the most risk, automate that first, and then assess. The integrations we set up for the first agent often make subsequent agents faster to build. There's no requirement to commit to multiple agents upfront.</p>
-        </div>
-      </details>
-    </div>
-
-  </div>
-</section>
-
-<section class="section section-dark" style="text-align:center;">
-  <div class="inner" style="max-width:580px;">
-    <h2>Still have questions?</h2>
-    <p style="color:rgba(255,255,255,.65);margin-top:1rem;">Book a free 30-minute call. We'll answer everything and show you a live demo of the agent that fits your team.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;">
-      <a href="contact.html" class="btn btn-white">Book a free call</a>
-      <a href="agents.html" class="btn btn-outline">Browse the catalog</a>
-    </div>
-  </div>
-</section>
-
-<style>
-.faq-toc{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:3rem;}
-.faq-toc a{font-size:.82rem;padding:.35rem .85rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:color .15s,border-color .15s;}
-.faq-toc a:hover{color:var(--blue);border-color:var(--blue);}
-.faq-group{margin-bottom:3rem;}
-.faq-group-title{font-size:1.1rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
-.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:.6rem;overflow:hidden;}
-.faq-item summary{padding:1rem 1.25rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:.97rem;}
-.faq-item summary::-webkit-details-marker{display:none;}
-.faq-item summary::after{content:'+';font-size:1.3rem;font-weight:300;color:var(--muted);flex-shrink:0;transition:transform .2s;}
-.faq-item[open] summary::after{content:'-';}
-.faq-item[open] summary{color:var(--blue);}
-.faq-answer{padding:.75rem 1.25rem 1.25rem;color:var(--muted);line-height:1.7;font-size:.93rem;border-top:1px solid var(--border);}
-.faq-answer p{margin-bottom:.75rem;}
-.faq-answer p:last-child{margin-bottom:0;}
-.faq-answer a{color:var(--blue);}
-</style>
-"""
-
 # ─────────────────────────────────────────────────────────────────────────────
 # Build
 # ─────────────────────────────────────────────────────────────────────────────
@@ -2161,8 +1775,8 @@ pages = {
         "Become a founding client. Get a discounted AI agent build in exchange for letting us document your real results.",
         "case", CASE_BODY),
     "contact.html": page(
-        "Contact Us, {PlAIceholder}",
-        "Send us a message or book a free 30-minute demo call. We reply within one business day.",
+        "Book a Call, {PlAIceholder}",
+        "Book a free 30-minute call. Live demo, no commitment.",
         "contact", CONTACT_BODY),
     "about.html": page(
         "About, {PlAIceholder}",
@@ -2172,10 +1786,6 @@ pages = {
         "Blog, {PlAIceholder}",
         "How AI agents work, what we've learned building them, and what actually delivers results.",
         "blog", BLOG_BODY),
-    "faq.html": page(
-        "FAQ, {PlAIceholder}",
-        "Answers to common questions about AI agents for business: how they work, what they cost, and whether one is right for you.",
-        "faq", FAQ_BODY),
 }
 
 # Check for real demo files from agent-kit
