@@ -193,18 +193,16 @@ h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2;margin-b
 .compare-table .highlight{font-weight:700;color:var(--blue);}
 .compare-table a{color:var(--sea);font-size:.78rem;}
 
-/* ── ROI calculator ── */
-.calc-wrap{background:var(--dark);border-radius:22px;padding:2.5rem;color:#fff;}
-.calc-wrap h3{font-size:1.2rem;font-weight:800;margin-bottom:.3rem;}
-.calc-wrap .csub{font-size:.85rem;color:rgba(255,255,255,.6);margin-bottom:1.5rem;}
-.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
-.calc-field label{display:block;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.7);
-  margin-bottom:.35rem;letter-spacing:.04em;}
-.calc-field input,.calc-field select{width:100%;padding:.65rem .9rem;border-radius:9px;
-  border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);
-  color:#fff;font-size:.9rem;outline:none;transition:border-color .2s;}
-.calc-field input:focus,.calc-field select:focus{border-color:var(--sea);}
-.calc-field select option{background:var(--dark);}
+/* ── ROI teaser ── */
+.roi-teaser{background:var(--dark);border-radius:22px;padding:2.5rem;color:#fff;}
+.roi-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin:1.75rem 0 2rem;}
+.roi-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:1.25rem 1rem;}
+.roi-stat .rval{font-size:1.8rem;font-weight:900;background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;}
+.roi-stat .rlabel{font-size:.75rem;color:rgba(255,255,255,.6);margin-top:.3rem;}
+.roi-teaser-note{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:-.5rem;margin-bottom:1.5rem;}
+/* ── ROI calculator (standalone page) ── */
 .calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin-bottom:1.5rem;}
 .calc-result{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
   border-radius:12px;padding:1rem;}

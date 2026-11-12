@@ -166,35 +166,28 @@
           <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Monthly</div><h3>Care plan</h3><p>Monitoring, fixes when tools change, tuning, and a monthly results email.</p></div>
         </div>
       </div>
-      <!-- ROI calculator -->
+      <!-- ROI teaser -->
       <div>
         <span class="tag">Estimate your return</span>
-        <h2>ROI calculator</h2>
-        <div class="calc-wrap" id="calc">
-          <h3>How much time is this task costing you?</h3>
-          <p class="csub">Estimate. Your pilot measures the real number.</p>
-          <div class="calc-grid">
-            <div class="calc-field"><label>People doing the task</label><input type="number" id="c-people" value="2" min="1"/></div>
-            <div class="calc-field"><label>Hours per week each</label><input type="number" id="c-hours" value="4" min="0.5" step="0.5"/></div>
-            <div class="calc-field"><label>Hourly cost (USD)</label><input type="number" id="c-cost" value="45" min="10"/></div>
-            <div class="calc-field"><label>Est. time saved</label>
-              <select id="c-save"><option value="0.3">30%</option><option value="0.4">40%</option><option value="0.5" selected>50%</option><option value="0.6">60%</option><option value="0.7">70%</option></select></div>
-            <div class="calc-field"><label>Tier</label>
-              <select id="c-tier">
-                <option value="1500,250">Starter ($1,500 setup / $250/mo)</option>
-                <option value="3500,450" selected>Standard ($3,500 setup / $450/mo)</option>
-                <option value="6000,750">Advanced ($6,000 setup / $750/mo)</option>
-              </select>
+        <h2>See your ROI before you commit.</h2>
+        <div class="roi-teaser" id="roi-teaser">
+          <p style="color:rgba(255,255,255,.65);margin-bottom:0;">Based on a 3-person team running a Standard agent. Adjust the numbers for your situation.</p>
+          <div class="roi-stats">
+            <div class="roi-stat">
+              <div class="rval"><span class="roi-count" data-target="34" data-suffix=" hrs">0</span></div>
+              <div class="rlabel">Hours saved / month</div>
+            </div>
+            <div class="roi-stat">
+              <div class="rval"><span class="roi-count" data-target="30600" data-prefix="$" data-suffix="" data-format="currency">0</span></div>
+              <div class="rlabel">Value saved / year</div>
+            </div>
+            <div class="roi-stat">
+              <div class="rval"><span class="roi-count" data-target="6" data-suffix=" weeks">0</span></div>
+              <div class="rlabel">Payback period</div>
             </div>
           </div>
-          <div class="calc-results">
-            <div class="calc-result"><div class="rval" id="r-hrs">—</div><div class="rlabel">Hours saved/month</div></div>
-            <div class="calc-result"><div class="rval" id="r-save">—</div><div class="rlabel">Dollars saved/month</div></div>
-            <div class="calc-result"><div class="rval" id="r-pay">—</div><div class="rlabel">Payback (weeks)</div></div>
-            <div class="calc-result"><div class="rval" id="r-yr">—</div><div class="rlabel">Year-one return</div></div>
-          </div>
-          <p class="calc-note">Estimate only. Assumes your pilot confirms the time-saved percentage above.</p>
-          <a href="contact.html" class="btn btn-white" id="calc-cta">Book a call to get the real number →</a>
+          <p class="roi-teaser-note">Typical estimate. Your pilot measures the real number.</p>
+          <a href="roi.html" class="btn btn-grad">Calculate yours →</a>
         </div>
       </div>
     </div>
@@ -213,28 +206,38 @@
 
 <script>
 (function(){
-  function calc(){
-    var P=+document.getElementById('c-people').value||1;
-    var H=+document.getElementById('c-hours').value||1;
-    var C=+document.getElementById('c-cost').value||45;
-    var S=+document.getElementById('c-save').value||0.5;
-    var tv=document.getElementById('c-tier').value.split(',');
-    var setup=+tv[0],care=+tv[1];
-    var hrs=P*H*S*4.33;
-    var save=hrs*C;
-    var payback=setup/((save-care)/4.33);
-    var yr1=12*(save-care)-setup;
-    document.getElementById('r-hrs').textContent=hrs.toFixed(0);
-    document.getElementById('r-save').textContent='$'+save.toFixed(0);
-    document.getElementById('r-pay').textContent=payback>0?payback.toFixed(1)+'wk':'—';
-    document.getElementById('r-yr').textContent=yr1>0?'$'+Math.round(yr1).toLocaleString():'—';
-    var cta=document.getElementById('calc-cta');
-    cta.href='contact.html?hrs='+hrs.toFixed(0)+'&save='+save.toFixed(0);
+  var counts = document.querySelectorAll('.roi-count');
+  var fired = false;
+  function animateCounts(){
+    if(fired) return;
+    fired = true;
+    counts.forEach(function(el){
+      var target = +el.dataset.target;
+      var prefix = el.dataset.prefix || '';
+      var suffix = el.dataset.suffix || '';
+      var isCurrency = el.dataset.format === 'currency';
+      var duration = 1400;
+      var start = performance.now();
+      function step(now){
+        var t = Math.min((now - start) / duration, 1);
+        var ease = 1 - Math.pow(1 - t, 3);
+        var val = Math.round(target * ease);
+        el.textContent = prefix + (isCurrency ? val.toLocaleString() : val) + suffix;
+        if(t < 1) requestAnimationFrame(step);
+        else el.textContent = prefix + (isCurrency ? target.toLocaleString() : target) + suffix;
+      }
+      requestAnimationFrame(step);
+    });
   }
-  ['c-people','c-hours','c-cost','c-save','c-tier'].forEach(function(id){
-    document.getElementById(id).addEventListener('input',calc);
-  });
-  calc();
+  var teaser = document.getElementById('roi-teaser');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting){ animateCounts(); obs.disconnect(); }
+    }, {threshold: 0.3});
+    obs.observe(teaser);
+  } else {
+    animateCounts();
+  }
 })();
 </script>
 
