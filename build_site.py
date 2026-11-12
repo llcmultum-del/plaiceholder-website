@@ -46,28 +46,49 @@ ICON = {
 
 # ── navigation ────────────────────────────────────────────────────────────────
 def nav(active):
-    links = [
-        ("Home", "index.html", "home"),
-        ("Agents", "agents.html", "agents"),
-        ("How It Works", "how-it-works.html", "how"),
-        ("Pricing", "pricing.html", "pricing"),
-        ("ROI Calculator", "roi.html", "roi"),
-        ("Case Study", "case-study.html", "case"),
-        ("Blog", "blog.html", "blog"),
-        ("About", "about.html", "about"),
-    ]
-    items = ""
-    for label, href, key in links:
+    def a(label, href, key):
         cls = ' class="active"' if active == key else ""
-        items += f'    <li><a href="{href}"{cls}>{label}</a></li>\n'
-    cta_cls = " active" if active == "contact" else ""
-    items += f'    <li><a href="contact.html" class="nav-cta{cta_cls}">Book a Call</a></li>\n'
+        return f'<a href="{href}"{cls}>{label}</a>'
+
+    agents_cls  = ' class="active"' if active in ("agents","how") else ""
+    res_cls     = ' class="active"' if active in ("case","blog","roi") else ""
+    cta_cls     = " nav-cta-active" if active == "contact" else ""
+
     return f"""<nav>
   <a href="index.html" class="logo">{{PlAIceholder}}</a>
   <ul>
-{items}  </ul>
+    <li>{a("Home","index.html","home")}</li>
+    <li class="has-drop">
+      <a href="agents.html"{agents_cls}>Agents <span class="drop-arrow">&#9662;</span></a>
+      <ul class="dropdown">
+        <li>{a("How It Works","how-it-works.html","how")}</li>
+        <li>{a("Catalog","agents.html","agents")}</li>
+      </ul>
+    </li>
+    <li>{a("Pricing","pricing.html","pricing")}</li>
+    <li class="has-drop">
+      <a href="blog.html"{res_cls}>Resources <span class="drop-arrow">&#9662;</span></a>
+      <ul class="dropdown">
+        <li>{a("Case Studies","case-study.html","case")}</li>
+        <li>{a("Blog","blog.html","blog")}</li>
+        <li>{a("ROI Calculator","roi.html","roi")}</li>
+      </ul>
+    </li>
+    <li>{a("About","about.html","about")}</li>
+  </ul>
+  <a href="contact.html" class="nav-cta{cta_cls}">Book a Call</a>
   <button class="hamburger" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">&#9776;</button>
-</nav>"""
+</nav>""" + """<script>
+document.querySelectorAll('.has-drop>a').forEach(function(a){
+  a.addEventListener('click',function(e){
+    if(window.innerWidth<=900){
+      e.preventDefault();
+      var li=this.closest('.has-drop');
+      li.classList.toggle('open');
+    }
+  });
+});
+</script>"""
 
 FOOTER = """<footer>
   <div class="footer-inner">
@@ -76,11 +97,14 @@ FOOTER = """<footer>
       <p class="footer-tag">AI agents that do the busywork inside the tools you already use.</p>
     </div>
     <div class="footer-links">
-      <a href="agents.html">Agents</a>
+      <a href="agents.html">Catalog</a>
       <a href="how-it-works.html">How It Works</a>
       <a href="pricing.html">Pricing</a>
-      <a href="case-study.html">Case Study</a>
-      <a href="contact.html">Contact</a>
+      <a href="blog.html">Blog</a>
+      <a href="case-study.html">Case Studies</a>
+      <a href="roi.html">ROI Calculator</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Book a Call</a>
       <a href="https://www.linkedin.com/company/plaiceholder-io" target="_blank" rel="noopener" class="footer-linkedin" aria-label="LinkedIn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -117,23 +141,40 @@ html{scroll-behavior:smooth;}
 body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--ink);background:var(--light);line-height:1.65;}
 
 /* ── nav ── */
-nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;
+nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;gap:2rem;
   padding:.7rem 2.5rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border);}
 .logo{font-size:1.2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;}
-nav ul{list-style:none;display:flex;gap:1.5rem;align-items:center;}
+  -webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;white-space:nowrap;}
+nav>ul{list-style:none;display:flex;gap:1.4rem;align-items:center;flex:1;}
 nav a{text-decoration:none;color:var(--ink);font-weight:500;font-size:.88rem;transition:color .2s;}
 nav a:hover,nav a.active{color:var(--blue);}
-.nav-cta{background:var(--grad);color:#fff !important;padding:.38rem 1.1rem;
-  border-radius:100px;-webkit-text-fill-color:#fff !important;font-size:.85rem !important;}
-.nav-cta:hover,.nav-cta.active{opacity:.85;}
+.drop-arrow{font-size:.65rem;opacity:.5;margin-left:.15rem;}
+/* dropdowns */
+.has-drop{position:relative;}
+.has-drop>a{display:flex;align-items:center;gap:.1rem;}
+.dropdown{display:none;position:absolute;top:calc(100% + .6rem);left:0;min-width:160px;
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  box-shadow:0 8px 28px rgba(0,0,0,.1);padding:.5rem 0;list-style:none;z-index:300;}
+.dropdown li a{display:block;padding:.55rem 1.1rem;font-size:.85rem;color:var(--ink);white-space:nowrap;}
+.dropdown li a:hover{color:var(--blue);background:var(--light);}
+.has-drop:hover .dropdown,.has-drop:focus-within .dropdown{display:block;}
+/* cta */
+nav>.nav-cta{background:var(--grad);color:#fff !important;padding:.38rem 1.1rem;
+  border-radius:100px;-webkit-text-fill-color:#fff !important;font-size:.85rem !important;
+  white-space:nowrap;flex-shrink:0;}
+nav>.nav-cta:hover{opacity:.85;}
 .hamburger{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink);}
-@media(max-width:760px){
-  nav ul{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;
-    background:#fff;border-bottom:1px solid var(--border);padding:1rem 2rem 1.5rem;gap:.9rem;}
-  nav.open ul{display:flex;}
+@media(max-width:900px){
+  nav>ul{display:none;flex-direction:column;align-items:flex-start;position:absolute;top:100%;left:0;right:0;
+    background:#fff;border-bottom:1px solid var(--border);padding:1rem 2rem 1.5rem;gap:.9rem;z-index:300;}
+  nav.open>ul{display:flex;}
+  nav>.nav-cta{display:none;}
   .hamburger{display:block;}
+  .dropdown{position:static;box-shadow:none;border:none;padding:.25rem 0 .25rem 1rem;display:none;}
+  .has-drop.open .dropdown{display:block;}
+  .has-drop>a{justify-content:space-between;}
+  .has-drop>a .drop-arrow{display:inline;}
 }
 
 /* ── layout ── */
@@ -885,7 +926,7 @@ AGENTS_BODY = """
 <div class="page-banner">
   <div class="page-banner-inner">
     <h1>The Agent Catalog</h1>
-    <p>13 agents across sales, customer success, back office, and marketing. Three are ready now with live demos.</p>
+    <p>Catalog agents start at $1,500. Custom agents are scoped to your process. Every build is fixed price.</p>
   </div>
 </div>
 <section class="section section-light">

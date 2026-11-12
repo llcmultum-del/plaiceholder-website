@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>ROI Calculator — {PlAIceholder}</title>
+  <title>ROI Calculator, {PlAIceholder}</title>
   <meta name="description" content="Pick your agent, adjust two numbers, and see hours saved, dollar value, and payback period."/>
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png"/>
   <link rel="shortcut icon" href="favicon.png"/>
@@ -14,17 +14,37 @@
   <a href="index.html" class="logo">{PlAIceholder}</a>
   <ul>
     <li><a href="index.html">Home</a></li>
-    <li><a href="agents.html">Agents</a></li>
-    <li><a href="how-it-works.html">How It Works</a></li>
+    <li class="has-drop">
+      <a href="agents.html">Agents <span class="drop-arrow">&#9662;</span></a>
+      <ul class="dropdown">
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="agents.html">Catalog</a></li>
+      </ul>
+    </li>
     <li><a href="pricing.html">Pricing</a></li>
-    <li><a href="roi.html" class="active">ROI Calculator</a></li>
-    <li><a href="case-study.html">Case Study</a></li>
-    <li><a href="blog.html">Blog</a></li>
+    <li class="has-drop">
+      <a href="blog.html" class="active">Resources <span class="drop-arrow">&#9662;</span></a>
+      <ul class="dropdown">
+        <li><a href="case-study.html">Case Studies</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="roi.html" class="active">ROI Calculator</a></li>
+      </ul>
+    </li>
     <li><a href="about.html">About</a></li>
-    <li><a href="contact.html" class="nav-cta">Book a Call</a></li>
   </ul>
+  <a href="contact.html" class="nav-cta">Book a Call</a>
   <button class="hamburger" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">&#9776;</button>
-</nav>
+</nav><script>
+document.querySelectorAll('.has-drop>a').forEach(function(a){
+  a.addEventListener('click',function(e){
+    if(window.innerWidth<=900){
+      e.preventDefault();
+      var li=this.closest('.has-drop');
+      li.classList.toggle('open');
+    }
+  });
+});
+</script>
 
 <div class="page-banner">
   <div class="page-banner-inner">
@@ -42,7 +62,7 @@
       <div class="calc-field" style="margin-bottom:1.5rem;">
         <label style="font-weight:700;font-size:.95rem;color:var(--dark);display:block;margin-bottom:.5rem;">Which agent are you considering?</label>
         <select id="roi-agent" style="width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:.95rem;background:#fff;color:var(--ink);">
-          <option value="none">— Not sure yet —</option>
+          <option value="none">,  Not sure yet , </option>
           <optgroup label="Sales">
             <option value="6000,750,20">Signal Prospector</option>
             <option value="3500,450,12">Inbound Lead Researcher</option>
@@ -87,9 +107,9 @@
 
       <!-- Results -->
       <div id="roi-results" class="calc-results" style="display:none;">
-        <div class="calc-result"><div class="rval" id="roi-hrs">—</div><div class="rlabel">Hours saved / month</div></div>
-        <div class="calc-result"><div class="rval" id="roi-save">—</div><div class="rlabel">Value saved / year</div></div>
-        <div class="calc-result"><div class="rval" id="roi-pay">—</div><div class="rlabel">Payback period</div></div>
+        <div class="calc-result"><div class="rval" id="roi-hrs">, </div><div class="rlabel">Hours saved / month</div></div>
+        <div class="calc-result"><div class="rval" id="roi-save">, </div><div class="rlabel">Value saved / year</div></div>
+        <div class="calc-result"><div class="rval" id="roi-pay">, </div><div class="rlabel">Payback period</div></div>
       </div>
 
       <!-- Not-sure fallback -->
@@ -152,7 +172,7 @@
 
     document.getElementById('roi-hrs').textContent  = hrsMonth + ' hrs';
     document.getElementById('roi-save').textContent = '$' + Math.round(saveYear).toLocaleString();
-    document.getElementById('roi-pay').textContent  = paybackWks > 0 ? Math.round(paybackWks) + ' weeks' : '—';
+    document.getElementById('roi-pay').textContent  = paybackWks > 0 ? Math.round(paybackWks) + ' weeks' : ', ';
   }
 
   run();
@@ -166,11 +186,14 @@
       <p class="footer-tag">AI agents that do the busywork inside the tools you already use.</p>
     </div>
     <div class="footer-links">
-      <a href="agents.html">Agents</a>
+      <a href="agents.html">Catalog</a>
       <a href="how-it-works.html">How It Works</a>
       <a href="pricing.html">Pricing</a>
-      <a href="case-study.html">Case Study</a>
-      <a href="contact.html">Contact</a>
+      <a href="blog.html">Blog</a>
+      <a href="case-study.html">Case Studies</a>
+      <a href="roi.html">ROI Calculator</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Book a Call</a>
       <a href="https://www.linkedin.com/company/plaiceholder-io" target="_blank" rel="noopener" class="footer-linkedin" aria-label="LinkedIn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -199,7 +222,7 @@
       <button class="chat-close" onclick="toggleChat()" aria-label="Close">&#x2715;</button>
     </div>
     <div class="chat-messages" id="chat-messages">
-      <div class="msg msg-ai">Hey! Ask me about our agents, pricing, how we work — or I can help you book a free demo call.</div>
+      <div class="msg msg-ai">Hey! Ask me about our agents, pricing, how we work, or I can help you book a free demo call.</div>
     </div>
     <div class="chat-input-row">
       <input type="text" id="chat-input" placeholder="Ask a question…" autocomplete="off"/>
@@ -251,7 +274,7 @@
       history.push({role:'assistant',content:reply});
     }catch(e){
       hideTyping();
-      addMsg('Something went wrong — visit our contact page to reach us directly.','ai');
+      addMsg('Something went wrong, visit our contact page to reach us directly.','ai');
     }
     input.disabled=false;
     document.getElementById('chat-send').disabled=false;
