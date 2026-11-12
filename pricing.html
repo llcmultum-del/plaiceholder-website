@@ -16,6 +16,7 @@
     <li><a href="agents.html">Agents</a></li>
     <li><a href="how-it-works.html">How It Works</a></li>
     <li><a href="pricing.html" class="active">Pricing</a></li>
+    <li><a href="roi.html">ROI Calculator</a></li>
     <li><a href="case-study.html">Case Study</a></li>
     <li><a href="contact.html" class="nav-cta">Book a Call</a></li>
   </ul>
@@ -138,37 +139,13 @@
   </div>
 </section>
 
-<!-- ROI Calculator -->
-<section class="section section-white">
-  <div class="inner" style="max-width:800px;">
+<!-- ROI CTA -->
+<section class="section section-dark" style="text-align:center;">
+  <div class="inner">
     <span class="tag">Estimate your return</span>
-    <h2>ROI calculator</h2>
-    <div class="calc-wrap">
-      <h3>How much is this task costing you?</h3>
-      <p class="csub">Estimate. Your pilot measures the real number.</p>
-      <div class="calc-grid">
-        <div class="calc-field"><label>People doing the task</label><input type="number" id="p-people" value="2" min="1"/></div>
-        <div class="calc-field"><label>Hours per week each</label><input type="number" id="p-hours" value="4" min="0.5" step="0.5"/></div>
-        <div class="calc-field"><label>Hourly cost (USD)</label><input type="number" id="p-cost" value="45" min="10"/></div>
-        <div class="calc-field"><label>Est. time saved</label>
-          <select id="p-save"><option value="0.3">30%</option><option value="0.4">40%</option><option value="0.5" selected>50%</option><option value="0.6">60%</option><option value="0.7">70%</option></select></div>
-        <div class="calc-field"><label>Tier</label>
-          <select id="p-tier">
-            <option value="1500,250">Starter ($1,500 / $250/mo)</option>
-            <option value="3500,450" selected>Standard ($3,500 / $450/mo)</option>
-            <option value="6000,750">Advanced ($6,000 / $750/mo)</option>
-          </select>
-        </div>
-      </div>
-      <div class="calc-results">
-        <div class="calc-result"><div class="rval" id="pr-hrs">—</div><div class="rlabel">Hours saved/month</div></div>
-        <div class="calc-result"><div class="rval" id="pr-save">—</div><div class="rlabel">Dollars saved/month</div></div>
-        <div class="calc-result"><div class="rval" id="pr-pay">—</div><div class="rlabel">Payback (weeks)</div></div>
-        <div class="calc-result"><div class="rval" id="pr-yr">—</div><div class="rlabel">Year-one return</div></div>
-      </div>
-      <p class="calc-note">Estimate only. Assumes your pilot confirms the percentage above.</p>
-      <a href="contact.html" class="btn btn-white">Book a call to get the real number →</a>
-    </div>
+    <h2>See what this costs you today.</h2>
+    <p class="sub">Pick your agent, adjust two numbers, and get hours saved, dollar value, and payback period — in under a minute.</p>
+    <a href="roi.html" class="btn btn-grad">Open the ROI calculator →</a>
   </div>
 </section>
 
@@ -193,30 +170,6 @@
   </div>
 </section>
 
-<script>
-(function(){
-  function calc2(){
-    var P=+document.getElementById('p-people').value||1;
-    var H=+document.getElementById('p-hours').value||1;
-    var C=+document.getElementById('p-cost').value||45;
-    var S=+document.getElementById('p-save').value||0.5;
-    var tv=document.getElementById('p-tier').value.split(',');
-    var setup=+tv[0],care=+tv[1];
-    var hrs=P*H*S*4.33;
-    var save=hrs*C;
-    var payback=setup/((save-care)/4.33);
-    var yr1=12*(save-care)-setup;
-    document.getElementById('pr-hrs').textContent=hrs.toFixed(0);
-    document.getElementById('pr-save').textContent='$'+save.toFixed(0);
-    document.getElementById('pr-pay').textContent=payback>0?payback.toFixed(1)+'wk':'—';
-    document.getElementById('pr-yr').textContent=yr1>0?'$'+Math.round(yr1).toLocaleString():'—';
-  }
-  ['p-people','p-hours','p-cost','p-save','p-tier'].forEach(function(id){
-    document.getElementById(id).addEventListener('input',calc2);
-  });
-  calc2();
-})();
-</script>
 
 <footer>
   <div class="footer-inner">
