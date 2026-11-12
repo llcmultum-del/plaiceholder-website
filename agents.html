@@ -327,5 +327,23 @@ function runQuiz(){
 </footer>
 <a href="https://www.netlify.com" target="_blank" rel="noopener" class="plai-badge" aria-label="Hosted on Netlify">;)</a>
 <script src="https://multum-site-analytics.netlify.app/track.js" data-site="plaiceholder" defer></script>
+<script>
+(function(){
+  function killBadge(){
+    document.querySelectorAll('body > *').forEach(function(el){
+      if(el.classList&&el.classList.contains('plai-badge'))return;
+      var href=(el.getAttribute&&el.getAttribute('href'))||'';
+      var src=(el.getAttribute&&el.getAttribute('src'))||'';
+      if(href.indexOf('netlify.com')>-1){el.style.display='none';return;}
+      if((el.tagName||'').toUpperCase()==='IFRAME'&&src.indexOf('netlify')>-1){el.style.display='none';return;}
+      var txt=el.innerText||'';
+      if(txt.indexOf('Powered by Netlify')>-1)el.style.display='none';
+    });
+  }
+  var obs=new MutationObserver(killBadge);
+  obs.observe(document.body,{childList:true});
+  window.addEventListener('load',function(){killBadge();setTimeout(killBadge,800);});
+})();
+</script>
 </body>
 </html>
