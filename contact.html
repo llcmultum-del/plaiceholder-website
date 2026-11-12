@@ -28,6 +28,7 @@
         <li><a href="case-study.html">Case Studies</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="roi.html">ROI Calculator</a></li>
+        <li><a href="faq.html">FAQ</a></li>
       </ul>
     </li>
     <li><a href="about.html">About</a></li>
@@ -75,7 +76,8 @@ document.querySelectorAll('.has-drop>a').forEach(function(a){
           Follow on LinkedIn
         </a>
       </div>
-      <form class="contact-form" onsubmit="handleSubmit(event)">
+      <form class="contact-form" name="contact" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="form-name" value="contact"/>
         <div class="frow">
           <input type="text" name="name" placeholder="Your name" required/>
           <input type="email" name="email" placeholder="Work email" required/>
@@ -151,8 +153,19 @@ function handleSubmit(e){
   var hp=e.target.querySelector('input[name="_gotcha"]');
   if(hp&&hp.value)return;
   var btn=e.target.querySelector('.sbtn');
-  btn.textContent='Sent ✓';btn.style.opacity='.6';btn.disabled=true;
-  document.getElementById('form-success').style.display='block';
+  btn.textContent='Sending…';btn.disabled=true;
+  var data=new FormData(e.target);
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:new URLSearchParams(data).toString()})
+    .then(function(){
+      btn.textContent='Sent ✓';btn.style.opacity='.6';
+      document.getElementById('form-success').style.display='block';
+      e.target.reset();
+    })
+    .catch(function(){
+      btn.textContent='Send →';btn.disabled=false;
+      alert('Something went wrong. Email us directly at hello@plaiceholder.io');
+    });
 }
 </script>
 
@@ -169,6 +182,7 @@ function handleSubmit(e){
       <a href="blog.html">Blog</a>
       <a href="case-study.html">Case Studies</a>
       <a href="roi.html">ROI Calculator</a>
+      <a href="faq.html">FAQ</a>
       <a href="about.html">About</a>
       <a href="contact.html">Book a Call</a>
       <a href="https://www.linkedin.com/company/plaiceholder-io" target="_blank" rel="noopener" class="footer-linkedin" aria-label="LinkedIn">
