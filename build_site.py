@@ -8,7 +8,7 @@ FAVICON = '  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png"/
 TRACKER = '<script src="https://multum-site-analytics.netlify.app/track.js" data-site="plaiceholder" defer></script>'
 
 # ── SVG icons (solid brand colors, no gradient) ───────────────────────────────
-# Usage: ICON["key"] — drop straight into HTML as the icon div's content
+# Usage: ICON["key"], drop straight into HTML as the icon div's content
 ICON = {
   # trending-up (chart line)
   "trending": '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
@@ -164,6 +164,22 @@ h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2;margin-b
 .hero-section h1{font-size:clamp(2.1rem,5.5vw,3.8rem);font-weight:900;color:#fff;line-height:1.12;margin-bottom:1.1rem;}
 .hero-section .lead{font-size:1.1rem;color:rgba(255,255,255,.88);max-width:560px;margin:0 auto 2.2rem;}
 .hero-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;}
+.hero-trust{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:1.75rem;
+  padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.18);}
+.hero-trust span{display:flex;align-items:center;gap:.45rem;font-size:.8rem;color:rgba(255,255,255,.65);}
+.hero-trust span svg{opacity:.7;}
+
+/* ── how-teaser steps ── */
+.how-teaser-steps{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem;}
+.hts{display:flex;align-items:flex-start;gap:1rem;}
+.hts-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;
+  font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;}
+.hts strong{color:#fff;font-size:.95rem;display:block;margin-bottom:.2rem;}
+.hts p{color:rgba(255,255,255,.55);font-size:.84rem;margin:0;}
+
+/* ── card with demo (hover lift) ── */
+.card.card-demo{transition:transform .22s,box-shadow .22s;cursor:pointer;}
+.card.card-demo:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,110,245,.13);}
 
 /* ── page banner ── */
 .page-banner{background:var(--grad);padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;}
@@ -238,8 +254,10 @@ h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2;margin-b
 #agent-search:focus{border-color:var(--sea);}
 .agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
 .agent-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:1.6rem;
-  transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;}
-.agent-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,110,245,.1);}
+  transition:box-shadow .25s;display:flex;flex-direction:column;}
+.agent-card:hover{box-shadow:0 4px 18px rgba(0,0,0,.07);}
+.agent-card.has-demo{transition:transform .25s,box-shadow .25s;cursor:pointer;}
+.agent-card.has-demo:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,110,245,.1);}
 .agent-meta{display:flex;gap:.5rem;margin-bottom:.9rem;flex-wrap:wrap;}
 .pill{display:inline-block;padding:.2rem .7rem;border-radius:100px;font-size:.72rem;font-weight:700;}
 .pill-area{background:var(--light);color:var(--muted);}
@@ -375,10 +393,13 @@ legend{font-size:.75rem;font-weight:700;color:var(--muted);padding:0 .4rem;lette
 /* ── chat widget ── */
 #nl-badge-frame,[class*="netlify"],[id*="netlify"]{display:none!important;}
 .chat-widget{position:fixed;bottom:1.25rem;right:1.25rem;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem;}
-.chat-btn{background:rgba(13,27,42,.8);color:var(--blue);font-size:.9rem;font-weight:800;
-  padding:.35rem .75rem;border-radius:100px;border:1px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(8px);cursor:pointer;transition:opacity .2s;letter-spacing:.02em;font-family:inherit;}
-.chat-btn:hover{opacity:.8;}
+.chat-btn{width:62px;height:62px;border-radius:50%;
+  background:rgba(255,255,255,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.55);box-shadow:0 4px 20px rgba(0,0,0,.18);
+  color:var(--blue);font-size:1.35rem;font-weight:900;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:opacity .2s,transform .2s;font-family:inherit;}
+.chat-btn:hover{opacity:.9;transform:scale(1.06);}
 .chat-panel{display:none;flex-direction:column;width:414px;height:580px;
   background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.22);
   overflow:hidden;border:1.5px solid var(--border);}
@@ -488,6 +509,9 @@ footer{background:var(--dark);padding:2.5rem 2rem 1.5rem;}
   /* buttons */
   .hero-btns{flex-direction:column;align-items:center;}
   .hero-btns .btn{width:100%;max-width:280px;text-align:center;}
+  .hero-trust{flex-direction:column;gap:.5rem;align-items:flex-start;}
+  .hts{flex-direction:column;gap:.35rem;}
+  .how-teaser-steps{gap:1.25rem;}
 
   /* blog */
   .post-grid{grid-template-columns:1fr;}
@@ -520,7 +544,7 @@ CHAT_WIDGET = """<div class="chat-widget">
       <button class="chat-close" onclick="toggleChat()" aria-label="Close">&#x2715;</button>
     </div>
     <div class="chat-messages" id="chat-messages">
-      <div class="msg msg-ai">Hey! Ask me about our agents, pricing, how we work — or I can help you book a free demo call.</div>
+      <div class="msg msg-ai">Hey! Ask me about our agents, pricing, how we work, or I can help you book a free demo call.</div>
     </div>
     <div class="chat-input-row">
       <input type="text" id="chat-input" placeholder="Ask a question…" autocomplete="off"/>
@@ -572,7 +596,7 @@ CHAT_WIDGET = """<div class="chat-widget">
       history.push({role:'assistant',content:reply});
     }catch(e){
       hideTyping();
-      addMsg('Something went wrong — visit our contact page to reach us directly.','ai');
+      addMsg('Something went wrong, visit our contact page to reach us directly.','ai');
     }
     input.disabled=false;
     document.getElementById('chat-send').disabled=false;
@@ -634,151 +658,66 @@ def page(title, desc, active, body):
 HOME_BODY = """
 <section class="hero-section">
   <div class="hero">
-    <div class="badge">Custom-built AI agents for growing companies</div>
-    <h1>Your team's slowest weekly task, handed to a custom AI agent in two weeks.</h1>
-    <p class="lead">We design, build, and install AI agents tuned to how your business works — inside HubSpot, Salesforce, Zendesk, QuickBooks, and the other tools you already pay for.</p>
+    <div class="badge">Custom-built AI agents</div>
+    <h1>Your team's slowest weekly task, automated in two weeks.</h1>
+    <p class="lead">We build AI agents for any repeatable process your team runs on a schedule, inside the tools you already pay for.</p>
     <div class="hero-btns">
       <a href="contact.html" class="btn btn-white">Book a free 30-minute call</a>
       <a href="agents.html" class="btn btn-outline">See the agent catalog</a>
     </div>
-  </div>
-</section>
-
-<!-- Who it's for -->
-<section class="section section-white">
-  <div class="inner">
-    <span class="tag">Who it's for</span>
-    <h2>Built for companies with 10 to 200 employees</h2>
-    <p class="sub">You have budget to outsource a project, but not enough to hire a full-time AI engineer. That's exactly the gap we fill.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="icon">{ICON["trending"]}</div>
-        <h3>Sales and prospecting</h3>
-        <p>Find buying-signal companies, research new leads, prep for meetings, follow up stalled deals — done in minutes, not hours.</p>
-      </div>
-      <div class="card">
-        <div class="icon">{ICON["refresh"]}</div>
-        <h3>Customer success</h3>
-        <p>Flag renewals at risk before they slip, triage support tickets and track onboarding — with the evidence your team needs.</p>
-      </div>
-      <div class="card">
-        <div class="icon">{ICON["receipt"]}</div>
-        <h3>Back office</h3>
-        <p>Catch invoice problems before they're paid, screen applicants, write weekly KPI summaries — without adding headcount.</p>
-      </div>
+    <div class="hero-trust">
+      <span>{ICON["clipboard"]} Pilot on 20 real records before you commit</span>
+      <span>{ICON["link"]} Every AI finding cites its source</span>
+      <span>{ICON["user"]} People approve all actions</span>
     </div>
   </div>
 </section>
 
-<!-- 5-step diagram -->
-<section class="section section-light">
-  <div class="inner">
-    <span class="tag">How every agent works</span>
-    <h2>Five steps, every time</h2>
-    <p class="sub">Every agent follows the same pattern, no matter what job it does.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>Pull</h3>
-        <p>Gets data from the tools you already pay for — CRM, help desk, accounting, spreadsheets.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>Think</h3>
-        <p>A leading AI model does the research, reading, or judgment a person used to do — we build with whichever fits your stack.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>Check</h3>
-        <p>Rules catch AI mistakes before anyone sees them. No source link means no claim. Hard rules always come first.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <h3>Write back</h3>
-        <p>Results go where your team already works — CRM fields, notes, Slack, or a report.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <h3>Show and ask</h3>
-        <p>A dashboard for the team, and a person says yes before anything is spent or changed.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Featured agents -->
+<!-- What we automate -->
 <section class="section section-white">
   <div class="inner">
-    <span class="tag">Ready now</span>
-    <h2>Three agents with live demos</h2>
-    <p class="sub">Built, tested, and running on sample data today. The rest of the catalog ships in 1 to 2 extra weeks.</p>
+    <span class="tag">What we automate</span>
+    <h2>If a person does it every week, an agent can do it for them.</h2>
+    <p class="sub">Any repeatable task that involves reading, judging, or writing is a candidate. Here are the most common types.</p>
     <div class="cards">
       <div class="card">
         <div class="icon">{ICON["target"]}</div>
-        <h3>Signal Prospector</h3>
-        <p>Finds companies showing buying signals in the news, explains why now, finds the right contacts, and saves everything to your CRM.</p>
-        <p style="margin-top:.75rem;font-size:.8rem;color:var(--blue);font-weight:600;">Sales · Advanced · from $6,000</p>
-        <a href="demos/signal-prospector-dashboard.html" class="demo-link" style="display:inline-block;margin-top:.75rem;font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;">View sample dashboard →</a>
+        <h3>Reading and research</h3>
+        <p>Prospect research, buying-signal monitoring, meeting prep briefs, competitor tracking. The agent reads, summarizes, and surfaces only what matters.</p>
       </div>
       <div class="card">
         <div class="icon">{ICON["alert"]}</div>
-        <h3>Renewal Risk Radar</h3>
-        <p>Reads tickets, notes, and usage for accounts renewing soon. Flags risk with evidence and a suggested next step.</p>
-        <p style="margin-top:.75rem;font-size:.8rem;color:var(--blue);font-weight:600;">Customer success · Standard · from $3,500</p>
-        <a href="demos/renewal-risk-dashboard.html" class="demo-link" style="display:inline-block;margin-top:.75rem;font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;">View sample dashboard →</a>
+        <h3>Scoring and flagging</h3>
+        <p>Lead fit scoring, renewal risk, invoice exceptions, ticket priority. The agent runs the same judgment call every time and flags anything that needs a human look.</p>
       </div>
       <div class="card">
-        <div class="icon">{ICON["receipt"]}</div>
-        <h3>Invoice Checker</h3>
-        <p>Matches every vendor invoice to its PO before it's paid. Flags duplicates, overbilling, and missing POs with dollars at risk.</p>
-        <p style="margin-top:.75rem;font-size:.8rem;color:var(--blue);font-weight:600;">Back office · Standard · from $3,500</p>
-        <a href="demos/invoice-checker-dashboard.html" class="demo-link" style="display:inline-block;margin-top:.75rem;font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;">View sample dashboard →</a>
+        <div class="icon">{ICON["filetext"]}</div>
+        <h3>Writing and reporting</h3>
+        <p>Draft follow-up emails, weekly KPI summaries, RFP answers, applicant shortlists. The agent writes the first version; your team reviews and sends.</p>
       </div>
     </div>
-    <p style="margin-top:1.75rem;"><a href="agents.html" class="btn btn-dark">See all 13 agents →</a></p>
+    <p style="margin-top:2rem;text-align:center;"><a href="agents.html" class="btn btn-dark">Browse the full catalog of 13 agents</a></p>
   </div>
 </section>
 
-<!-- Trust -->
+<!-- Process + ROI -->
 <section class="section section-dark">
-  <div class="inner">
-    <span class="tag">Built to be trusted</span>
-    <h2>Safety is not optional</h2>
-    <p class="sub">Every agent ships with the same rules. They're not settings you can turn off.</p>
-    <div class="trust-grid">
-      <div class="trust-item"><div class="trust-icon">{ICON["flask"]}</div><div><h4>Dry run by default</h4><p>Nothing is written or spent without a yes, one step at a time.</p></div></div>
-      <div class="trust-item"><div class="trust-icon">{ICON["clipboard"]}</div><div><h4>Pilot first</h4><p>Every agent proves itself on 20 records before a full run.</p></div></div>
-      <div class="trust-item"><div class="trust-icon">{ICON["link"]}</div><div><h4>No made-up facts</h4><p>Every AI finding links to its source. Unsupported findings are thrown out automatically.</p></div></div>
-      <div class="trust-item"><div class="trust-icon">{ICON["coin"]}</div><div><h4>Spending caps</h4><p>Limits on AI usage and data credits, set in plain settings.</p></div></div>
-      <div class="trust-item"><div class="trust-icon">{ICON["shield"]}</div><div><h4>Never deletes</h4><p>Agents only add or update their own fields, and back up every record before changing it.</p></div></div>
-      <div class="trust-item"><div class="trust-icon">{ICON["key"]}</div><div><h4>You own it</h4><p>It runs in your accounts with your keys. We delete our copies at handover.</p></div></div>
-      <div class="trust-item"><div class="trust-icon">{ICON["filetext"]}</div><div><h4>Full paper trail</h4><p>Every run keeps a log, the results, and a backup.</p></div></div>
-      <div class="trust-item"><div class="trust-icon">{ICON["user"]}</div><div><h4>People decide</h4><p>Agents draft, flag, and score. Your team sends emails, pays invoices, and makes hiring decisions.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Process timeline -->
-<section class="section section-white">
   <div class="inner">
     <div class="two-col">
       <div>
         <span class="tag">The process</span>
-        <h2>Live in about two weeks</h2>
-        <p class="sub">Fixed price, fixed scope. You see a real result on 20 records before you commit to the full run.</p>
-        <div class="timeline">
-          <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">30 min — Free</div><h3>Free call and live demo</h3><p>See a live demo on sample data. Pick the task that hurts most.</p></div>
-          <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">1 to 2 days</div><h3>Proposal</h3><p>Fixed price, scope, and timeline. 50% to start.</p></div>
-          <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">1 hour</div><h3>Discovery interview</h3><p>We interview the people who do the task. Their answers become the agent's settings.</p></div>
-          <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">3 to 5 days</div><h3>Connect and pilot</h3><p>You create access keys. We connect and run 20 records. Your team checks the results.</p></div>
-          <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">1 day</div><h3>Measure and hand over</h3><p>We report the real time saved and cost per record, give 30-minute training. You pay the other 50%.</p></div>
-          <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Monthly</div><h3>Care plan</h3><p>Monitoring, fixes when tools change, tuning, and a monthly results email.</p></div>
+        <h2>Two weeks from yes to handover.</h2>
+        <p style="color:rgba(255,255,255,.65);margin-bottom:1.5rem;">Fixed price, fixed scope. You see the agent run on 20 of your real records before you pay the second half. No surprises.</p>
+        <div class="how-teaser-steps">
+          <div class="hts"><div class="hts-num">1</div><div><strong>Free call and demo</strong><p>Pick the task. See a sample result. No prep needed.</p></div></div>
+          <div class="hts"><div class="hts-num">2</div><div><strong>Build and pilot</strong><p>We connect to your tools and run 20 real records. You check the output before anything goes further.</p></div></div>
+          <div class="hts"><div class="hts-num">3</div><div><strong>Measure and hand over</strong><p>Real time saved on your data. 30-minute training. Monthly care plan to keep it running.</p></div></div>
         </div>
+        <a href="how-it-works.html" class="btn btn-outline" style="margin-top:1.5rem;">Full process and safety rules</a>
       </div>
-      <!-- ROI teaser -->
       <div>
-        <span class="tag">Estimate your return</span>
-        <h2>See your ROI before you commit.</h2>
+        <span class="tag" style="color:rgba(255,255,255,.5);">Estimate your return</span>
+        <h2 style="color:#fff;margin-bottom:1rem;">See your ROI before you commit.</h2>
         <div class="roi-teaser" id="roi-teaser">
           <p style="color:rgba(255,255,255,.65);margin-bottom:0;">Based on a 3-person team running a Standard agent. Adjust the numbers for your situation.</p>
           <div class="roi-stats">
@@ -796,20 +735,21 @@ HOME_BODY = """
             </div>
           </div>
           <p class="roi-teaser-note">Typical estimate. Your pilot measures the real number.</p>
-          <a href="roi.html" class="btn btn-grad">Calculate yours →</a>
+          <a href="roi.html" class="btn btn-grad">Calculate yours</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Pricing teaser -->
+<!-- CTA bar -->
 <section class="section section-light" style="text-align:center;">
   <div class="inner">
     <span class="tag">Pricing</span>
-    <h2>Fixed price, fixed scope.</h2>
-    <p class="sub" style="margin:0 auto 2rem;">You see a measured result on 20 real records before you commit to the full run. Three tiers — Starter, Standard, and Advanced — based on how many tools the agent touches.</p>
-    <a href="pricing.html" class="btn btn-grad">See pricing →</a>
+    <h2>Setup from $1,500. You don't pay the second half until the pilot works.</h2>
+    <p class="sub" style="margin:0 auto 2rem;">Three tiers based on how many tools the agent connects to. See the full breakdown, or book a call and we will scope it for you.</p>
+    <a href="pricing.html" class="btn btn-grad" style="margin-right:1rem;">See pricing</a>
+    <a href="contact.html" class="btn btn-dark">Book a free call</a>
   </div>
 </section>
 
@@ -856,7 +796,7 @@ HOME_BODY = """
 # ─────────────────────────────────────────────────────────────────────────────
 AGENTS = [
   {"name":"Signal Prospector","area":"Sales","tier":"Advanced","status":"ready","setup":"from $6,000","care":"$750/mo","demo":"signal-prospector-dashboard.html",
-   "job":"Finds companies showing buying signals in the news — funding, acquisitions, new leaders, expansion — explains why now, finds the right people to contact, and saves it all to your CRM.",
+   "job":"Finds companies showing buying signals in the news, funding, acquisitions, new leaders, expansion, explains why now, finds the right people to contact, and saves it all to your CRM.",
    "connects":["HubSpot","Salesforce","Apollo","AI web search"],
    "you_get":"A score, tier (Hot/Warm/Cold), reasons and source links on every company. Verified contacts. A rep dashboard with talk tracks.",
    "safety":"Every signal links to an article the AI really found. Never touches accounts that already belong to a rep. Credit cap on email reveals."},
@@ -906,7 +846,7 @@ AGENTS = [
    "you_get":"A shortlist with reasons.",
    "safety":"Never auto-rejects. A person makes every decision. Local hiring-AI rules checked first."},
   {"name":"Weekly KPI Writer","area":"Back office","tier":"Starter","status":"available","setup":"from $1,500","care":"$250/mo",
-   "job":"Pulls the week's numbers and writes the story behind them — what moved, why, and what to watch.",
+   "job":"Pulls the week's numbers and writes the story behind them, what moved, why, and what to watch.",
    "connects":["CRM","Spreadsheets","Slack","Email"],
    "you_get":"A Monday summary in Slack or email.",
    "safety":"Numbers are calculated in code. AI writes only the words around them."},
@@ -926,7 +866,8 @@ def agent_card(a):
     status_pill = '<span class="pill pill-ready">Ready now</span>' if a["status"]=="ready" else '<span class="pill pill-avail">Available</span>'
     demo_link = f'<a href="demos/{a["demo"]}" class="demo-link">View sample dashboard →</a>' if a.get("demo") else ""
     connects = ", ".join(a["connects"])
-    return f"""<div class="agent-card" data-area="{a['area']}" data-tier="{a['tier']}" data-status="{a['status']}">
+    has_demo_cls = " has-demo" if a.get("demo") else ""
+    return f"""<div class="agent-card{has_demo_cls}" data-area="{a['area']}" data-tier="{a['tier']}" data-status="{a['status']}">
   <div class="agent-meta">
     <span class="pill pill-area">{a['area']}</span>
     <span class="pill pill-tier">{a['tier']}</span>
@@ -970,7 +911,7 @@ AGENTS_BODY = """
       <div class="icon" style="flex-shrink:0;">{ICON["flask"]}</div>
       <div>
         <h3 style="color:#fff;margin-bottom:.4rem;">Don't see your task on the list?</h3>
-        <p style="color:rgba(255,255,255,.65);font-size:.9rem;margin-bottom:1.25rem;">We build fully custom agents for any repeatable process your team runs weekly. If a person currently does it by reading, judging, or typing — an agent can likely do it. Same two-week process, same fixed price, same safety rules.</p>
+        <p style="color:rgba(255,255,255,.65);font-size:.9rem;margin-bottom:1.25rem;">We build fully custom agents for any repeatable process your team runs weekly. If a person currently does it by reading, judging, or typing, an agent can likely do it. Same two-week process, same fixed price, same safety rules.</p>
         <a href="contact.html" class="btn btn-grad">Tell us what you need →</a>
       </div>
     </div>
@@ -1042,10 +983,10 @@ function runQuiz(){
   var q3=document.querySelector('input[name="q3"]:checked');
   if(!q3){alert('Please answer all three questions.');return;}
   var recs={
-    'prospect':'<strong>Signal Prospector</strong> — finds companies showing buying signals and saves the right contacts to your CRM. Advanced tier, from $6,000.',
-    'churn':'<strong>Renewal Risk Radar</strong> — flags accounts at risk before renewal with evidence from tickets, notes, and usage. Standard tier, from $3,500.',
-    'invoice':'<strong>Invoice Checker</strong> — matches every invoice to its PO and flags problems with dollars at risk before you pay. Standard tier, from $3,500.',
-    'data':'<strong>CRM Hygiene</strong> or <strong>Weekly KPI Writer</strong> — clean your data or get a Monday summary of what moved and why. Starter tier, from $1,500.'
+    'prospect':'<strong>Signal Prospector</strong>, finds companies showing buying signals and saves the right contacts to your CRM. Advanced tier, from $6,000.',
+    'churn':'<strong>Renewal Risk Radar</strong>, flags accounts at risk before renewal with evidence from tickets, notes, and usage. Standard tier, from $3,500.',
+    'invoice':'<strong>Invoice Checker</strong>, matches every invoice to its PO and flags problems with dollars at risk before you pay. Standard tier, from $3,500.',
+    'data':'<strong>CRM Hygiene</strong> or <strong>Weekly KPI Writer</strong>, clean your data or get a Monday summary of what moved and why. Starter tier, from $1,500.'
   };
   var el=document.getElementById('quiz-result');
   el.innerHTML='We suggest: '+recs[q3.value]+'<br/><br/><a href="contact.html" style="color:var(--blue);font-weight:700;">Book a free call to confirm →</a>';
@@ -1061,7 +1002,7 @@ HOW_BODY = """
 <div class="page-banner">
   <div class="page-banner-inner">
     <h1>How It Works</h1>
-    <p>Two weeks from call to running agent. Here's what happens at each step — and why we do it that way.</p>
+    <p>Two weeks from call to running agent. Here's what happens at each step, and why we do it that way.</p>
   </div>
 </div>
 
@@ -1096,7 +1037,7 @@ HOW_BODY = """
         <span class="tag">The process</span>
         <h2>Every step is fixed price, no surprises.</h2>
         <div class="timeline">
-          <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">30 min — Free</div><h3>Live demo call</h3><p>We show you a working agent on sample data. You tell us the task that costs your team the most time. No pitch deck, no commitment. If we can't help, we'll say so.</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">30 min, Free</div><h3>Live demo call</h3><p>We show you a working agent on sample data. You tell us the task that costs your team the most time. No pitch deck, no commitment. If we can't help, we'll say so.</p></div>
           <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">1–2 days</div><h3>Fixed-price proposal</h3><p>We send a scope document: exactly what the agent will do, what it won't do, what it connects to, the price, and the timeline. 50% to start, 50% at handover.</p></div>
           <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">1 hour</div><h3>Discovery interview</h3><p>We interview the person who currently does the task. Their answers become the agent's settings: which signals matter, what a good result looks like, what edge cases to handle, what to skip. This hour is what makes it yours, not generic.</p></div>
           <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">3–5 days</div><h3>Connect and pilot</h3><p>You create API keys in your existing tools; we do the rest. We run the agent on 20 real records. Your team reviews the top results and tells us what to tune before the full run.</p></div>
@@ -1106,11 +1047,11 @@ HOW_BODY = """
       </div>
       <div>
         <span class="tag">What we need from you</span>
-        <h2>Three things — that's it.</h2>
+        <h2>Three things, that's it.</h2>
         <div class="cards" style="grid-template-columns:1fr;">
           <div class="card"><div class="icon">{ICON["key"]}</div><h3>An admin who can create access keys</h3><p>We connect through read-only or scoped API keys in your existing tools. You control the keys and can revoke them at any time. We never ask for more access than the specific task requires.</p></div>
           <div class="card"><div class="icon">{ICON["clock"]}</div><h3>One hour from the person who does the task</h3><p>This is the most important hour. We learn what "good" looks like, what signals matter, what exceptions exist. The discovery interview is what separates an agent that fits your business from one that fits a demo.</p></div>
-          <div class="card"><div class="icon">{ICON["chart"]}</div><h3>Clean-enough data</h3><p>Your data doesn't need to be perfect. If it needs cleanup first, we quote that separately — or start with the CRM Hygiene agent to get it in shape before the main build.</p></div>
+          <div class="card"><div class="icon">{ICON["chart"]}</div><h3>Clean-enough data</h3><p>Your data doesn't need to be perfect. If it needs cleanup first, we quote that separately, or start with the CRM Hygiene agent to get it in shape before the main build.</p></div>
         </div>
       </div>
     </div>
@@ -1125,7 +1066,7 @@ HOW_BODY = """
     <p class="sub">Every agent ships with the same rules. These protect your data, your budget, and your team's trust in the output.</p>
     <div class="trust-grid">
       <div class="trust-item"><div class="trust-icon">{ICON["flask"]}</div><div><h4>Pilot first, always</h4><p>Every agent proves itself on 20 records before touching your full list. If the pilot doesn't meet your bar, we fix it before the full run.</p></div></div>
-      <div class="trust-item"><div class="trust-icon">{ICON["link"]}</div><div><h4>No made-up facts</h4><p>Every AI finding requires a source link it actually retrieved. Findings without evidence are discarded before your team sees them — automatically, not by review.</p></div></div>
+      <div class="trust-item"><div class="trust-icon">{ICON["link"]}</div><div><h4>No made-up facts</h4><p>Every AI finding requires a source link it actually retrieved. Findings without evidence are discarded before your team sees them, automatically, not by review.</p></div></div>
       <div class="trust-item"><div class="trust-icon">{ICON["coin"]}</div><div><h4>Hard spending caps</h4><p>AI usage costs and data-credit budgets are set in plain settings and enforced before every run. The agent can't overspend.</p></div></div>
       <div class="trust-item"><div class="trust-icon">{ICON["shield"]}</div><div><h4>Never deletes, always backs up</h4><p>Agents only write to their own designated fields. Every record is backed up before any change is made.</p></div></div>
       <div class="trust-item"><div class="trust-icon">{ICON["user"]}</div><div><h4>People make the final call</h4><p>Agents draft, score, and flag. Your team sends the email, pays the invoice, and makes the hire. No fully automated irreversible actions.</p></div></div>
@@ -1270,7 +1211,7 @@ PRICING_BODY = """
   <div class="inner">
     <span class="tag">Estimate your return</span>
     <h2>See what this costs you today.</h2>
-    <p class="sub">Pick your agent, adjust two numbers, and get hours saved, dollar value, and payback period — in under a minute.</p>
+    <p class="sub">Pick your agent, adjust two numbers, and get hours saved, dollar value, and payback period, in under a minute.</p>
     <a href="roi.html" class="btn btn-grad">Open the ROI calculator →</a>
   </div>
 </section>
@@ -1281,10 +1222,10 @@ PRICING_BODY = """
     <span class="tag">FAQ</span>
     <h2>Common questions</h2>
     <div class="faq">
-      <details><summary>What exactly is an "AI agent"?</summary><p>A program that does a multi-step task a person used to do — research, reading, judging, and writing up — inside your tools, with rules that check its work before anyone sees it.</p></details>
+      <details><summary>What exactly is an "AI agent"?</summary><p>A program that does a multi-step task a person used to do, research, reading, judging, and writing up, inside your tools, with rules that check its work before anyone sees it.</p></details>
       <details><summary>Do we need to be technical?</summary><p>No. You need an admin who can create access keys and one hour from the people who currently do the task.</p></details>
-      <details><summary>Which AI do you use?</summary><p>We build with the leading models — Claude, GPT-4o, Gemini, and others — and pick whichever fits your stack and budget best. The model runs through your own account so you see and control the usage bill directly.</p></details>
-      <details><summary>What does it cost to run?</summary><p>You pay AI usage and data credits directly to those providers at cost — typically a few cents per record. We estimate the number up front and measure the real cost per record in your pilot.</p></details>
+      <details><summary>Which AI do you use?</summary><p>We build with the leading models, Claude, GPT-4o, Gemini, and others, and pick whichever fits your stack and budget best. The model runs through your own account so you see and control the usage bill directly.</p></details>
+      <details><summary>What does it cost to run?</summary><p>You pay AI usage and data credits directly to those providers at cost, typically a few cents per record. We estimate the number up front and measure the real cost per record in your pilot.</p></details>
       <details><summary>Who owns it?</summary><p>You do. The agent runs in your accounts with your keys. We keep the right to reuse our general templates for other clients, but never your data or settings.</p></details>
       <details><summary>What happens to our data?</summary><p>It stays in your systems. We delete any copies and our access at handover.</p></details>
       <details><summary>What if HubSpot or another tool changes?</summary><p>That's what the care plan covers. Without one, fixes are billed at $125/hour.</p></details>
@@ -1316,15 +1257,15 @@ CASE_BODY = """
         <span class="tag">The deal</span>
         <h2>Real results are worth more than any ad.</h2>
         <p style="color:var(--muted);margin-bottom:1.25rem;">We're early. We don't have a wall of logos yet, and we're not going to make them up. Instead, we're offering a small number of founding client spots to companies who are willing to let us measure and publish the real numbers once their agent is running.</p>
-        <p style="color:var(--muted);margin-bottom:1.25rem;">In exchange, you get a meaningfully discounted build — and we get the proof we can show the next client.</p>
+        <p style="color:var(--muted);margin-bottom:1.25rem;">In exchange, you get a meaningfully discounted build, and we get the proof we can show the next client.</p>
         <p style="color:var(--muted);">You stay in control. We only publish what you approve in writing. If the numbers aren't what we hoped, they don't go public.</p>
 
         <span class="tag" style="margin-top:2rem;display:block;">What we publish</span>
         <h2>Honest, specific, verifiable.</h2>
         <div class="timeline" style="margin-top:1rem;">
-          <div class="tl-item"><div class="tl-dot"></div><h3>Time saved per week</h3><p>Measured before and after. Hours are hours — no vague "efficiency gains."</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><h3>Time saved per week</h3><p>Measured before and after. Hours are hours, no vague "efficiency gains."</p></div>
           <div class="tl-item"><div class="tl-dot"></div><h3>Dollar value of that time</h3><p>Based on the hourly cost your team actually carries, not an inflated benchmark.</p></div>
-          <div class="tl-item"><div class="tl-dot"></div><h3>How the agent works</h3><p>What it pulls, what it decides, what it writes back — described plainly so readers can judge for themselves.</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><h3>How the agent works</h3><p>What it pulls, what it decides, what it writes back, described plainly so readers can judge for themselves.</p></div>
           <div class="tl-item"><div class="tl-dot"></div><h3>What didn't work</h3><p>Anything we had to change during the pilot gets documented too. No airbrushing.</p></div>
         </div>
       </div>
@@ -1341,7 +1282,7 @@ CASE_BODY = """
         <div class="card" style="margin-top:.5rem;">
           <div class="icon">{ICON["shield"]}</div>
           <h3>You stay in control</h3>
-          <p>We measure everything during the pilot. You review the numbers and the write-up before anything goes public. If you don't approve it, it doesn't publish — and your discount stands either way.</p>
+          <p>We measure everything during the pilot. You review the numbers and the write-up before anything goes public. If you don't approve it, it doesn't publish, and your discount stands either way.</p>
         </div>
 
         <div class="card" style="margin-top:1rem;">
@@ -1362,7 +1303,7 @@ CASE_BODY = """
   <div class="inner">
     <span class="tag">Spots available</span>
     <h2>We're keeping this small on purpose.</h2>
-    <p class="sub" style="margin:0 auto 2rem;">Founding client builds get more of our time — better discovery, faster iterations, and direct access to us throughout the pilot. We can only take a few at a time.</p>
+    <p class="sub" style="margin:0 auto 2rem;">Founding client builds get more of our time, better discovery, faster iterations, and direct access to us throughout the pilot. We can only take a few at a time.</p>
     <a href="contact.html" class="btn btn-grad">Book a free 30-minute call →</a>
   </div>
 </section>
@@ -1486,9 +1427,9 @@ ABOUT_BODY = """
       <div>
         <span class="tag">The problem we solve</span>
         <h2>You don't need an AI hire. You need AI that already works.</h2>
-        <p style="color:var(--muted);margin-bottom:1.25rem;">Most companies sit on AI tools they're not using. Not because AI isn't useful — because using it well takes real experience. Someone has to understand the models, the APIs, the edge cases, and what actually fails in production.</p>
+        <p style="color:var(--muted);margin-bottom:1.25rem;">Most companies sit on AI tools they're not using. Not because AI isn't useful, because using it well takes real experience. Someone has to understand the models, the APIs, the edge cases, and what actually fails in production.</p>
         <p style="color:var(--muted);margin-bottom:1.25rem;">Hiring a full-time AI person costs $120K+ and months of ramp time. And that person is still figuring it out on your dime. What you get is expensive experimentation dressed up as a job title.</p>
-        <p style="color:var(--muted);">{PlAIceholder} is the alternative. We've already done the learning. We show up with working agents, not prototypes — and we're done in two weeks, not six months.</p>
+        <p style="color:var(--muted);">{PlAIceholder} is the alternative. We've already done the learning. We show up with working agents, not prototypes, and we're done in two weeks, not six months.</p>
       </div>
       <div>
         <span class="tag">What we bring</span>
@@ -1502,12 +1443,12 @@ ABOUT_BODY = """
           <div class="card">
             <div class="icon">{ICON["target"]}</div>
             <h3>Custom builds for tasks not on the list</h3>
-            <p>Not every task fits a catalog. We build fully custom agents using the same two-week process — discovery interview, fixed price, pilot on 20 records, measure and hand over.</p>
+            <p>Not every task fits a catalog. We build fully custom agents using the same two-week process, discovery interview, fixed price, pilot on 20 records, measure and hand over.</p>
           </div>
           <div class="card">
             <div class="icon">{ICON["shield"]}</div>
             <h3>We stay on it</h3>
-            <p>AI tools and business software change constantly. Our care plan means we fix it when something breaks — without you having to file a ticket or find a contractor.</p>
+            <p>AI tools and business software change constantly. Our care plan means we fix it when something breaks, without you having to file a ticket or find a contractor.</p>
           </div>
         </div>
       </div>
@@ -1519,7 +1460,7 @@ ABOUT_BODY = """
   <div class="inner" style="max-width:720px;margin:0 auto;text-align:center;">
     <span class="tag">Our standard</span>
     <h2>No invented results. No star ratings we made up. No logos without permission.</h2>
-    <p style="color:rgba(255,255,255,.65);margin-bottom:2rem;">We don't publish ROI claims until a client approves the real numbers in writing. Sample dashboards are labeled as fictional. This page will grow as clients give us permission to quote them — not before.</p>
+    <p style="color:rgba(255,255,255,.65);margin-bottom:2rem;">We don't publish ROI claims until a client approves the real numbers in writing. Sample dashboards are labeled as fictional. This page will grow as clients give us permission to quote them, not before.</p>
     <a href="case-study.html" class="btn btn-grad" style="margin-right:1rem;">Become a founding client →</a>
     <a href="contact.html" class="btn btn-white">Book a free call</a>
   </div>
@@ -1563,7 +1504,7 @@ def post_page(p):
     </div>
   </div>
 </section>"""
-    return page(f"{p['title']} — {{PlAIceholder}}", p['preview'], "blog", body_html)
+    return page(f"{p['title']}, {{PlAIceholder}}", p['preview'], "blog", body_html)
 
 BLOG_BODY = """
 <div class="page-banner">
@@ -1597,7 +1538,7 @@ def demo_placeholder(title, desc):
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>{title} — Sample</title>
+  <title>{title}, Sample</title>
 {FAVICON}
   <link rel="stylesheet" href="../style.css"/>
 </head>
@@ -1645,7 +1586,7 @@ ROI_BODY = """
       <div class="calc-field" style="margin-bottom:1.5rem;">
         <label style="font-weight:700;font-size:.95rem;color:var(--dark);display:block;margin-bottom:.5rem;">Which agent are you considering?</label>
         <select id="roi-agent" style="width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:.95rem;background:#fff;color:var(--ink);">
-          <option value="none">— Not sure yet —</option>
+          <option value="none">,  Not sure yet , </option>
           <optgroup label="Sales">
             <option value="6000,750,20">Signal Prospector</option>
             <option value="3500,450,12">Inbound Lead Researcher</option>
@@ -1690,9 +1631,9 @@ ROI_BODY = """
 
       <!-- Results -->
       <div id="roi-results" class="calc-results" style="display:none;">
-        <div class="calc-result"><div class="rval" id="roi-hrs">—</div><div class="rlabel">Hours saved / month</div></div>
-        <div class="calc-result"><div class="rval" id="roi-save">—</div><div class="rlabel">Value saved / year</div></div>
-        <div class="calc-result"><div class="rval" id="roi-pay">—</div><div class="rlabel">Payback period</div></div>
+        <div class="calc-result"><div class="rval" id="roi-hrs">, </div><div class="rlabel">Hours saved / month</div></div>
+        <div class="calc-result"><div class="rval" id="roi-save">, </div><div class="rlabel">Value saved / year</div></div>
+        <div class="calc-result"><div class="rval" id="roi-pay">, </div><div class="rlabel">Payback period</div></div>
       </div>
 
       <!-- Not-sure fallback -->
@@ -1755,7 +1696,7 @@ ROI_BODY = """
 
     document.getElementById('roi-hrs').textContent  = hrsMonth + ' hrs';
     document.getElementById('roi-save').textContent = '$' + Math.round(saveYear).toLocaleString();
-    document.getElementById('roi-pay').textContent  = paybackWks > 0 ? Math.round(paybackWks) + ' weeks' : '—';
+    document.getElementById('roi-pay').textContent  = paybackWks > 0 ? Math.round(paybackWks) + ' weeks' : ', ';
   }
 
   run();
@@ -1768,39 +1709,39 @@ ROI_BODY = """
 # ─────────────────────────────────────────────────────────────────────────────
 pages = {
     "index.html": page(
-        "{PlAIceholder} — AI agents for growing companies",
+        "{PlAIceholder}, AI agents for growing companies",
         "Custom-built AI agents for companies with 10 to 200 employees. Designed, installed, and proven in two weeks.",
         "home", HOME_BODY),
     "agents.html": page(
-        "Agent Catalog — {PlAIceholder}",
+        "Agent Catalog, {PlAIceholder}",
         "13 custom-built AI agents for sales, customer success, back office, and marketing. Three are ready now with live demos.",
         "agents", AGENTS_BODY),
     "how-it-works.html": page(
-        "How It Works — {PlAIceholder}",
-        "The five-step process, the two-week timeline, and every safety rule — explained plainly.",
+        "How It Works, {PlAIceholder}",
+        "The five-step process, the two-week timeline, and every safety rule, explained plainly.",
         "how", HOW_BODY),
     "pricing.html": page(
-        "Pricing — {PlAIceholder}",
+        "Pricing, {PlAIceholder}",
         "Setup from $1,500. Care plan from $250/month. Fixed price, fixed scope. ROI calculator included.",
         "pricing", PRICING_BODY),
     "roi.html": page(
-        "ROI Calculator — {PlAIceholder}",
+        "ROI Calculator, {PlAIceholder}",
         "Pick your agent, adjust two numbers, and see hours saved, dollar value, and payback period.",
         "roi", ROI_BODY),
     "case-study.html": page(
-        "Case Study — {PlAIceholder}",
+        "Case Study, {PlAIceholder}",
         "Become a founding client. Get a discounted AI agent build in exchange for letting us document your real results.",
         "case", CASE_BODY),
     "contact.html": page(
-        "Book a Call — {PlAIceholder}",
+        "Book a Call, {PlAIceholder}",
         "Book a free 30-minute call. Live demo, no commitment.",
         "contact", CONTACT_BODY),
     "about.html": page(
-        "About — {PlAIceholder}",
+        "About, {PlAIceholder}",
         "We help companies replace expensive AI experimentation with working agents, built by experts.",
         "about", ABOUT_BODY),
     "blog.html": page(
-        "Blog — {PlAIceholder}",
+        "Blog, {PlAIceholder}",
         "How AI agents work, what we've learned building them, and what actually delivers results.",
         "blog", BLOG_BODY),
 }
@@ -1808,9 +1749,9 @@ pages = {
 # Check for real demo files from agent-kit
 agent_kit_samples = os.path.join(base, "agent-kit", "samples")
 demo_files = {
-    "signal-prospector-dashboard.html": ("Signal Prospector Dashboard", "Who to call this week — companies showing buying signals, scored and ready."),
-    "renewal-risk-dashboard.html": ("Renewal Risk Dashboard", "Renewals at risk — accounts flagged with evidence and a suggested next step."),
-    "invoice-checker-dashboard.html": ("Invoice Checker Dashboard", "Invoices to check before paying — exceptions flagged with dollars at risk."),
+    "signal-prospector-dashboard.html": ("Signal Prospector Dashboard", "Who to call this week, companies showing buying signals, scored and ready."),
+    "renewal-risk-dashboard.html": ("Renewal Risk Dashboard", "Renewals at risk, accounts flagged with evidence and a suggested next step."),
+    "invoice-checker-dashboard.html": ("Invoice Checker Dashboard", "Invoices to check before paying, exceptions flagged with dollars at risk."),
 }
 
 for fname, (title, desc) in demo_files.items():
@@ -1826,7 +1767,7 @@ for fname, (title, desc) in demo_files.items():
         print(f"  demos/{fname} (from agent-kit)")
     else:
         with open(dst, "w") as f: f.write(demo_placeholder(title, desc))
-        print(f"  demos/{fname} (placeholder — add agent-kit/samples/ to enable)")
+        print(f"  demos/{fname} (placeholder, add agent-kit/samples/ to enable)")
 
 with open(os.path.join(base, "style.css"), "w") as f:
     f.write(CSS)
@@ -1847,8 +1788,8 @@ for p in POSTS:
     print(f"  blog/{p['slug']}.html")
 
 print("\nDone. Placeholders still to fill:")
-print("  PlAIceholder  — company name")
-print("  [Founder Name]   — your name (for About section)")
-print("  [Contact Email]  — where leads should go")
-print("  [Booking Link]   — Calendly or Cal.com link")
-print("  [Case Study Client] — 'Praxis Escrow' with their OK, or 'a software escrow company'")
+print("  PlAIceholder , company name")
+print("  [Founder Name]  , your name (for About section)")
+print("  [Contact Email] , where leads should go")
+print("  [Booking Link]  , Calendly or Cal.com link")
+print("  [Case Study Client], 'Praxis Escrow' with their OK, or 'a software escrow company'")

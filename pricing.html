@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Pricing — {PlAIceholder}</title>
+  <title>Pricing, {PlAIceholder}</title>
   <meta name="description" content="Setup from $1,500. Care plan from $250/month. Fixed price, fixed scope. ROI calculator included."/>
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png"/>
   <link rel="shortcut icon" href="favicon.png"/>
@@ -147,7 +147,7 @@
   <div class="inner">
     <span class="tag">Estimate your return</span>
     <h2>See what this costs you today.</h2>
-    <p class="sub">Pick your agent, adjust two numbers, and get hours saved, dollar value, and payback period — in under a minute.</p>
+    <p class="sub">Pick your agent, adjust two numbers, and get hours saved, dollar value, and payback period, in under a minute.</p>
     <a href="roi.html" class="btn btn-grad">Open the ROI calculator →</a>
   </div>
 </section>
@@ -158,10 +158,10 @@
     <span class="tag">FAQ</span>
     <h2>Common questions</h2>
     <div class="faq">
-      <details><summary>What exactly is an "AI agent"?</summary><p>A program that does a multi-step task a person used to do — research, reading, judging, and writing up — inside your tools, with rules that check its work before anyone sees it.</p></details>
+      <details><summary>What exactly is an "AI agent"?</summary><p>A program that does a multi-step task a person used to do, research, reading, judging, and writing up, inside your tools, with rules that check its work before anyone sees it.</p></details>
       <details><summary>Do we need to be technical?</summary><p>No. You need an admin who can create access keys and one hour from the people who currently do the task.</p></details>
-      <details><summary>Which AI do you use?</summary><p>We build with the leading models — Claude, GPT-4o, Gemini, and others — and pick whichever fits your stack and budget best. The model runs through your own account so you see and control the usage bill directly.</p></details>
-      <details><summary>What does it cost to run?</summary><p>You pay AI usage and data credits directly to those providers at cost — typically a few cents per record. We estimate the number up front and measure the real cost per record in your pilot.</p></details>
+      <details><summary>Which AI do you use?</summary><p>We build with the leading models, Claude, GPT-4o, Gemini, and others, and pick whichever fits your stack and budget best. The model runs through your own account so you see and control the usage bill directly.</p></details>
+      <details><summary>What does it cost to run?</summary><p>You pay AI usage and data credits directly to those providers at cost, typically a few cents per record. We estimate the number up front and measure the real cost per record in your pilot.</p></details>
       <details><summary>Who owns it?</summary><p>You do. The agent runs in your accounts with your keys. We keep the right to reuse our general templates for other clients, but never your data or settings.</p></details>
       <details><summary>What happens to our data?</summary><p>It stays in your systems. We delete any copies and our access at handover.</p></details>
       <details><summary>What if HubSpot or another tool changes?</summary><p>That's what the care plan covers. Without one, fixes are billed at $125/hour.</p></details>
@@ -214,7 +214,7 @@
       <button class="chat-close" onclick="toggleChat()" aria-label="Close">&#x2715;</button>
     </div>
     <div class="chat-messages" id="chat-messages">
-      <div class="msg msg-ai">Hey! Ask me about our agents, pricing, how we work — or I can help you book a free demo call.</div>
+      <div class="msg msg-ai">Hey! Ask me about our agents, pricing, how we work, or I can help you book a free demo call.</div>
     </div>
     <div class="chat-input-row">
       <input type="text" id="chat-input" placeholder="Ask a question…" autocomplete="off"/>
@@ -266,7 +266,7 @@
       history.push({role:'assistant',content:reply});
     }catch(e){
       hideTyping();
-      addMsg('Something went wrong — visit our contact page to reach us directly.','ai');
+      addMsg('Something went wrong, visit our contact page to reach us directly.','ai');
     }
     input.disabled=false;
     document.getElementById('chat-send').disabled=false;

@@ -291,10 +291,13 @@ legend{font-size:.75rem;font-weight:700;color:var(--muted);padding:0 .4rem;lette
 /* ── chat widget ── */
 #nl-badge-frame,[class*="netlify"],[id*="netlify"]{display:none!important;}
 .chat-widget{position:fixed;bottom:1.25rem;right:1.25rem;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem;}
-.chat-btn{background:rgba(13,27,42,.8);color:var(--blue);font-size:.9rem;font-weight:800;
-  padding:.35rem .75rem;border-radius:100px;border:1px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(8px);cursor:pointer;transition:opacity .2s;letter-spacing:.02em;font-family:inherit;}
-.chat-btn:hover{opacity:.8;}
+.chat-btn{width:62px;height:62px;border-radius:50%;
+  background:rgba(255,255,255,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.55);box-shadow:0 4px 20px rgba(0,0,0,.18);
+  color:var(--blue);font-size:1.35rem;font-weight:900;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:opacity .2s,transform .2s;font-family:inherit;}
+.chat-btn:hover{opacity:.9;transform:scale(1.06);}
 .chat-panel{display:none;flex-direction:column;width:414px;height:580px;
   background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.22);
   overflow:hidden;border:1.5px solid var(--border);}

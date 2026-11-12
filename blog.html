@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Blog — {PlAIceholder}</title>
+  <title>Blog, {PlAIceholder}</title>
   <meta name="description" content="How AI agents work, what we've learned building them, and what actually delivers results."/>
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png"/>
   <link rel="shortcut icon" href="favicon.png"/>
@@ -80,7 +80,7 @@
       <button class="chat-close" onclick="toggleChat()" aria-label="Close">&#x2715;</button>
     </div>
     <div class="chat-messages" id="chat-messages">
-      <div class="msg msg-ai">Hey! Ask me about our agents, pricing, how we work — or I can help you book a free demo call.</div>
+      <div class="msg msg-ai">Hey! Ask me about our agents, pricing, how we work, or I can help you book a free demo call.</div>
     </div>
     <div class="chat-input-row">
       <input type="text" id="chat-input" placeholder="Ask a question…" autocomplete="off"/>
@@ -132,7 +132,7 @@
       history.push({role:'assistant',content:reply});
     }catch(e){
       hideTyping();
-      addMsg('Something went wrong — visit our contact page to reach us directly.','ai');
+      addMsg('Something went wrong, visit our contact page to reach us directly.','ai');
     }
     input.disabled=false;
     document.getElementById('chat-send').disabled=false;
