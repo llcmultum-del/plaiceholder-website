@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Book a Call — {PlAIceholder}</title>
   <meta name="description" content="Book a free 30-minute call. Live demo, no commitment."/>
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png"/>
+  <link rel="shortcut icon" href="favicon.png"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -34,10 +35,10 @@
     <div class="contact-wrap">
       <div class="ci">
         <span class="tag">Get in touch</span>
-        <h2>Free call, no commitment</h2>
-        <p>In 30 minutes we'll show you a live demo on sample data, talk through your biggest time sink, and give you a straight answer on whether an agent can help.</p>
-        <div class="chip"><span class="ic">📅</span><span><a href="[Booking Link]" style="color:var(--blue);font-weight:600;">[Booking Link]</a></span></div>
-        <div class="chip"><span class="ic">📧</span><span>[Contact Email]</span></div>
+        <h2>Free call,<br>no commitment</h2>
+        <p>In 30 minutes we'll walk you through a live demo on sample data, talk through your biggest time sink, and give you a straight answer on whether an agent can help.</p>
+        <div class="ci-chip"><span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span><a href="[Booking Link]" style="color:var(--blue);font-weight:600;">Schedule a 30-min call</a></span></div>
+        <div class="ci-chip"><span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span>[Contact Email]</span></div>
         <a href="https://www.linkedin.com/company/plaiceholder-io" target="_blank" rel="noopener" class="contact-linkedin">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -60,29 +61,45 @@
         </div>
         <div class="frow">
           <input type="text" name="company" placeholder="Company name" required/>
-          <select name="size">
-            <option value="" disabled selected>Company size</option>
-            <option>1 to 10</option>
-            <option>11 to 50</option>
-            <option>51 to 200</option>
-            <option>200+</option>
+          <select name="role">
+            <option value="" disabled selected>Your role</option>
+            <option>Founder / CEO</option>
+            <option>Sales</option>
+            <option>Customer success</option>
+            <option>Operations</option>
+            <option>Finance</option>
+            <option>HR / Recruiting</option>
+            <option>Marketing</option>
+            <option>Other</option>
           </select>
         </div>
         <fieldset>
-          <legend>Tools you use</legend>
-          <div class="cbgroup">
-            <label class="cb-label"><input type="checkbox" name="tools" value="HubSpot"/> HubSpot</label>
-<label class="cb-label"><input type="checkbox" name="tools" value="Salesforce"/> Salesforce</label>
-<label class="cb-label"><input type="checkbox" name="tools" value="Apollo"/> Apollo</label>
-<label class="cb-label"><input type="checkbox" name="tools" value="Zendesk"/> Zendesk</label>
-<label class="cb-label"><input type="checkbox" name="tools" value="Slack"/> Slack</label>
-<label class="cb-label"><input type="checkbox" name="tools" value="QuickBooks"/> QuickBooks</label>
-<label class="cb-label"><input type="checkbox" name="tools" value="Other"/> Other</label>
+          <legend>Where would an agent help most? (select all that apply)</legend>
+          <div class="chip-group">
+            <label class="chip-check"><input type="checkbox" name="areas" value="Sales & prospecting"/><span>Sales & prospecting</span></label>
+<label class="chip-check"><input type="checkbox" name="areas" value="Customer success"/><span>Customer success</span></label>
+<label class="chip-check"><input type="checkbox" name="areas" value="Finance & ops"/><span>Finance & ops</span></label>
+<label class="chip-check"><input type="checkbox" name="areas" value="HR & recruiting"/><span>HR & recruiting</span></label>
+<label class="chip-check"><input type="checkbox" name="areas" value="Reporting & analytics"/><span>Reporting & analytics</span></label>
           </div>
         </fieldset>
-        <textarea name="task" placeholder="What slow task would you hand to an agent?" required></textarea>
+        <fieldset>
+          <legend>Tools your team uses (select all that apply)</legend>
+          <div class="chip-group">
+            <label class="chip-check"><input type="checkbox" name="tools" value="HubSpot"/><span>HubSpot</span></label>
+<label class="chip-check"><input type="checkbox" name="tools" value="Salesforce"/><span>Salesforce</span></label>
+<label class="chip-check"><input type="checkbox" name="tools" value="Zendesk"/><span>Zendesk</span></label>
+<label class="chip-check"><input type="checkbox" name="tools" value="QuickBooks"/><span>QuickBooks</span></label>
+<label class="chip-check"><input type="checkbox" name="tools" value="Apollo"/><span>Apollo</span></label>
+<label class="chip-check"><input type="checkbox" name="tools" value="Slack"/><span>Slack</span></label>
+<label class="chip-check"><input type="checkbox" name="tools" value="Linear"/><span>Linear</span></label>
+<label class="chip-check"><input type="checkbox" name="tools" value="Notion"/><span>Notion</span></label>
+<label class="chip-check"><input type="checkbox" name="tools" value="Airtable"/><span>Airtable</span></label>
+<label class="chip-check"><input type="checkbox" name="tools" value="Other"/><span>Other</span></label>
+          </div>
+        </fieldset>
         <select name="agent">
-          <option value="" disabled selected>Which agent are you interested in?</option>
+          <option value="" disabled selected>Which agent caught your eye?</option>
           <option>Signal Prospector</option>
 <option>Inbound Lead Researcher</option>
 <option>CRM Hygiene</option>
@@ -98,6 +115,7 @@
 <option>RFP and Questionnaire Drafter</option>
 <option>Not sure yet</option>
         </select>
+        <textarea name="message" placeholder="Anything else we should know? (optional)"></textarea>
         <!-- honeypot -->
         <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off"/>
         <button type="submit" class="sbtn">Send →</button>
@@ -106,6 +124,7 @@
     </div>
   </div>
 </section>
+<a href="https://www.netlify.com" target="_blank" rel="noopener" class="plai-badge" aria-label="Hosted on Netlify">;)</a>
 <script>
 function handleSubmit(e){
   e.preventDefault();
@@ -146,6 +165,7 @@ function handleSubmit(e){
   </div>
   <p class="footer-copy">© 2026 {PlAIceholder}. All rights reserved.</p>
 </footer>
+<a href="https://www.netlify.com" target="_blank" rel="noopener" class="plai-badge" aria-label="Hosted on Netlify">;)</a>
 <script src="https://multum-site-analytics.netlify.app/track.js" data-site="plaiceholder" defer></script>
 </body>
 </html>

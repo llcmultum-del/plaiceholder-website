@@ -245,27 +245,38 @@ details p{padding:.7rem 0 0;font-size:.88rem;color:var(--muted);max-width:640px;
 /* ── contact ── */
 .contact-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:3.5rem;align-items:start;}
 .ci p{color:var(--muted);margin-bottom:1.5rem;font-size:.92rem;}
-.chip{display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem;color:var(--muted);font-size:.88rem;}
-.chip .ic{width:34px;height:34px;border-radius:8px;background:var(--grad);
+.ci-chip{display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem;color:var(--muted);font-size:.88rem;}
+.ci-chip .ic{width:34px;height:34px;border-radius:8px;background:var(--grad);
   display:flex;align-items:center;justify-content:center;font-size:.88rem;flex-shrink:0;}
-form.contact-form{display:flex;flex-direction:column;gap:.8rem;}
+form.contact-form{display:flex;flex-direction:column;gap:1rem;}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
 input,textarea,select{width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);
   border-radius:10px;font-size:.88rem;font-family:inherit;background:#fff;
   color:var(--ink);outline:none;transition:border-color .2s;}
 input:focus,textarea:focus,select:focus{border-color:var(--sea);}
-textarea{resize:vertical;min-height:110px;}
-.cbgroup{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.4rem;}
-.cb-label{display:flex;align-items:center;gap:.45rem;font-size:.83rem;color:var(--muted);cursor:pointer;}
-.cb-label input{width:auto;accent-color:var(--blue);}
-fieldset{border:1.5px solid var(--border);border-radius:10px;padding:.75rem .9rem;}
-legend{font-size:.8rem;font-weight:700;color:var(--muted);padding:0 .4rem;}
+textarea{resize:vertical;min-height:90px;}
+fieldset{border:1.5px solid var(--border);border-radius:12px;padding:.85rem 1rem;}
+legend{font-size:.75rem;font-weight:700;color:var(--muted);padding:0 .4rem;letter-spacing:.05em;text-transform:uppercase;}
+.chip-group{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.5rem;}
+.chip-check{cursor:pointer;position:relative;}
+.chip-check input{position:absolute;opacity:0;width:0;height:0;}
+.chip-check span{display:inline-block;padding:.35rem .85rem;border:1.5px solid var(--border);
+  border-radius:100px;font-size:.8rem;color:var(--muted);transition:all .15s;white-space:nowrap;}
+.chip-check input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff;}
+.chip-check:hover span{border-color:var(--sea);color:var(--sea);}
 .sbtn{background:var(--grad);color:#fff;padding:.78rem 1.75rem;border-radius:100px;
   font-size:.92rem;font-weight:700;border:none;cursor:pointer;
   transition:opacity .2s,transform .2s;align-self:flex-start;}
 .sbtn:hover{opacity:.88;transform:translateY(-2px);}
 .form-success{display:none;background:rgba(46,204,113,.1);border:1.5px solid var(--green);
   border-radius:12px;padding:1rem 1.25rem;color:#1a7a45;font-size:.9rem;font-weight:600;}
+/* ── plai badge ── */
+.plai-badge{position:fixed;bottom:1rem;right:1rem;background:rgba(255,255,255,.12);
+  color:rgba(255,255,255,.65);font-size:.88rem;font-weight:700;padding:.3rem .6rem;
+  border-radius:100px;text-decoration:none;z-index:9999;backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.2);transition:opacity .2s;letter-spacing:.02em;}
+.plai-badge:hover{opacity:.8;}
+[class*="netlify"],[id*="netlify"]{display:none!important;}
 
 /* ── case study ── */
 .cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
@@ -338,6 +349,8 @@ footer{background:var(--dark);padding:2.5rem 2rem 1.5rem;}
   .calc-wrap{padding:1.5rem 1rem;}
 
   /* contact form */
+  .contact-wrap{grid-template-columns:1fr;}
+  .frow{grid-template-columns:1fr;}
   .sbtn{width:100%;text-align:center;}
 
   /* buttons */
