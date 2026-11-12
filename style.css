@@ -272,7 +272,7 @@ legend{font-size:.75rem;font-weight:700;color:var(--muted);padding:0 .4rem;lette
   border-radius:12px;padding:1rem 1.25rem;color:#1a7a45;font-size:.9rem;font-weight:600;}
 /* ── plai badge ── */
 .plai-badge{position:fixed;bottom:1rem;right:1rem;background:rgba(255,255,255,.12);
-  color:rgba(255,255,255,.65);font-size:.88rem;font-weight:700;padding:.3rem .6rem;
+  color:var(--blue);font-size:.88rem;font-weight:700;padding:.3rem .6rem;
   border-radius:100px;text-decoration:none;z-index:9999;backdrop-filter:blur(6px);
   border:1px solid rgba(255,255,255,.2);transition:opacity .2s;letter-spacing:.02em;}
 .plai-badge:hover{opacity:.8;}
