@@ -440,7 +440,7 @@ function runQuiz(){
   input.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}});
 })();
 </script>
-<script src="https://multum-site-analytics.netlify.app/track.js" data-site="plaiceholder" defer></script>
+<script>if(!new URLSearchParams(location.search).has("preview")){var s=document.createElement("script");s.src="https://multum-site-analytics.netlify.app/track.js";s.dataset.site="plaiceholder";s.defer=true;document.head.appendChild(s);}</script>
 <script>
 (function(){
   function killBadge(){
