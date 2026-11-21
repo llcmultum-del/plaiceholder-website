@@ -107,7 +107,7 @@ def build_post(shell, p):
 
     body = f"""<div class="page-banner">
   <div class="page-banner-inner" style="max-width:760px;">
-    <span class="tag">{esc(p['tag'])}</span>
+    <span class="tag" style="background:none;-webkit-text-fill-color:#fff;color:#fff;opacity:.9;">{esc(p['tag'])}</span>
     <h1 style="margin-top:.75rem;">{esc(p['title'])}</h1>
     <p style="margin-top:.5rem;opacity:.7;"><time datetime="{p['date']}">{pretty_date(p['date'])}</time></p>
   </div>
